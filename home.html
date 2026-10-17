@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home | Sonic</title>
+
+   <link
+        href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;800&family=Figtree:wght@400;500;700&display=swap"
+        rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+    <script>
+        tailwind.config = { darkMode: 'class', theme: { extend: { colors: { leaf: '#1F5C3A', calamansi: '#F2C230', chili: '#C8341F', ink: '#17251C', mist: '#EEF3EC' }, fontFamily: { display: ['Bricolage Grotesque', 'sans-serif'], sans: ['Figtree', 'sans-serif'] } } } }
+    </script>
+    <style type="text/tailwindcss">
+
+        @theme{
+            --color-calamansi: #F2C230;
+        }
+    </style>
+</head>
+
+<body class="font-sans bg-white text-navyblue">
+
+    <header class="bg-blue-950 text-white">
+        <nav class="max-w-6xl mx-auto px-4 py-3 flex flex-wrap items-center justify-between gap-3">
+            <a href="index.html" class="font-display text-3xl font-extrabold p-5">Sonic Sipocot<span
+                    class="text-yellow-500">.</span></a>
+
+            <!-- later: hamburger button (id="menu-btn") for mobile -->
+
+            <ul class="flex flex-wrap items-center gap-1 text-sm font-medium">
+                <li><a href="index.html" class="px-3 py-2 rounded-full hover:bg-white/10 text-white">Home</a></li>
+                <li><a href="menu.html" class="px-3 py-2 rounded-full hover:bg-white/10">Menu</a></li>
+                <li><a href="cart.html" class="px-3 py-2 rounded-full hover:bg-white/10">Cart (2)</a></li>
+                <li><a href="track.html" class="px-3 py-2 rounded-full hover:bg-white/10">Track order</a></li>
+                <li><a href="contact.html" class="px-3 py-2 rounded-full hover:bg-white/10">Contact</a></li>
+
+                
+                <button class="ml-1 px-3 py-2 rounded-full border border-white/30 bg-calamansi text-ink">Sign In</button>
+                
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section class="text-Black">
+            <div class="max-w-6xl mx-auto px-4 py-12 md:py-20 grid md:grid-cols-2 gap-10 items-center">
+                <div>
+                    <h1 class="font-display text-4xl md:text-6xl font-extrabold leading-[1.05]">Lutong bahay, hatid sa
+                        pinto mo.</h1>
+                    <p class="mt-5 text-lg text-black max-w-md">Order from kitchens near you in Sipocot. Pick your meal,
+                        check out, and follow your order until it arrives.</p>
+                    <div class="mt-8 flex flex-wrap gap-3">
+                        <a href="menu.html" class="border border-black/40 px-6 py-3 rounded-full font-bold">Order now</a>
+                        <a href="track.html" class="border border-black/40 px-6 py-3 rounded-full font-bold">Track an order</a>
+                    </div>
+                </div>
+                <!-- CAROUSEL (JS): show one slide at a time, auto-change + prev/next + dots -->
+                <div id="carousel"
+                    class="bg-white text-blue-950 rounded-3xl p-8 min-h-[300px] flex flex-col justify-between border border-black">
+                    <div class="slide flex justify-between gap-4">
+                        <div>
+                            <p class="font-semibold">Today's deal</p>
+                            <p class="font-display text-3xl font-extrabold mt-2">Sipocot Lechon Rice for ₱159</p>
+                            <p class="mt-2">Free delivery on orders over ₱300.</p>
+                        </div>
+                        <div class="text-7xl">🐖</div>
+                    </div>
+                    <!-- more .slide divs go here, hidden except the active one -->
+
+                    <div class="flex items-center justify-between mt-8">
+                        <div class="flex gap-2"><span class="w-6 h-2 rounded-full bg-blue-950"></span><span
+                                class="w-2 h-2 rounded-full bg-blue-950/30"></span><span
+                                class="w-2 h-2 rounded-full bg-blue-950/30"></span></div>
+                        <div class="flex gap-2"><button id="prev"
+                                class="w-10 h-10 rounded-full bg-blue-950 text-white hover:bg-blue-950/70">&lt;</button><button id="next"
+                                class="w-10 h-10 rounded-full bg-blue-950 text-white hover:bg-blue-950/70">&gt;</button></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="max-w-6xl mx-auto px-4 mt-14">
+            <h2 class="font-display text-2xl font-bold">Browse by craving</h2>
+            <div class="mt-5 grid grid-cols-2 sm:grid-cols-4 gap-3">
+                <a href="menu.html" class="bg-blue-50 rounded-2xl p-5 text-center hover:bg-blue-100">
+                    <div class="text-4xl">🍚</div>
+                    <p class="mt-2 font-medium">Rice meals</p>
+                </a>
+                <a href="menu.html" class="bg-blue-50 rounded-2xl p-5 text-center hover:bg-blue-100">
+                    <div class="text-4xl">🍜</div>
+                    <p class="mt-2 font-medium">Noodles</p>
+                </a>
+                <a href="menu.html" class="bg-blue-50 rounded-2xl p-5 text-center hover:bg-blue-100">
+                    <div class="text-4xl">🍲</div>
+                    <p class="mt-2 font-medium">Soups</p>
+                </a>
+                <a href="menu.html" class="bg-blue-50 rounded-2xl p-5 text-center hover:bg-blue-100">
+                    <div class="text-4xl">🍧</div>
+                    <p class="mt-2 font-medium">Desserts</p>
+                </a>
+            </div>
+        </section>
+        <section class="max-w-6xl mx-auto px-4 mt-14">
+            <div class="flex items-end justify-between">
+                <h2 class="font-display text-2xl font-bold">Popular this week</h2><a href="menu.html"
+                    class="font-semibold underline">See full menu</a>
+            </div>
+            <div class="mt-5 grid md:grid-cols-3 gap-5">
+                <article class="border border-blue-950/10 rounded-2xl overflow-hidden">
+                    <div class="bg-blue-50 h-36 grid place-items-center text-6xl">🍗</div>
+                    <div class="p-4">
+                        <h3 class="font-bold">Chicken Inasal</h3>
+                        <p class="text-sm text-blue-950/60">Grilled, with garlic rice</p>
+                        <p class="mt-2 font-bold">₱149</p>
+                    </div>
+                </article>
+                <article class="border border-blue-950/10 rounded-2xl overflow-hidden">
+                    <div class="bg-blue-50 h-36 grid place-items-center text-6xl">🍜</div>
+                    <div class="p-4">
+                        <h3 class="font-bold">Bam-i</h3>
+                        <p class="text-sm text-blue-950/60">Mixed noodles, Bicol style</p>
+                        <p class="mt-2 font-bold">₱129</p>
+                    </div>
+                </article>
+                <article class="border border-blue-950/10 rounded-2xl overflow-hidden">
+                    <div class="bg-blue-50 h-36 grid place-items-center text-6xl">🍲</div>
+                    <div class="p-4">
+                        <h3 class="font-bold">Sinigang na Baboy</h3>
+                        <p class="text-sm text-blue-950/60">Sour tamarind broth</p>
+                        <p class="mt-2 font-bold">₱165</p>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section class="max-w-6xl mx-auto px-4 mt-14">
+            <h2 class="font-display text-2xl font-bold">How ordering works</h2>
+            <ol class="mt-5 grid md:grid-cols-3 gap-5">
+                <li class="bg-blue-50 rounded-2xl p-5">
+                    <p class="font-display text-3xl font-extrabold">1</p>
+                    <p class="mt-1 font-bold">Pick your food</p>
+                    <p class="text-sm text-blue-950/70">Search the menu and add items to your cart.</p>
+                </li>
+                <li class="bg-blue-50 rounded-2xl p-5">
+                    <p class="font-display text-3xl font-extrabold">2</p>
+                    <p class="mt-1 font-bold">Check out</p>
+                    <p class="text-sm text-blue-950/70">Enter your address and choose a delivery date.</p>
+                </li>
+                <li class="bg-blue-50 rounded-2xl p-5">
+                    <p class="font-display text-3xl font-extrabold">3</p>
+                    <p class="mt-1 font-bold">Track it</p>
+                    <p class="text-sm text-blue-950/70">Watch the progress bar until it reaches your door.</p>
+                </li>
+            </ol>
+        </section>
+    </main>
+    <footer class="bg-blue-950 text-white/70 mt-16">
+        <div class="max-w-6xl mx-auto px-4 py-8 flex flex-wrap justify-between gap-4 text-sm">
+            <p><span class="font-display text-white font-bold">Sonic.</span> Food delivery based in Sipocot Camarines Sur.</p>
+        </div>
+    </footer>
+</body>
+</html>
