@@ -1,182 +1,750 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Menu</title>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;800&family=Figtree:wght@400;500;700&display=swap"
-        rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <style type="text/tailwindcss">
-        @theme {
-            --color-leaf: #1F5C3A;
-            --color-calamansi: #F2C230;
-            --color-chili: #C8341F;
-            --color-ink: #17251C;
-            --color-mist: #EEF3EC;
-            --font-display: "Bricolage Grotesque", sans-serif;
-            --font-sans: "Figtree", sans-serif;
-            --color-navyblue: #010736;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Menu | Sonic Sipocot</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@400..600,0..1&display=block" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com/3.4.17"></script>
+<script>
+tailwind.config = { theme: { extend: {
+  colors: { navy:'#010736', gold:'#F2C230', ink:'#0d1c2e', muted:'#575f6a', tint:'#eff4ff', line:'#dce3f1', page:'#f8f9ff' },
+  fontFamily: { display:['Plus Jakarta Sans','sans-serif'], sans:['Inter','sans-serif'] } } } }
+</script>
+<style>
+  .no-scrollbar{scrollbar-width:none}.no-scrollbar::-webkit-scrollbar{display:none}
+  .material-symbols-outlined{font-variation-settings:'FILL' 0,'wght' 500;font-size:22px}
+  :focus-visible{outline:2px solid #2563eb;outline-offset:2px}
+  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
 </head>
+<body class="font-sans bg-page text-ink antialiased">
 
-<body class="font-sans bg-white text-navyblue">
-    <!-- NAVBAR: copy this exact block into every page -->
-    <header class="bg-blue-950 text-white">
-        <nav class="max-w-6xl mx-auto px-4 py-3 flex flex-wrap items-center justify-between gap-3">
-             <a href="home.html" class="font-display text-3xl font-extrabold p-5">Sonic<span
-                    class="text-yellow-500">.</span></a>
-            <!-- later: hamburger button (id="menu-btn") for mobile -->
-            <ul class="flex flex-wrap items-center gap-1 text-sm font-medium">
-                <li><a href="home.html" class="px-3 py-2 rounded-full hover:bg-white/10">Home</a></li>
-                <li><a href="menu.html" class="px-3 py-2 rounded-full bg-calamansi text-ink">Menu</a></li>
-                <li><a href="cart.html" class="px-3 py-2 rounded-full hover:bg-white/10">Cart (2)</a></li>
-                <li><a href="track.html" class="px-3 py-2 rounded-full hover:bg-white/10">Track order</a></li>
-                <li><a href="contact.html" class="px-3 py-2 rounded-full hover:bg-white/10">Contact</a></li>
-                <!-- later: dark mode button (id="theme-toggle") -->
-                <li><button id="theme-toggle" class="ml-1 px-3 py-2 rounded-full border border-white/30">Dark</button>
-                </li>
-            </ul>
-        </nav>
-    </header>
-    <main>
-        <section class="max-w-6xl mx-auto px-4 mt-10">
-            <h1 class="font-display text-3xl md:text-4xl font-extrabold">Menu</h1>
-            <!-- LIVE SEARCH (JS): filter .menu-item cards on every keystroke; optional suggestion list under the input -->
-            <div class="mt-5 relative max-w-xl">
-                <input id="search" type="search" placeholder="Search dishes, like inasal or sinigang"
-                    class="w-full border border-navyblue/20 rounded-full px-5 py-3 focus:outline-none focus:ring-2 focus:ring-leaf">
-                <ul id="suggestions"
-                    class="hidden absolute z-10 w-full bg-white border border-navyblue/10 rounded-2xl mt-2 shadow">
-                    <li class="px-5 py-2 hover:bg-mist">Chicken Inasal</li>
-                    <li class="px-5 py-2 hover:bg-mist">Cebu Lechon Rice</li>
-                </ul>
-            </div>
-            <div class="mt-4 flex flex-wrap gap-2 text-sm">
-                <button class="bg-navyblue text-white px-4 py-2 rounded-full">All</button>
-                <button class="bg-mist px-4 py-2 rounded-full">Rice meals</button>
-                <button class="bg-mist px-4 py-2 rounded-full">Noodles</button>
-                <button class="bg-mist px-4 py-2 rounded-full">Soups</button>
-                <button class="bg-mist px-4 py-2 rounded-full">Desserts</button>
-            </div>
-            <!-- SKELETON (JS): show these gray cards first, then swap in the real grid after ~1.5s -->
-            <div id="skeleton" class="mt-6 grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-                <div class="animate-pulse border border-navyblue/10 rounded-2xl overflow-hidden">
-                    <div class="bg-navyblue/10 h-32"></div>
-                    <div class="p-4 space-y-2">
-                        <div class="h-4 bg-navyblue/10 rounded w-2/3"></div>
-                        <div class="h-3 bg-navyblue/10 rounded w-full"></div>
-                        <div class="h-8 bg-navyblue/10 rounded-full w-1/3"></div>
-                    </div>
-                </div>
-            </div>
-            <div id="menu-grid" class="mt-6 grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-                <article class="menu-item border border-navyblue/10 rounded-2xl overflow-hidden flex flex-col">
-                    <button class="bg-calamansi/50 h-32 grid place-items-center text-6xl"
-                        title="View details">🍗</button>
-                    <div class="p-4 flex flex-col flex-1">
-                        <h3 class="font-bold">Chickenjoy</h3>
-                        <p class="text-sm text-navyblue/60 flex-1">1pc Chickenjoy w/ Jolly Spaghetti</p>
-                        <div class="mt-3 flex items-center justify-between"><span
-                                class="font-bold text-navyblue">₱149</span><button
-                                class="add-btn bg-navyblue text-white text-sm font-semibold px-4 py-2 rounded-full">Add
-                                to
-                                cart</button></div>
-                    </div>
-                </article>
-                <article class="menu-item border border-navyblue/10 rounded-2xl overflow-hidden flex flex-col">
-                    <button class="bg-calamansi/50 h-32 grid place-items-center text-6xl"
-                        title="View details">🍗</button>
-       gut             <div class="p-4 flex flex-col flex-1">
-                        <h3 class="font-bold">Biggs Cajun</h3>
-                        <p class="text-sm text-navyblue/60 flex-1">1pc Biggs Cajun w/ rice</p>
-                        <div class="mt-3 flex items-center justify-between"><span
-                                class="font-bold text-navyblue">₱234</span><button
-                                class="add-btn bg-navyblue text-white text-sm font-semibold px-4 py-2 rounded-full">Add
-                                to
-                                cart</button></div>
-                    </div>
-                </article>
-                <article class="menu-item border border-navyblue/10 rounded-2xl overflow-hidden flex flex-col">
-                    <button class="bg-calamansi/50 h-32 grid place-items-center text-6xl"
-                        title="View details">🍔</button>
-                    <div class="p-4 flex flex-col flex-1">
-                        <h3 class="font-bold">Burger Mcdo</h3>
-                        <p class="text-sm text-navyblue/60 flex-1">Cheesy Burger McDo Solo</p>
-                        <div class="mt-3 flex items-center justify-between"><span
-                                class="font-bold text-navyblue">₱61</span><button
-                                class="add-btn bg-navyblue text-white text-sm font-semibold px-4 py-2 rounded-full">Add
-                                to
-                                cart</button></div>
-                    </div>
-                </article>
-                <article class="menu-item border border-navyblue/10 rounded-2xl overflow-hidden flex flex-col">
-                    <button class="bg-calamansi/50 h-32 grid place-items-center text-6xl"
-                        title="View details">🍔</button>
-                    <div class="p-4 flex flex-col flex-1">
-                        <h3 class="font-bold">Quarter Pounder</h3>
-                        <p class="text-sm text-navyblue/60 flex-1">Quarter Pounder with Cheese</p>
-                        <div class="mt-3 flex items-center justify-between"><span
-                                class="font-bold text-navyblue">₱225</span><button
-                                class="add-btn bg-navyblue text-white text-sm font-semibold px-4 py-2 rounded-full">Add
-                                to
-                                cart</button></div>
-                    </div>
-                </article>
-                <article class="menu-item border border-navyblue/10 rounded-2xl overflow-hidden flex flex-col">
-                    <button class="bg-calamansi/50 h-32 grid place-items-center text-6xl"
-                        title="View details">🍗</button>
-                    <div class="p-4 flex flex-col flex-1">
-                        <h3 class="font-bold">Chicken Inasal</h3>
-                        <p class="text-sm text-navyblue/60 flex-1">Chicken Hita Inasal</p>
-                        <div class="mt-3 flex items-center justify-between"><span
-                                class="font-bold text-navyblue">₱110</span><button
-                                class="add-btn bg-navyblue text-white text-sm font-semibold px-4 py-2 rounded-full">Add
-                                to
-                                cart</button></div>
-                    </div>
-                </article>
-                <article class="menu-item border border-navyblue/10 rounded-2xl overflow-hidden flex flex-col">
-                    <button class="bg-calamansi/50 h-32 grid place-items-center text-6xl"
-                        title="View details">🍧</button>
-                    <div class="p-4 flex flex-col flex-1">
-                        <h3 class="font-bold">Halo-halo</h3>
-                        <p class="text-sm text-navyblue/60 flex-1">Shaved ice with sweet toppings</p>
-                        <div class="mt-3 flex items-center justify-between"><span
-                                class="font-bold text-navyblue">₱89</span><button
-                                class="add-btn bg-navyblue text-white text-sm font-semibold px-4 py-2 rounded-full">Add
-                                to
-                                cart</button></div>
-                    </div>
-                </article>
+<!-- NAVBAR (sticky, so no manual top padding is needed) -->
+<header class="sticky top-0 z-40 bg-navy text-white shadow-lg">
+  <div class="max-w-7xl mx-auto h-16 px-4 sm:px-6 flex items-center justify-between gap-3">
+    <a href="index.html" class="font-display text-xl sm:text-2xl font-extrabold">Sonic Sipocot<span class="text-gold">.</span></a>
+    <nav class="hidden lg:flex items-center gap-1 text-sm font-semibold" aria-label="Main"><a href="index.html" class="px-3.5 py-2 rounded-full inline-flex items-center whitespace-nowrap text-white/80 hover:bg-white/10 hover:text-white">Home</a><a href="menu.html" aria-current="page" class="px-3.5 py-2 rounded-full inline-flex items-center whitespace-nowrap bg-gold text-navy">Menu</a><a href="cart.html" class="px-3.5 py-2 rounded-full inline-flex items-center whitespace-nowrap text-white/80 hover:bg-white/10 hover:text-white">Cart<span data-cart-count class="hidden ml-1 min-w-[20px] h-5 px-1.5 rounded-full bg-gold text-navy text-[11px] font-bold inline-grid place-items-center">0</span></a><a href="track.html" class="px-3.5 py-2 rounded-full inline-flex items-center whitespace-nowrap text-white/80 hover:bg-white/10 hover:text-white">Track order</a><a href="orders.html" class="px-3.5 py-2 rounded-full inline-flex items-center whitespace-nowrap text-white/80 hover:bg-white/10 hover:text-white">My orders</a><a href="contact.html" class="px-3.5 py-2 rounded-full inline-flex items-center whitespace-nowrap text-white/80 hover:bg-white/10 hover:text-white">Contact</a></nav>
+    <div class="flex items-center gap-1">
+      <a href="signin.html" class="hidden lg:inline-block bg-gold text-navy text-sm font-bold px-5 py-2.5 rounded-full hover:brightness-105">Sign In</a>
+      <a href="cart.html" aria-label="Cart" class="relative lg:hidden w-11 h-11 grid place-items-center rounded-full hover:bg-white/10">
+        <span class="material-symbols-outlined">shopping_bag</span>
+        <span data-cart-count class="hidden absolute top-0.5 right-0.5 min-w-[18px] h-[18px] px-1 rounded-full bg-gold text-navy text-[10px] font-bold grid place-items-center">0</span>
+      </a>
+      <button id="menu-btn" aria-expanded="false" aria-controls="mobile-nav" aria-label="Open menu" class="lg:hidden w-11 h-11 grid place-items-center rounded-full hover:bg-white/10">
+        <span id="menu-icon" class="material-symbols-outlined">menu</span>
+      </button>
+    </div>
+  </div>
+  <nav id="mobile-nav" aria-label="Mobile" class="hidden lg:hidden border-t border-white/10 px-4 py-3 grid gap-1 text-sm font-semibold"><a href="index.html" class="px-4 py-3 rounded-xl flex items-center justify-between text-white/80 hover:bg-white/10 hover:text-white">Home</a><a href="menu.html" aria-current="page" class="px-4 py-3 rounded-xl flex items-center justify-between bg-gold text-navy">Menu</a><a href="cart.html" class="px-4 py-3 rounded-xl flex items-center justify-between text-white/80 hover:bg-white/10 hover:text-white">Cart</a><a href="track.html" class="px-4 py-3 rounded-xl flex items-center justify-between text-white/80 hover:bg-white/10 hover:text-white">Track order</a><a href="orders.html" class="px-4 py-3 rounded-xl flex items-center justify-between text-white/80 hover:bg-white/10 hover:text-white">My orders</a><a href="contact.html" class="px-4 py-3 rounded-xl flex items-center justify-between text-white/80 hover:bg-white/10 hover:text-white">Contact</a>
+    <a href="signin.html" class="mt-2 text-center bg-gold text-navy font-bold py-3 rounded-full">Sign In / Register</a>
+  </nav>
+</header>
 
-            </div>
-        </section>
+<main class="max-w-7xl mx-auto px-4 sm:px-6 pb-28">
 
-        <!-- MODAL (JS): remove "hidden" to open it when a food image is clicked -->
-        <div id="modal" class="hidden fixed inset-0 bg-navyblue/60 grid place-items-center p-4">
-            <div class="bg-white rounded-3xl max-w-md w-full overflow-hidden">
-                <div class="bg-calamansi/50 h-40 grid place-items-center text-7xl">🐖</div>
-                <div class="p-6">
-                    <h2 class="font-display text-2xl font-bold">Cebu Lechon Rice</h2>
-                    <p class="mt-2 text-navyblue/70">Crispy lechon skin and tender meat served with puso rice and spiced
-                        vinegar.</p>
-                    <p class="mt-3 font-bold text-navyblue text-xl">₱159</p>
-                    <div class="mt-5 flex gap-3"><button
-                            class="flex-1 bg-navyblue text-white font-semibold py-3 rounded-full">Add to
-                            cart</button><button id="close-modal"
-                            class="px-5 py-3 rounded-full border border-navyblue/20">Close</button></div>
-                </div>
-            </div>
+  <section class="pt-5 sm:pt-8">
+    <h1 class="font-display text-2xl sm:text-4xl font-extrabold tracking-tight">Menu</h1>
+    <p class="mt-1 text-sm sm:text-base text-muted">Fresh local meals delivered across Sipocot in about 18 to 25 minutes.</p>
+
+    <!-- SEARCH + SORT: one row on tablet/desktop, stacked on mobile -->
+    <div class="mt-4 flex flex-col sm:flex-row gap-3">
+      <div class="relative flex-1">
+        <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-muted pointer-events-none">search</span>
+        <input id="search" type="text" autocomplete="off" aria-label="Search dishes" placeholder="Search a dish or store, like Jollibee"
+          class="w-full h-12 pl-12 pr-12 rounded-full bg-white border border-line focus:outline-none focus:ring-2 focus:ring-navy">
+        <button id="clear" aria-label="Clear search" class="hidden absolute right-1.5 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full hover:bg-tint grid place-items-center">
+          <span class="material-symbols-outlined">close</span></button>
+      </div>
+      <label class="relative sm:w-56">
+        <span class="sr-only">Sort by</span>
+        <select id="sort" class="w-full h-12 appearance-none rounded-full bg-white border border-line pl-5 pr-11 text-sm font-semibold focus:outline-none focus:ring-2 focus:ring-navy">
+          <option value="popular">Most popular</option><option value="low">Price: low to high</option>
+          <option value="high">Price: high to low</option><option value="fast">Fastest prep</option>
+        </select>
+        <span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-muted pointer-events-none">expand_more</span>
+      </label>
+    </div>
+  </section>
+
+  <!-- STORES: tap a store to see only its menu; swipe sideways on mobile -->
+  <section class="mt-5" aria-labelledby="stores-h">
+    <h2 id="stores-h" class="font-display font-bold text-lg">Order from your favorite stores</h2>
+    <div id="stores" class="mt-3 flex gap-2 sm:gap-3 overflow-x-auto sm:overflow-visible sm:flex-wrap no-scrollbar -mx-4 px-4 sm:mx-0 sm:px-0 pb-1" role="group" aria-label="Stores"></div>
+  </section>
+
+  <!-- CATEGORY + QUICK FILTERS: stays visible while scrolling; swipe sideways on mobile -->
+  <div class="sticky md:static top-16 z-30 -mx-4 sm:mx-0 px-4 sm:px-0 py-3 bg-page/95 backdrop-blur">
+    <div id="chips" class="flex gap-2 overflow-x-auto md:overflow-visible md:flex-wrap no-scrollbar" role="group" aria-label="Filters"></div>
+  </div>
+
+  <!-- TODAY'S DEAL: hidden automatically while the user is searching or filtering -->
+  <div id="deal-wrap" class="mt-1 rounded-2xl bg-navy text-white p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-6">
+    <div class="flex-1">
+      <p class="text-xs font-bold text-gold uppercase tracking-wide">Flash combo · ends 3:00 PM</p>
+      <h2 class="mt-1 font-display font-bold text-base sm:text-lg">Crispy Lechon + Extra Rice + Sago't Gulaman</h2>
+    </div>
+    <div class="flex items-center justify-between sm:justify-end gap-4">
+      <div><span class="line-through text-white/60 text-sm">₱240</span> <span class="font-display text-2xl font-extrabold text-gold">₱189</span></div>
+      <button id="deal" class="h-11 px-5 rounded-full bg-gold text-navy font-bold active:scale-95 transition">Add combo</button>
+    </div>
+  </div>
+
+  <p id="count" aria-live="polite" class="mt-4 text-sm text-muted"></p>
+
+  <!-- FOOD GRID: 1 column (compact rows) on mobile, 2 on tablet, 3 on laptop, 4 on wide screens -->
+  <div id="grid" class="mt-3 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-4"></div>
+
+  <div id="empty" class="hidden text-center py-16">
+    <p class="text-5xl">🍽️</p>
+    <h2 class="mt-3 font-display font-bold text-lg">No dishes found</h2>
+    <p class="mt-1 text-sm text-muted">Try a different word or clear your filters.</p>
+    <button id="reset" class="mt-5 h-11 px-6 rounded-full bg-navy text-white font-bold">Clear filters</button>
+  </div>
+</main>
+
+<footer class="bg-navy text-white/70 text-sm">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 py-8 flex flex-wrap justify-between gap-3">
+    <p><span class="font-display text-white font-bold">Sonic.</span> Food delivery based in Sipocot, Camarines Sur.</p>
+    <p>Cash on delivery and GCash accepted.</p>
+  </div>
+</footer>
+
+<!-- FLOATING CART BAR: appears when the cart has items; always one tap from checkout -->
+<div id="cartbar" class="hidden fixed inset-x-0 bottom-0 z-40 p-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] pointer-events-none">
+  <a href="cart.html" class="pointer-events-auto mx-auto max-w-xl h-14 px-5 rounded-full bg-gold text-navy font-bold shadow-xl flex items-center justify-between gap-3">
+    <span class="flex items-center gap-2"><span class="material-symbols-outlined">shopping_bag</span><span id="bar-count"></span></span>
+    <span class="flex items-center gap-1.5"><span id="bar-total"></span><span class="hidden min-[380px]:inline">· View cart</span><span class="material-symbols-outlined">arrow_forward</span></span>
+  </a>
+</div>
+
+<!-- DISH DETAILS MODAL: bottom sheet on mobile, centered card on desktop -->
+<div id="modal" class="hidden fixed inset-0 z-50 items-end sm:items-center justify-center bg-navy/60 sm:p-4" role="dialog" aria-modal="true" aria-labelledby="m-name">
+  <div class="bg-white w-full sm:max-w-md rounded-t-3xl sm:rounded-3xl overflow-hidden max-h-[92vh] overflow-y-auto">
+    <div class="relative">
+      <img id="m-img" alt="" class="w-full aspect-[16/10] object-cover bg-tint">
+      <div id="m-emoji" class="hidden w-full aspect-[16/10] bg-tint grid place-items-center text-7xl" aria-hidden="true"></div>
+      <button id="m-close" aria-label="Close" class="absolute top-3 right-3 w-11 h-11 rounded-full bg-white/90 grid place-items-center"><span class="material-symbols-outlined">close</span></button>
+    </div>
+    <div class="p-5 pb-[max(1.25rem,env(safe-area-inset-bottom))]">
+      <p id="m-shop" class="text-xs text-muted"></p>
+      <h2 id="m-name" class="mt-1 font-display text-xl font-extrabold"></h2>
+      <p id="m-meta" class="mt-1 text-sm text-muted"></p>
+      <p id="m-desc" class="mt-3 text-sm"></p>
+      <div class="mt-5 flex items-center gap-3">
+        <div class="flex items-center bg-tint rounded-full p-1">
+          <button id="m-dec" aria-label="Decrease quantity" class="w-11 h-11 rounded-full bg-white grid place-items-center"><span class="material-symbols-outlined">remove</span></button>
+          <span id="m-qty" class="w-9 text-center font-bold">1</span>
+          <button id="m-inc" aria-label="Increase quantity" class="w-11 h-11 rounded-full bg-white grid place-items-center"><span class="material-symbols-outlined">add</span></button>
         </div>
-    </main>
-    <footer class="bg-navyblue text-white/70 mt-16">
-        <div class="max-w-6xl mx-auto px-4 py-8 flex flex-wrap justify-between gap-4 text-sm">
-            <p><span class="font-display text-white font-bold">Sonic.</span> Food delivery based in Sipocot, Camarines Sur.</p>
-    </footer>
-</body>
+        <button id="m-add" class="flex-1 h-12 rounded-full bg-navy text-white font-bold"></button>
+      </div>
+    </div>
+  </div>
+</div>
 
+<script>
+/* ---------- DATA (later move this array to js/data.js) ---------- */
+const dishes = [
+ {
+  "id": "chickenjoy",
+  "store": "jollibee",
+  "name": "Chickenjoy with Jolly Spaghetti",
+  "shop": "Jollibee • Sipocot",
+  "price": 149,
+  "rating": 4.8,
+  "votes": 320,
+  "reviews": "320+",
+  "mins": 12,
+  "time": "12-18 min",
+  "badge": "Best seller",
+  "cats": [
+   "chicken",
+   "rice"
+  ],
+  "bicol": false,
+  "desc": "1 pc crispy fried chicken served with sweet-style spaghetti.",
+  "emoji": "🍗",
+  "img": ""
+ },
+ {
+  "id": "yumburger",
+  "store": "jollibee",
+  "name": "Yumburger",
+  "shop": "Jollibee • Sipocot",
+  "price": 59,
+  "rating": 4.6,
+  "votes": 210,
+  "reviews": "210+",
+  "mins": 10,
+  "time": "10-15 min",
+  "badge": "Classic",
+  "cats": [
+   "burgers"
+  ],
+  "bicol": false,
+  "desc": "Beef burger patty with the signature creamy dressing.",
+  "emoji": "🍔",
+  "img": ""
+ },
+ {
+  "id": "peachmango",
+  "store": "jollibee",
+  "name": "Peach Mango Pie",
+  "shop": "Jollibee • Sipocot",
+  "price": 49,
+  "rating": 4.7,
+  "votes": 180,
+  "reviews": "180+",
+  "mins": 8,
+  "time": "8-12 min",
+  "badge": "Sweet treat",
+  "cats": [
+   "desserts"
+  ],
+  "bicol": false,
+  "desc": "Crispy fried pie with peach and mango filling.",
+  "emoji": "🥧",
+  "img": ""
+ },
+ {
+  "id": "cheesyburger",
+  "store": "mcdo",
+  "name": "Cheesy Burger McDo Solo",
+  "shop": "McDonald's • Sipocot",
+  "price": 61,
+  "rating": 4.6,
+  "votes": 260,
+  "reviews": "260+",
+  "mins": 10,
+  "time": "10-15 min",
+  "badge": "Budget pick",
+  "cats": [
+   "burgers"
+  ],
+  "bicol": false,
+  "desc": "Beef burger with melted cheese, solo size.",
+  "emoji": "🍔",
+  "img": ""
+ },
+ {
+  "id": "qpc",
+  "store": "mcdo",
+  "name": "Quarter Pounder with Cheese",
+  "shop": "McDonald's • Sipocot",
+  "price": 225,
+  "rating": 4.7,
+  "votes": 150,
+  "reviews": "150+",
+  "mins": 12,
+  "time": "12-18 min",
+  "badge": "Big appetite",
+  "cats": [
+   "burgers"
+  ],
+  "bicol": false,
+  "desc": "Quarter-pound beef patty with cheese and toppings.",
+  "emoji": "🍔",
+  "img": ""
+ },
+ {
+  "id": "mcflurry",
+  "store": "mcdo",
+  "name": "McFlurry Oreo",
+  "shop": "McDonald's • Sipocot",
+  "price": 79,
+  "rating": 4.6,
+  "votes": 140,
+  "reviews": "140+",
+  "mins": 8,
+  "time": "8-12 min",
+  "badge": "Cold treat",
+  "cats": [
+   "desserts"
+  ],
+  "bicol": false,
+  "desc": "Soft-serve ice cream blended with cookie pieces.",
+  "emoji": "🍦",
+  "img": ""
+ },
+ {
+  "id": "hitainasal",
+  "store": "manginasal",
+  "name": "Chicken Hita Inasal with Rice",
+  "shop": "Mang Inasal • Sipocot",
+  "price": 110,
+  "rating": 4.8,
+  "votes": 300,
+  "reviews": "300+",
+  "mins": 15,
+  "time": "15-20 min",
+  "badge": "Favorite",
+  "cats": [
+   "chicken",
+   "rice",
+   "bbq"
+  ],
+  "bicol": false,
+  "desc": "Grilled chicken inasal hita served with rice and chicken oil.",
+  "emoji": "🍗",
+  "img": ""
+ },
+ {
+  "id": "porkbbq",
+  "store": "manginasal",
+  "name": "Pork BBQ (2 pcs) with Rice",
+  "shop": "Mang Inasal • Sipocot",
+  "price": 99,
+  "rating": 4.7,
+  "votes": 140,
+  "reviews": "140+",
+  "mins": 12,
+  "time": "12-18 min",
+  "badge": "Grilled",
+  "cats": [
+   "rice",
+   "bbq"
+  ],
+  "bicol": false,
+  "desc": "Two sticks of grilled pork barbecue with rice.",
+  "emoji": "🍢",
+  "img": ""
+ },
+ {
+  "id": "chaofan",
+  "store": "chowking",
+  "name": "Chao Fan with Chicken",
+  "shop": "Chowking • Sipocot",
+  "price": 115,
+  "rating": 4.6,
+  "votes": 120,
+  "reviews": "120+",
+  "mins": 12,
+  "time": "12-18 min",
+  "badge": "Rice bowl",
+  "cats": [
+   "rice",
+   "chicken"
+  ],
+  "bicol": false,
+  "desc": "Chinese-style fried rice topped with chicken.",
+  "emoji": "🍚",
+  "img": ""
+ },
+ {
+  "id": "chowhalo",
+  "store": "chowking",
+  "name": "Halo-Halo",
+  "shop": "Chowking • Sipocot",
+  "price": 89,
+  "rating": 4.7,
+  "votes": 170,
+  "reviews": "170+",
+  "mins": 8,
+  "time": "8-12 min",
+  "badge": "Cold treat",
+  "cats": [
+   "desserts"
+  ],
+  "bicol": false,
+  "desc": "Shaved ice with sweet toppings, leche flan and milk.",
+  "emoji": "🍧",
+  "img": ""
+ },
+ {
+  "id": "biggscajun",
+  "store": "biggs",
+  "name": "Biggs Cajun Chicken with Rice",
+  "shop": "Biggs Diner • Sipocot",
+  "price": 234,
+  "rating": 4.5,
+  "votes": 76,
+  "reviews": "76",
+  "mins": 15,
+  "time": "15-20 min",
+  "badge": "Hearty",
+  "cats": [
+   "chicken",
+   "rice"
+  ],
+  "bicol": false,
+  "desc": "1 pc cajun-spiced fried chicken served with rice.",
+  "emoji": "🍗",
+  "img": ""
+ },
+ {
+  "id": "inasal",
+  "store": "local",
+  "name": "Chicken Inasal with Garlic Rice",
+  "shop": "Aling Nena's Grill • Poblacion",
+  "price": 149,
+  "rating": 4.9,
+  "votes": 140,
+  "reviews": "140+",
+  "mins": 15,
+  "time": "15-20 min",
+  "badge": "Best seller",
+  "cats": [
+   "rice",
+   "chicken",
+   "bbq"
+  ],
+  "bicol": false,
+  "desc": "Grilled quarter leg with lemongrass, ginger and calamansi, served with garlic rice.",
+  "emoji": "🍗",
+  "img": "https://lh3.googleusercontent.com/aida-public/AB6AXuAZTHu_F_X8NBpsaQL6dxDn9JoOzLzuqrQP9PzZ3w85L-rPdPZPr_Q_gwj57XARnZNsom3JArUsoKgbXwHMQqjSanMWm4JiI4zP1rz1rs8v6IkVFIP8euwF7eGPY8Dld6h2JZwGZYDbZO7hF0agmD9SRe6oL3fV3ZhdwKPIFNOwukZLLf3bBdy0irY7l9DBTVH9-HmijsR74ba0IEGRDo9omQWoxrpGtBLjfBAlOdVYHCeXLPGceDNi3Q"
+ },
+ {
+  "id": "lechon",
+  "store": "local",
+  "name": "Sipocot Lechon Rice Plate",
+  "shop": "Mang Berting's • South Centro",
+  "price": 159,
+  "rating": 4.8,
+  "votes": 112,
+  "reviews": "112",
+  "mins": 15,
+  "time": "15-20 min",
+  "badge": "Chef's choice",
+  "cats": [
+   "rice"
+  ],
+  "bicol": false,
+  "desc": "Crisp lechon belly cuts with house atchara, liver gravy and pandan rice.",
+  "emoji": "🐖",
+  "img": "https://lh3.googleusercontent.com/aida-public/AB6AXuATPMES-Wgg631owinHHyLf-1UVqUrhJY-po5fxRvLxjezNz1bYFIxWZNC9Kq3YksKSlzX03uy2HT17x8L__1A-o3cTtBYz9qCVZjuB3Ikmao6bVG8OLIbmmXXY4lUVWFtUNjeMSB-dZx85fCZrrB-uJfM1-YAE_Y48oyCzGmnePTtW5ZVlBL2hWYeUx_EsJxqnqaGiyehKR2XGuGG6I61vDgeQofvmfcyXLt_-_d7j2ivTc6ecyhpRbg"
+ },
+ {
+  "id": "bami",
+  "store": "local",
+  "name": "Bam-i Bicol Special",
+  "shop": "Nanay Thelma's Panciteria",
+  "price": 129,
+  "rating": 4.9,
+  "votes": 94,
+  "reviews": "94",
+  "mins": 12,
+  "time": "12-18 min",
+  "badge": "Bicol special",
+  "cats": [
+   "noodles"
+  ],
+  "bicol": true,
+  "desc": "Stir-fried miki and sotanghon with pork, shrimp, wood ear mushrooms and calamansi.",
+  "emoji": "🍜",
+  "img": "https://lh3.googleusercontent.com/aida-public/AB6AXuDNPWcWfF6TWH4rphsbZdq-e0LRMZJasBkh_yYCEdVHAMbelES4Ip6-yPSJ7oXMz_0btIMawiUS_dHOPDf-q7P6NkI6DYe5lRxBbk97cIfRcowiU9_AzhNIUbMdKAVMfrNz6btpdrWAbuG1DngZbl9dnezAoL3IA7vZ1hjMy-4MQIJAyQcBF5w8KIVZiqu1CycKGaCaNcX0jqCGLlwGCnXWIDhvFFawkf2E47FOsGbXVUVF5YTjWunvoQ"
+ },
+ {
+  "id": "sinigang",
+  "store": "local",
+  "name": "Sinigang na Baboy sa Kamias",
+  "shop": "Kusina de Sipocot • Highway",
+  "price": 165,
+  "rating": 4.8,
+  "votes": 88,
+  "reviews": "88",
+  "mins": 20,
+  "time": "20-25 min",
+  "badge": "Tangy broth",
+  "cats": [
+   "soups"
+  ],
+  "bicol": false,
+  "desc": "Tender pork ribs in sour kamias broth with kangkong, radish and green chili.",
+  "emoji": "🍲",
+  "img": "https://lh3.googleusercontent.com/aida-public/AB6AXuBhR-uzot4amdifyyBfGvqOhxBlQDVw7ErAjR-xo34-709F92H8XCFLrGUkNU88v1MKWfCkxNV0FJ_mieItZu-XlnhPX5_NCRrmcuRnAXDd7zA1hKRDAcOPP3IRLSIN03wMfj15kJTy9t4knDMCM1ZbdlQ5BPEkxGcDx_3uTGSR-Q2xdVJ4NG1fgHqRHDjxqsCAiY8v-Rld3K44nJExCNEws0tZ7RaRzO7GrR_AKH-EbA_XZUDHPPYVcQ"
+ },
+ {
+  "id": "bicolexpress",
+  "store": "local",
+  "name": "Bicol Express Bowl",
+  "shop": "Tia Rosa's Bicol Kitchen",
+  "price": 145,
+  "rating": 5.0,
+  "votes": 210,
+  "reviews": "210+",
+  "mins": 15,
+  "time": "15-20 min",
+  "badge": "Spicy",
+  "cats": [
+   "rice"
+  ],
+  "bicol": true,
+  "desc": "Pork braised in thick coconut cream with shrimp bagoong and fiery chilies.",
+  "emoji": "🌶️",
+  "img": "https://lh3.googleusercontent.com/aida-public/AB6AXuAQFkmgUhBEgzmlzr9fBPn9j-m-YvxXBEyhFUQ_OthDR_QqT27DbRwXUnLdk41ZzPOBYrVM_gvzv2FxRB97sCiBmkrCRyQfBtSdvY_myJDqlVWiK6J9aHpcdvq6QQD0oXNXOo7HiyBHbQToHlD1SSp0uqbY-lVvfTWdM2EfEUpAfP_6vqrmyyCFI1JQOK0V0-JZmQhwWnWsIDJZ2LJ3Zk51np2V6YxxeqhGL2bQAnmNOqYYB6qyzBa-5g"
+ },
+ {
+  "id": "halohalo",
+  "store": "local",
+  "name": "Special Halo-Halo Supreme",
+  "shop": "Sipocot Ice Station • Plaza",
+  "price": 89,
+  "rating": 4.9,
+  "votes": 175,
+  "reviews": "175",
+  "mins": 8,
+  "time": "8-12 min",
+  "badge": "Crowd favorite",
+  "cats": [
+   "desserts"
+  ],
+  "bicol": false,
+  "desc": "Shaved ice with evaporated milk, ube halaya, leche flan, banana and pinipig.",
+  "emoji": "🍧",
+  "img": "https://lh3.googleusercontent.com/aida-public/AB6AXuDwv5xPQZ9R-idkNk_EKEnbdF-VgYivFDDQI7dVlPSo4sLpmMzWLqE7vMAL4USM2SYo2rJw-Lz7kwTFBRCcLjRGNsQJoZy6j9SOoY2cAJ1jhEvA-Ysy91MkI7T8nE20DZObpX--eaMOxi4wKPL9RxJtdVwffv9QdtQA4OG_-K-UMlbauPgXVCTYh4T-9Fldx3InAkulOtmuixmhNBw3G58PudyMqjeUVviU_WgEHFYnHXcTE9wF1r_ItQ"
+ },
+ {
+  "id": "sisig",
+  "store": "local",
+  "name": "Crispy Pork Sisig w/ Egg",
+  "shop": "Pulutan King • San Vicente",
+  "price": 155,
+  "rating": 4.8,
+  "votes": 130,
+  "reviews": "130",
+  "mins": 15,
+  "time": "15-20 min",
+  "badge": "Must try",
+  "cats": [
+   "rice",
+   "bbq"
+  ],
+  "bicol": false,
+  "desc": "Crispy chopped pork with calamansi, shallots and chilies, topped with a runny egg.",
+  "emoji": "🍳",
+  "img": "https://lh3.googleusercontent.com/aida-public/AB6AXuAOhRwLrlpjvp9gW6IJPtPd8sks0M6WNrKC4LNuu_NQFEcx54NyHK3X0vaP4Fr8j40ChE3j8sEXMxzsSBFAG_QI4y5ND-DX_AI2ggYXVtNeOWfYWC21_XpfoVLwmQEJuMerRWg3BqiWHAewVTvIE6ksuJOxGRaYL5R3stPWYbQzTr1Ki3xIpM_I6-FP2cX5C9mHdXYJwoegWVtr70qNF9bEB5pGvfiNUQU-_LDRgZI3SzUjZ-mJCLBRPQ"
+ },
+ {
+  "id": "lomi",
+  "store": "local",
+  "name": "Lomi Overload",
+  "shop": "Lomi House Poblacion",
+  "price": 135,
+  "rating": 4.8,
+  "votes": 160,
+  "reviews": "160+",
+  "mins": 15,
+  "time": "15-20 min",
+  "badge": "Rainy day staple",
+  "cats": [
+   "noodles",
+   "soups"
+  ],
+  "bicol": false,
+  "desc": "Thick egg noodle soup with chicharon, kikiam, meatballs and boiled egg.",
+  "emoji": "🍜",
+  "img": "https://lh3.googleusercontent.com/aida-public/AB6AXuDWz-yTpjdsBumLV_WbCV0C1ap_b9fMshUgOjHWicDfI27gAXQ0MqPqTzZfSXrQu778FXl838VeITmvBQO-sxh9sXgXVn-kPlhxBccibPH3lj_G7AhwPgtx84IbN-rZnNnobywGIejWBv1_FYd5FIj7ntStmNsKk7LfHAcCbpR9oNouTDiqmtYKBiH-oNr9xphK4_DjhI1OkC0_fboc6AmYPQXIXRSQeGBF2kmeb9wsf-lpjPVGeJ0sqQ"
+ },
+ {
+  "id": "bbq",
+  "store": "local",
+  "name": "Grilled Pork BBQ Skewers (3 pcs)",
+  "shop": "Sipocot Night Market Stall",
+  "price": 110,
+  "rating": 4.9,
+  "votes": 198,
+  "reviews": "198",
+  "mins": 10,
+  "time": "10-15 min",
+  "badge": "Street classic",
+  "cats": [
+   "bbq"
+  ],
+  "bicol": false,
+  "desc": "Sweet-savory pork skewers grilled over charcoal, with spiced sinamak vinegar.",
+  "emoji": "🍢",
+  "img": "https://lh3.googleusercontent.com/aida-public/AB6AXuAxJhUXpBbA6pFcpxYdboOum9zTE5f0mWsqVib9e7wloJL12aJXwBdcT8JTkWAYHwEUGZ-dHfZjxELSX9TErPuxF7XhsvLomIASQNHURoDArVGG4x3RhdcwYeJerl7cqdGpM-wu7kmUqUwU5OzsDwI1Pmt0tIAht-w2GUaBLeKCsiMTomo9dqP0TnGmfxWSbmLUloDyfnBlGFXYo3xUoVeFqquHUmleqwJeHjcOpl5cse5gzpNJNKYifw"
+ }
+];
+const deal = { id:'combo', name:"Flash Combo (Lechon + Rice + Drink)", price:189, img:'', emoji:'🍱', shop:'Local kitchens' };
+const cats = [['all','All'],['rice','Rice meals'],['chicken','Chicken'],['burgers','Burgers'],['noodles','Noodles'],['soups','Soups'],['bbq','Grilled & BBQ'],['desserts','Desserts']];
+/* key, display name, initials shown in the circle (add a new store here, then give its dishes the same key) */
+const stores = [['jollibee','Jollibee','JB'],['mcdo',"McDonald's",'MD'],['manginasal','Mang Inasal','MI'],['chowking','Chowking','CK'],['biggs','Biggs Diner','BD'],['local','Local kitchens','LK']];
+const $ = s => document.querySelector(s);
+const peso = n => '₱' + n.toLocaleString('en-PH');
+const find = id => dishes.find(d => d.id === id) || deal;
+
+/* ---------- CART: saved in localStorage so cart.html can read the same key ---------- */
+const KEY = 'sonic_cart';
+let cart = [];
+try { cart = JSON.parse(localStorage.getItem(KEY)) || []; } catch (e) {}
+const qtyOf = id => (cart.find(c => c.id === id) || { qty: 0 }).qty;
+
+function setQty(id, qty) {
+  const item = find(id);
+  const line = cart.find(c => c.id === id);
+  if (line) line.qty = qty; else cart.push({ id, name:item.name, price:item.price, qty, img:item.img, emoji:item.emoji || '', shop:item.shop });
+  cart = cart.filter(c => c.qty > 0);
+  try { localStorage.setItem(KEY, JSON.stringify(cart)); } catch (e) {}
+  refreshCart();
+}
+
+function actionHTML(id) {
+  const q = qtyOf(id), name = find(id).name;
+  if (!q) return `<button data-add="${id}" aria-label="Add ${name} to cart" class="h-10 px-4 rounded-full bg-gold text-navy text-sm font-bold flex items-center gap-1 active:scale-95 transition"><span class="material-symbols-outlined" style="font-size:18px">add</span>Add</button>`;
+  return `<div class="flex items-center bg-tint rounded-full p-0.5">
+    <button data-dec="${id}" aria-label="Remove one ${name}" class="w-10 h-10 rounded-full bg-white grid place-items-center"><span class="material-symbols-outlined" style="font-size:18px">remove</span></button>
+    <span class="w-7 text-center font-bold text-sm" aria-live="polite">${q}</span>
+    <button data-inc="${id}" aria-label="Add one more ${name}" class="w-10 h-10 rounded-full bg-navy text-white grid place-items-center"><span class="material-symbols-outlined" style="font-size:18px">add</span></button></div>`;
+}
+
+function refreshCart() {
+  const count = cart.reduce((n, c) => n + c.qty, 0);
+  const total = cart.reduce((n, c) => n + c.qty * c.price, 0);
+  document.querySelectorAll('[data-cart-count]').forEach(el => { el.textContent = count; el.classList.toggle('hidden', !count); });
+  $('#cartbar').classList.toggle('hidden', !count);
+  $('#bar-count').textContent = count + (count === 1 ? ' item' : ' items');
+  $('#bar-total').textContent = peso(total);
+  document.querySelectorAll('[data-action]').forEach(el => { el.innerHTML = actionHTML(el.dataset.action); });
+  const q = qtyOf('combo');
+  $('#deal').textContent = 'Add combo' + (q ? ` (${q})` : '');
+}
+
+/* ---------- FILTER + SORT + RENDER ---------- */
+const state = { q:'', store:'all', cat:'all', under:false, bicol:false, sort:'popular' };
+
+function card(d) {
+  return `<article class="group flex sm:flex-col bg-white rounded-2xl border border-line overflow-hidden hover:shadow-md transition-shadow">
+    <button data-open="${d.id}" aria-label="View details of ${d.name}" class="relative shrink-0 w-28 sm:w-full aspect-square sm:aspect-[16/10] bg-tint overflow-hidden">
+      ${d.img ? `<img src="${d.img}" alt="${d.name}" loading="lazy" class="w-full h-full object-cover sm:group-hover:scale-105 transition-transform duration-500">` : `<span class="w-full h-full grid place-items-center text-5xl" aria-hidden="true">${d.emoji}</span>`}
+      <span class="absolute top-2 left-2 px-2 py-0.5 rounded-full bg-gold text-navy text-[11px] font-bold">${d.badge}</span>
+    </button>
+    <div class="flex-1 min-w-0 p-3 sm:p-4 flex flex-col">
+      <p class="text-xs font-semibold text-navy/70 truncate">${d.shop}</p>
+      <h3 class="mt-0.5 font-display font-bold text-[15px] sm:text-base leading-snug"><button data-open="${d.id}" class="text-left hover:underline">${d.name}</button></h3>
+      <p class="mt-1 flex items-center gap-1 text-xs text-muted"><span class="material-symbols-outlined text-gold" style="font-size:16px;font-variation-settings:'FILL' 1">star</span><b class="text-ink">${d.rating}</b> (${d.reviews}) · ${d.time}</p>
+      <p class="hidden sm:block mt-2 text-xs text-muted line-clamp-2">${d.desc}</p>
+      <div class="mt-auto pt-3 flex items-center justify-between gap-2">
+        <span class="font-display text-lg font-extrabold">${peso(d.price)}</span>
+        <div data-action="${d.id}"></div>
+      </div>
+    </div></article>`;
+}
+
+const skeleton = `<div class="flex sm:flex-col bg-white rounded-2xl border border-line overflow-hidden animate-pulse">
+  <div class="w-28 sm:w-full aspect-square sm:aspect-[16/10] bg-line"></div>
+  <div class="flex-1 p-3 sm:p-4 space-y-2"><div class="h-3 w-1/2 bg-line rounded"></div><div class="h-4 w-3/4 bg-line rounded"></div><div class="h-9 w-1/3 bg-line rounded-full mt-4"></div></div></div>`;
+
+function renderStores() {
+  const btn = (key, label, inner, n) => {
+    const on = state.store === key;
+    return `<button data-store="${key}" aria-pressed="${on}" class="group shrink-0 w-[76px] flex flex-col items-center gap-1 text-center py-1">
+      <span class="w-14 h-14 rounded-full grid place-items-center font-display font-extrabold text-sm border-2 transition ${on ? 'bg-navy text-white border-gold' : 'bg-white text-navy border-line group-hover:bg-tint'}">${inner}</span>
+      <span class="text-xs font-semibold leading-tight">${label}</span>
+      <span class="text-[11px] text-muted">${n} items</span></button>`;
+  };
+  $('#stores').innerHTML = btn('all', 'All stores', '<span class="material-symbols-outlined">storefront</span>', dishes.length) +
+    stores.map(([k, l, i]) => btn(k, l, i, dishes.filter(d => d.store === k).length)).join('');
+}
+
+function renderChips() {
+  const chip = (attr, label, on, onCls) => `<button ${attr} aria-pressed="${on}" class="shrink-0 h-11 px-4 rounded-full text-sm font-semibold whitespace-nowrap border transition ${on ? onCls : 'bg-white text-ink border-line hover:bg-tint'}">${label}</button>`;
+  $('#chips').innerHTML =
+    cats.map(([k, l]) => {
+      const pool = dishes.filter(d => state.store === 'all' || d.store === state.store);
+      const n = k === 'all' ? pool.length : pool.filter(d => d.cats.includes(k)).length;
+      if (!n && k !== 'all' && state.cat !== k) return '';   // hide categories this store does not have
+      return chip(`data-cat="${k}"`, `${l} <span class="opacity-60">${n}</span>`, state.cat === k, 'bg-navy text-white border-navy');
+    }).join('') +
+    '<span class="shrink-0 w-px h-6 bg-line self-center"></span>' +
+    chip('data-flag="under"', 'Under ₱150', state.under, 'bg-gold text-navy border-gold') +
+    chip('data-flag="bicol"', 'Bicol specialties', state.bicol, 'bg-gold text-navy border-gold');
+}
+
+function render() {
+  const sorts = { popular:(a,b)=>b.votes-a.votes, low:(a,b)=>a.price-b.price, high:(a,b)=>b.price-a.price, fast:(a,b)=>a.mins-b.mins };
+  const list = dishes.filter(d =>
+    (state.store === 'all' || d.store === state.store) &&
+    (state.cat === 'all' || d.cats.includes(state.cat)) &&
+    (!state.under || d.price < 150) &&
+    (!state.bicol || d.bicol) &&
+    (d.name + ' ' + d.shop + ' ' + d.desc).toLowerCase().includes(state.q)
+  ).sort(sorts[state.sort]);
+
+  $('#grid').innerHTML = list.map(card).join('');
+  $('#empty').classList.toggle('hidden', list.length > 0);
+  $('#deal-wrap').classList.toggle('hidden', !!(state.q || state.store !== 'all' || state.cat !== 'all' || state.under || state.bicol));
+  const from = state.store === 'all' ? '' : ' from ' + stores.find(s => s[0] === state.store)[1];
+  $('#count').textContent = list.length + (list.length === 1 ? ' dish' : ' dishes') + from + (state.q ? ` for "${state.q}"` : '');
+  $('#clear').classList.toggle('hidden', !state.q);
+  renderStores();
+  renderChips();
+  refreshCart();
+}
+
+/* ---------- EVENTS ---------- */
+$('#search').addEventListener('input', e => { state.q = e.target.value.trim().toLowerCase(); render(); });
+$('#clear').addEventListener('click', () => { $('#search').value = ''; state.q = ''; render(); $('#search').focus(); });
+$('#sort').addEventListener('change', e => { state.sort = e.target.value; render(); });
+$('#reset').addEventListener('click', () => {
+  Object.assign(state, { q:'', store:'all', cat:'all', under:false, bicol:false, sort:'popular' });
+  $('#search').value = ''; $('#sort').value = 'popular'; render();
+});
+
+$('#stores').addEventListener('click', e => {
+  const b = e.target.closest('button'); if (!b) return;
+  state.store = b.dataset.store; state.cat = 'all';   // a new store starts with all its dishes
+  render();
+  $('#stores [data-store="' + b.dataset.store + '"]').focus();
+});
+
+$('#chips').addEventListener('click', e => {
+  const b = e.target.closest('button'); if (!b) return;
+  if (b.dataset.cat) state.cat = b.dataset.cat; else state[b.dataset.flag] = !state[b.dataset.flag];
+  render();
+  const sel = b.dataset.cat ? `[data-cat="${b.dataset.cat}"]` : `[data-flag="${b.dataset.flag}"]`;
+  $('#chips ' + sel).focus();   // keep keyboard focus after the chips are redrawn
+});
+
+$('#grid').addEventListener('click', e => {
+  const t = e.target.closest('[data-open],[data-add],[data-inc],[data-dec]'); if (!t) return;
+  if (t.dataset.open) return openModal(t.dataset.open, t);
+  const id = t.dataset.add || t.dataset.inc || t.dataset.dec;
+  setQty(id, qtyOf(id) + (t.dataset.dec ? -1 : 1));
+  $('#grid [data-action="' + id + '"]').querySelector(t.dataset.dec ? '[data-dec],[data-add]' : '[data-inc]').focus();
+});
+
+$('#deal').addEventListener('click', () => setQty('combo', qtyOf('combo') + 1));
+
+/* mobile menu */
+$('#menu-btn').addEventListener('click', () => {
+  const open = $('#mobile-nav').classList.toggle('hidden') === false;
+  $('#menu-btn').setAttribute('aria-expanded', open);
+  $('#menu-icon').textContent = open ? 'close' : 'menu';
+});
+
+/* ---------- MODAL ---------- */
+let mId = null, mQty = 1, opener = null;
+function paintModal() { $('#m-qty').textContent = mQty; $('#m-add').textContent = `Add to cart · ${peso(find(mId).price * mQty)}`; }
+function openModal(id, from) {
+  const d = find(id); mId = id; mQty = 1; opener = from;
+  $('#m-img').classList.toggle('hidden', !d.img); $('#m-emoji').classList.toggle('hidden', !!d.img);
+  $('#m-emoji').textContent = d.emoji || '🍽️';
+  if (d.img) { $('#m-img').src = d.img; $('#m-img').alt = d.name; }
+  $('#m-shop').textContent = d.shop; $('#m-name').textContent = d.name;
+  $('#m-meta').textContent = `${d.rating} stars (${d.reviews}) · ${d.time}`; $('#m-desc').textContent = d.desc;
+  paintModal();
+  $('#modal').classList.remove('hidden'); $('#modal').classList.add('flex');
+  document.body.classList.add('overflow-hidden'); $('#m-close').focus();
+}
+function closeModal() {
+  $('#modal').classList.add('hidden'); $('#modal').classList.remove('flex');
+  document.body.classList.remove('overflow-hidden'); if (opener) opener.focus();
+}
+$('#m-inc').addEventListener('click', () => { mQty++; paintModal(); });
+$('#m-dec').addEventListener('click', () => { if (mQty > 1) { mQty--; paintModal(); } });
+$('#m-add').addEventListener('click', () => { setQty(mId, qtyOf(mId) + mQty); closeModal(); });
+$('#m-close').addEventListener('click', closeModal);
+$('#modal').addEventListener('click', e => { if (e.target.id === 'modal') closeModal(); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape' && !$('#modal').classList.contains('hidden')) closeModal(); });
+
+/* ---------- START: skeleton first, then the real cards ---------- */
+renderStores(); renderChips(); refreshCart();
+$('#grid').innerHTML = skeleton.repeat(6);
+$('#count').textContent = 'Loading dishes...';
+setTimeout(render, 600);
+</script>
+</body>
 </html>
