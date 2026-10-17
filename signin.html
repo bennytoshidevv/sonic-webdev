@@ -14,12 +14,12 @@
     <!-- NAVBAR: copy this exact block into every page (change only the active link) -->
     <header class="bg-blue-950 text-white">
         <nav class="max-w-6xl mx-auto px-4 py-3 flex flex-wrap items-center justify-between gap-3">
-            <a href="index.html" class="font-display text-3xl font-extrabold p-5">Sonic<span class="text-yellow-500">.</span></a>
+            <a href="home.html" class="font-display text-3xl font-extrabold p-5">Sonic<span class="text-yellow-500">.</span></a>
             <!-- later: hamburger button (id="menu-btn") for mobile -->
             <ul class="flex flex-wrap items-center gap-1 text-sm font-medium">
-                <li><a href="index.html" class="px-3 py-2 rounded-full hover:bg-white/10">Home</a></li>
+                <li><a href="home.html" class="px-3 py-2 rounded-full hover:bg-white/10">Home</a></li>
                 <li><a href="menu.html" class="px-3 py-2 rounded-full hover:bg-white/10">Menu</a></li>
-                <li><a href="cart.html" class="px-3 py-2 rounded-full hover:bg-white/10">Cart (2)</a></li>
+                <li><a href="cart.html" class="px-3 py-2 rounded-full hover:bg-white/10">Cart (0)</a></li>
                 <li><a href="track.html" class="px-3 py-2 rounded-full hover:bg-white/10">Track order</a></li>
                 <li><a href="orders.html" class="px-3 py-2 rounded-full hover:bg-white/10">My orders</a></li>
                 <li><a href="contact.html" class="px-3 py-2 rounded-full hover:bg-white/10">Contact</a></li>
@@ -28,32 +28,19 @@
         </nav>
     </header>
     <main>
-<section class="max-w-6xl mx-auto px-4 mt-10">
-            <h1 class="font-display text-3xl md:text-4xl font-extrabold">Sign in or create an account</h1>
-            <p class="mt-2 text-navyblue/70">Save your addresses and see your past orders.</p>
-            <div class="mt-8 grid md:grid-cols-2 gap-8">
-                <!-- SIGN IN FORM (JS): check email format + password is not empty, then save a "logged in" flag in localStorage -->
-                <div class="border border-blue-950/10 rounded-3xl p-6 md:p-8">
-                    <h2 class="font-display text-2xl font-bold">Sign in</h2>
-                    <form id="signin-form" class="mt-5 space-y-4" novalidate>
-                        <label class="block "><span class="text-sm font-medium">Email</span><input type="email" class="mt-1 w-full border border-navyblue/20 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-950"><p class="error text-chili text-sm mt-1 hidden">Enter a valid email.</p></label>
-                        <label class="block "><span class="text-sm font-medium">Password</span><input type="password" class="mt-1 w-full border border-navyblue/20 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-950"><p class="error text-chili text-sm mt-1 hidden">Enter your password.</p></label>
-                        <button type="submit" class="w-full bg-blue-950 text-white font-bold py-3 rounded-full hover:bg-blue-900">Sign in</button>
-                    </form>
-                </div>
-                <!-- REGISTER FORM (JS): required fields, valid email, password min 8 chars, confirm password must match -->
-                <div class="bg-blue-50 rounded-3xl p-6 md:p-8">
-                    <h2 class="font-display text-2xl font-bold">Create an account</h2>
-                    <form id="register-form" class="mt-5 space-y-4" novalidate>
-                        <label class="block "><span class="text-sm font-medium">Full name</span><input type="text" class="mt-1 w-full border border-navyblue/20 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-950"><p class="error text-chili text-sm mt-1 hidden">Enter your full name.</p></label>
-                        <label class="block "><span class="text-sm font-medium">Email</span><input type="email" class="mt-1 w-full border border-navyblue/20 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-950"><p class="error text-chili text-sm mt-1 hidden">Enter a valid email.</p></label>
-                        <label class="block "><span class="text-sm font-medium">Phone number</span><input type="tel" class="mt-1 w-full border border-navyblue/20 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-950"><p class="error text-chili text-sm mt-1 hidden">Enter an 11-digit phone number.</p></label>
-                        <label class="block "><span class="text-sm font-medium">Password</span><input type="password" class="mt-1 w-full border border-navyblue/20 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-950"><p class="error text-chili text-sm mt-1 hidden">Use at least 8 characters.</p></label>
-                        <label class="block "><span class="text-sm font-medium">Confirm password</span><input type="password" class="mt-1 w-full border border-navyblue/20 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-950"><p class="error text-chili text-sm mt-1 hidden">Passwords do not match.</p></label>
-                        <button type="submit" class="w-full bg-calamansi text-ink font-bold py-3 rounded-full hover:brightness-95">Create account</button>
-                    </form>
-                </div>
+        <section class="max-w-md mx-auto px-4 mt-10">
+            <h1 class="font-display text-3xl md:text-4xl font-extrabold">Welcome back</h1>
+            <p class="mt-2 text-navyblue/70">Sign in to see your past orders and save your details.</p>
+            <!-- SIGN IN FORM (JS): check email format + password is not empty, then save a "logged in" flag in localStorage (js/signin.js) -->
+            <div class="mt-8 border border-blue-950/10 rounded-3xl p-6 md:p-8">
+                <h2 class="font-display text-2xl font-bold">Sign in</h2>
+                <form id="signin-form" class="mt-5 space-y-4" novalidate>
+                    <label class="block "><span class="text-sm font-medium">Email</span><input type="email" name="email" class="mt-1 w-full border border-navyblue/20 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-950"><p class="error text-chili text-sm mt-1 hidden">Enter a valid email.</p></label>
+                    <label class="block "><span class="text-sm font-medium">Password</span><input type="password" name="password" class="mt-1 w-full border border-navyblue/20 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-950"><p class="error text-chili text-sm mt-1 hidden">Enter your password.</p></label>
+                    <button type="submit" class="w-full bg-blue-950 text-white font-bold py-3 rounded-full hover:bg-blue-900">Sign in</button>
+                </form>
             </div>
+            <p class="mt-6 text-center text-sm text-navyblue/70">New to Sonic? <a href="signup.html" class="font-semibold text-blue-950 underline">Create an account</a></p>
         </section>
     </main>
     <footer class="bg-blue-950 text-white/70 mt-16">
@@ -61,5 +48,8 @@
             <p><span class="font-display text-white font-bold">Sonic.</span> Food delivery based in Sipocot, Camarines Sur.</p>
         </div>
     </footer>
+
+    <script src="js/common.js"></script>
+    <script src="js/signin.js"></script>
 </body>
 </html>
