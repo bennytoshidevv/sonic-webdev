@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign in | Sonic</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;800&family=Figtree:wght@400;500;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+    <script>
+        tailwind.config = { darkMode: 'class', theme: { extend: { colors: { calamansi: '#F2C230', chili: '#C8341F', ink: '#17251C', mist: '#EEF3EC', navyblue: '#010736' }, fontFamily: { display: ['Bricolage Grotesque', 'sans-serif'], sans: ['Figtree', 'sans-serif'] } } } }
+    </script>
+</head>
+<body class="font-sans bg-white text-navyblue">
+    <!-- NAVBAR: copy this exact block into every page (change only the active link) -->
+    <header class="bg-blue-950 text-white">
+        <nav class="max-w-6xl mx-auto px-4 py-3 flex flex-wrap items-center justify-between gap-3">
+            <a href="index.html" class="font-display text-3xl font-extrabold p-5">Sonic<span class="text-yellow-500">.</span></a>
+            <!-- later: hamburger button (id="menu-btn") for mobile -->
+            <ul class="flex flex-wrap items-center gap-1 text-sm font-medium">
+                <li><a href="index.html" class="px-3 py-2 rounded-full hover:bg-white/10">Home</a></li>
+                <li><a href="menu.html" class="px-3 py-2 rounded-full hover:bg-white/10">Menu</a></li>
+                <li><a href="cart.html" class="px-3 py-2 rounded-full hover:bg-white/10">Cart (2)</a></li>
+                <li><a href="track.html" class="px-3 py-2 rounded-full hover:bg-white/10">Track order</a></li>
+                <li><a href="orders.html" class="px-3 py-2 rounded-full hover:bg-white/10">My orders</a></li>
+                <li><a href="contact.html" class="px-3 py-2 rounded-full hover:bg-white/10">Contact</a></li>
+                <li><a href="signin.html" class="ml-1 px-3 py-2 rounded-full border border-white/30 bg-white text-ink">Sign In</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+<section class="max-w-6xl mx-auto px-4 mt-10">
+            <h1 class="font-display text-3xl md:text-4xl font-extrabold">Sign in or create an account</h1>
+            <p class="mt-2 text-navyblue/70">Save your addresses and see your past orders.</p>
+            <div class="mt-8 grid md:grid-cols-2 gap-8">
+                <!-- SIGN IN FORM (JS): check email format + password is not empty, then save a "logged in" flag in localStorage -->
+                <div class="border border-blue-950/10 rounded-3xl p-6 md:p-8">
+                    <h2 class="font-display text-2xl font-bold">Sign in</h2>
+                    <form id="signin-form" class="mt-5 space-y-4" novalidate>
+                        <label class="block "><span class="text-sm font-medium">Email</span><input type="email" class="mt-1 w-full border border-navyblue/20 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-950"><p class="error text-chili text-sm mt-1 hidden">Enter a valid email.</p></label>
+                        <label class="block "><span class="text-sm font-medium">Password</span><input type="password" class="mt-1 w-full border border-navyblue/20 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-950"><p class="error text-chili text-sm mt-1 hidden">Enter your password.</p></label>
+                        <button type="submit" class="w-full bg-blue-950 text-white font-bold py-3 rounded-full hover:bg-blue-900">Sign in</button>
+                    </form>
+                </div>
+                <!-- REGISTER FORM (JS): required fields, valid email, password min 8 chars, confirm password must match -->
+                <div class="bg-blue-50 rounded-3xl p-6 md:p-8">
+                    <h2 class="font-display text-2xl font-bold">Create an account</h2>
+                    <form id="register-form" class="mt-5 space-y-4" novalidate>
+                        <label class="block "><span class="text-sm font-medium">Full name</span><input type="text" class="mt-1 w-full border border-navyblue/20 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-950"><p class="error text-chili text-sm mt-1 hidden">Enter your full name.</p></label>
+                        <label class="block "><span class="text-sm font-medium">Email</span><input type="email" class="mt-1 w-full border border-navyblue/20 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-950"><p class="error text-chili text-sm mt-1 hidden">Enter a valid email.</p></label>
+                        <label class="block "><span class="text-sm font-medium">Phone number</span><input type="tel" class="mt-1 w-full border border-navyblue/20 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-950"><p class="error text-chili text-sm mt-1 hidden">Enter an 11-digit phone number.</p></label>
+                        <label class="block "><span class="text-sm font-medium">Password</span><input type="password" class="mt-1 w-full border border-navyblue/20 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-950"><p class="error text-chili text-sm mt-1 hidden">Use at least 8 characters.</p></label>
+                        <label class="block "><span class="text-sm font-medium">Confirm password</span><input type="password" class="mt-1 w-full border border-navyblue/20 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-950"><p class="error text-chili text-sm mt-1 hidden">Passwords do not match.</p></label>
+                        <button type="submit" class="w-full bg-calamansi text-ink font-bold py-3 rounded-full hover:brightness-95">Create account</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer class="bg-blue-950 text-white/70 mt-16">
+        <div class="max-w-6xl mx-auto px-4 py-8 flex flex-wrap justify-between gap-4 text-sm">
+            <p><span class="font-display text-white font-bold">Sonic.</span> Food delivery based in Sipocot, Camarines Sur.</p>
+        </div>
+    </footer>
+</body>
+</html>
