@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Track order | Kaon</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;800&family=Figtree:wght@400;500;700&display=swap"
+        rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+    <script>
+        tailwind.config = { darkMode: 'class', theme: { extend: { colors: { leaf: '#1F5C3A', calamansi: '#F2C230', chili: '#C8341F', ink: '#17251C', mist: '#EEF3EC' }, fontFamily: { display: ['Bricolage Grotesque', 'sans-serif'], sans: ['Figtree', 'sans-serif'] } } } }
+    </script>
+</head>
+
+<body class="font-sans bg-white text-ink">
+    <!-- NAVBAR: copy this exact block into every page -->
+
+    <header class="bg-blue-950 text-white">
+        <nav class="max-w-6xl mx-auto px-4 py-3 flex flex-wrap items-center justify-between gap-3">
+            <a href="index.html" class="font-display text-3xl font-extrabold p-5">Sonic<span
+                    class="text-yellow-500">.</span></a>
+
+            <!-- later: hamburger button (id="menu-btn") for mobile -->
+            <ul class="flex flex-wrap items-center gap-1 text-sm font-medium">
+                <li><a href="index.html" class="px-3 py-2 rounded-full hover:bg-white/10">Home</a></li>
+                <li><a href="menu.html" class="px-3 py-2 rounded-full hover:bg-white/10">Menu</a></li>
+                <li><a href="cart.html" class="px-3 py-2 rounded-full hover:bg-white/10">Cart (2)</a></li>
+                <li><a href="track.html" class="px-3 py-2 rounded-full bg-calamansi text-ink">Track order</a></li>
+                <li><a href="contact.html" class="px-3 py-2 rounded-full hover:bg-white/10">Contact</a></li>
+
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section class="max-w-3xl mx-auto px-4 mt-10">
+            <p class="text-sm text-ink/60">Order #KN-1024</p>
+            <h1 class="font-display text-3xl md:text-4xl font-extrabold">Your food is on the way</h1>
+            <p class="mt-2 text-ink/70">Estimated arrival in 25 minutes.</p>
+
+            <!-- PROGRESS BAR (JS): change the inner div's width (0% to 100%) over time -->
+
+            <div class="mt-8">
+                <div class="flex justify-between text-sm font-medium"><span>Progress</span><span id="percent">60%</span>
+                </div>
+                <div class="mt-2 h-4 bg-mist rounded-full overflow-hidden">
+                    <div id="bar" class="h-full w-3/5 bg-blue-950 rounded-full"></div>
+                </div>
+            </div>
+
+            <ol class="mt-8 space-y-4">
+                <li class="flex gap-4 items-center"><span
+                        class="w-10 h-10 rounded-full bg-blue-950 text-white grid place-items-center">✓</span>
+                    <div>
+                        <p class="font-bold">Order received</p>
+                        <p class="text-sm text-ink/60">The kitchen has your order.</p>
+                    </div>
+                </li>
+                <li class="flex gap-4 items-center"><span
+                        class="w-10 h-10 rounded-full bg-blue-950 text-white grid place-items-center">✓</span>
+                    <div>
+                        <p class="font-bold">Preparing your meal</p>
+                        <p class="text-sm text-ink/60">Cooking and packing.</p>
+                    </div>
+                </li>
+                <li class="flex gap-4 items-center"><span
+                        class="w-10 h-10 rounded-full bg-calamansi text-ink grid place-items-center font-bold">3</span>
+                    <div>
+                        <p class="font-bold">Out for delivery</p>
+                        <p class="text-sm text-ink/60">Your rider is heading to you.</p>
+                    </div>
+                </li>
+                <li class="flex gap-4 items-center opacity-50"><span
+                        class="w-10 h-10 rounded-full bg-mist grid place-items-center font-bold">4</span>
+                    <div>
+                        <p class="font-bold">Delivered</p>
+                        <p class="text-sm text-ink/60">Enjoy your meal.</p>
+                    </div>
+                </li>
+            </ol>
+
+            <!-- LOADING SPINNER (JS): show while "checking latest status", hide when done -->
+            <div id="spinner" class="mt-8 flex items-center gap-3 bg-mist rounded-2xl p-4">
+                <div class="w-6 h-6 border-4 border-leaf/30 border-t-blue-950 rounded-full animate-spin"></div>
+                <p class="text-sm font-medium">Checking the latest status...</p>
+            </div>
+
+            <div class="mt-8 border border-ink/10 rounded-2xl p-5 flex items-center gap-4">
+                <div class="w-14 h-14 rounded-full bg-calamansi grid place-items-center text-2xl">🛵</div>
+                <div class="flex-1">
+                    <p class="font-bold">Rico D., your rider</p>
+                    <p class="text-sm text-ink/60">Plate no. 123 ABC</p>
+                </div>
+                <a href="contact.html" class="text-sm font-semibold text-blue-950 underline">Need help?</a>
+            </div>
+        </section>
+    </main>
+    <footer class="bg-blue-950 text-white/70 mt-16">
+        <div class="max-w-6xl mx-auto px-4 py-8 flex flex-wrap justify-between gap-4 text-sm">
+            <p><span class="font-display text-white font-bold">Sonic.</span> Food delivery based in Sipocot Camarines
+                Sur.</p>
+
+        </div>
+    </footer>
+</body>
+
+</html>
