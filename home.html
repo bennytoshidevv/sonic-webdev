@@ -1,309 +1,163 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>Home | Sonic Sipocot</title>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@400..600,0..1&display=block" rel="stylesheet">
-<script src="https://cdn.tailwindcss.com/3.4.17"></script>
-<script>
-tailwind.config = { theme: { extend: {
-  colors: { navy:'#010736', gold:'#F2C230', ink:'#0d1c2e', muted:'#575f6a', tint:'#eff4ff', line:'#dce3f1', page:'#f8f9ff' },
-  fontFamily: { display:['Plus Jakarta Sans','sans-serif'], sans:['Inter','sans-serif'] } } } }
-</script>
-<style>
-  .no-scrollbar{scrollbar-width:none}.no-scrollbar::-webkit-scrollbar{display:none}
-  .material-symbols-outlined{font-variation-settings:'FILL' 0,'wght' 500;font-size:22px}
-  :focus-visible{outline:2px solid #2563eb;outline-offset:2px}
-  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home | Sonic</title>
+
+   <link
+        href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;800&family=Figtree:wght@400;500;700&display=swap"
+        rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+    <script>
+        tailwind.config = { darkMode: 'class', theme: { extend: { colors: { leaf: '#1F5C3A', calamansi: '#F2C230', chili: '#C8341F', ink: '#17251C', mist: '#EEF3EC' }, fontFamily: { display: ['Bricolage Grotesque', 'sans-serif'], sans: ['Figtree', 'sans-serif'] } } } }
+    </script>
+    <style type="text/tailwindcss">
+
+        @theme{
+            --color-calamansi: #F2C230;
+        }
+    </style>
 </head>
-<body class="font-sans bg-page text-ink antialiased">
 
-<!-- NAVBAR (same as menu page) -->
-<header class="sticky top-0 z-40 bg-navy text-white border-b border-white/10">
-  <div class="max-w-7xl mx-auto h-16 px-4 sm:px-6 flex items-center justify-between gap-3">
-    <a href="index.html" class="font-display text-xl sm:text-2xl font-extrabold">Sonic Sipocot<span class="text-gold">.</span></a>
-    <nav class="hidden lg:flex items-center gap-1 text-sm font-semibold" aria-label="Main"><a href="index.html" aria-current="page" class="px-3.5 py-2 rounded-full inline-flex items-center whitespace-nowrap bg-gold text-navy">Home</a><a href="menu.html" class="px-3.5 py-2 rounded-full inline-flex items-center whitespace-nowrap text-white/80 hover:bg-white/10 hover:text-white">Menu</a><a href="cart.html" class="px-3.5 py-2 rounded-full inline-flex items-center whitespace-nowrap text-white/80 hover:bg-white/10 hover:text-white">Cart<span data-cart-count class="hidden ml-1 min-w-[20px] h-5 px-1.5 rounded-full bg-gold text-navy text-[11px] font-bold inline-grid place-items-center">0</span></a><a href="track.html" class="px-3.5 py-2 rounded-full inline-flex items-center whitespace-nowrap text-white/80 hover:bg-white/10 hover:text-white">Track order</a><a href="orders.html" class="px-3.5 py-2 rounded-full inline-flex items-center whitespace-nowrap text-white/80 hover:bg-white/10 hover:text-white">My orders</a><a href="contact.html" class="px-3.5 py-2 rounded-full inline-flex items-center whitespace-nowrap text-white/80 hover:bg-white/10 hover:text-white">Contact</a></nav>
-    <div class="flex items-center gap-1">
-      <a href="signin.html" class="hidden lg:inline-block bg-gold text-navy text-sm font-bold px-5 py-2.5 rounded-full hover:brightness-105">Sign In</a>
-      <a href="cart.html" aria-label="Cart" class="relative lg:hidden w-11 h-11 grid place-items-center rounded-full hover:bg-white/10">
-        <span class="material-symbols-outlined">shopping_bag</span>
-        <span data-cart-count class="hidden absolute top-0.5 right-0.5 min-w-[18px] h-[18px] px-1 rounded-full bg-gold text-navy text-[10px] font-bold grid place-items-center">0</span>
-      </a>
-      <button id="menu-btn" aria-expanded="false" aria-controls="mobile-nav" aria-label="Open menu" class="lg:hidden w-11 h-11 grid place-items-center rounded-full hover:bg-white/10">
-        <span id="menu-icon" class="material-symbols-outlined">menu</span>
-      </button>
-    </div>
-  </div>
-  <nav id="mobile-nav" aria-label="Mobile" class="hidden lg:hidden border-t border-white/10 px-4 py-3 grid gap-1 text-sm font-semibold"><a href="index.html" aria-current="page" class="px-4 py-3 rounded-xl flex items-center justify-between bg-gold text-navy">Home</a><a href="menu.html" class="px-4 py-3 rounded-xl flex items-center justify-between text-white/80 hover:bg-white/10 hover:text-white">Menu</a><a href="cart.html" class="px-4 py-3 rounded-xl flex items-center justify-between text-white/80 hover:bg-white/10 hover:text-white">Cart</a><a href="track.html" class="px-4 py-3 rounded-xl flex items-center justify-between text-white/80 hover:bg-white/10 hover:text-white">Track order</a><a href="orders.html" class="px-4 py-3 rounded-xl flex items-center justify-between text-white/80 hover:bg-white/10 hover:text-white">My orders</a><a href="contact.html" class="px-4 py-3 rounded-xl flex items-center justify-between text-white/80 hover:bg-white/10 hover:text-white">Contact</a>
-    <a href="signin.html" class="mt-2 text-center bg-gold text-navy font-bold py-3 rounded-full">Sign In / Register</a>
-  </nav>
-</header>
+<body class="font-sans bg-white text-navyblue">
 
-<main>
-  <!-- HERO: one goal (start an order). Area picker on the left, today's deal on the right. -->
-  <section class="bg-navy text-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-8 sm:py-12 lg:py-16 grid lg:grid-cols-2 gap-8 lg:gap-14 items-center">
-      <div>
-        <p class="text-xs sm:text-sm font-bold text-gold uppercase tracking-wide">Sipocot, Camarines Sur · 8 AM to 9 PM daily</p>
-        <h1 class="mt-3 font-display text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-[1.05] tracking-tight">Lutong bahay, hatid sa pinto mo<span class="text-gold">.</span></h1>
-        <p class="mt-4 text-base sm:text-lg text-white/80 max-w-xl">Order from local kitchens and your favorite fast-food stores. Pick your meal, check out, and follow your order until it arrives.</p>
+    <header class="bg-blue-950 text-white">
+        <nav class="max-w-6xl mx-auto px-4 py-3 flex flex-wrap items-center justify-between gap-3">
+            <a href="home.html" class="font-display text-3xl font-extrabold p-5">Sonic Sipocot<span
+                    class="text-yellow-500">.</span></a>
 
-        <!-- DELIVERY AREA (JS): saved in localStorage as "sonic_area" so the cart page can reuse it -->
-        <div class="mt-6 bg-white text-ink rounded-2xl p-4 sm:p-5 max-w-xl">
-          <label for="area" class="text-sm font-bold">Where should we deliver?</label>
-          <div class="relative mt-2">
-            <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-muted pointer-events-none">location_on</span>
-            <select id="area" class="w-full h-12 appearance-none rounded-xl bg-tint pl-12 pr-11 text-sm font-semibold focus:outline-none focus:ring-2 focus:ring-navy"></select>
-            <span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-muted pointer-events-none">expand_more</span>
-          </div>
-          <p id="area-result" class="mt-3 text-sm text-muted flex items-center gap-2" aria-live="polite"></p>
+            <!-- later: hamburger button (id="menu-btn") for mobile -->
+
+            <ul class="flex flex-wrap items-center gap-1 text-sm font-medium">
+                <li><a href="home.html" class="px-3 py-2 rounded-full hover:bg-white/10 text-white">Home</a></li>
+                <li><a href="menu.html" class="px-3 py-2 rounded-full hover:bg-white/10">Menu</a></li>
+                <li><a href="cart.html" class="px-3 py-2 rounded-full hover:bg-white/10">Cart (2)</a></li>
+                <li><a href="track.html" class="px-3 py-2 rounded-full hover:bg-white/10">Track order</a></li>
+                <li><a href="contact.html" class="px-3 py-2 rounded-full hover:bg-white/10">Contact</a></li>
+
+                
+                <button class="ml-1 px-3 py-2 rounded-full border border-white/30 bg-calamansi text-ink">Sign In</button>
+                
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section class="text-Black">
+            <div class="max-w-6xl mx-auto px-4 py-12 md:py-20 grid md:grid-cols-2 gap-10 items-center">
+                <div>
+                    <h1 class="font-display text-4xl md:text-6xl font-extrabold leading-[1.05]">Lutong bahay, hatid sa
+                        pinto mo.</h1>
+                    <p class="mt-5 text-lg text-black max-w-md">Order from kitchens near you in Sipocot. Pick your meal,
+                        check out, and follow your order until it arrives.</p>
+                    <div class="mt-8 flex flex-wrap gap-3">
+                        <a href="menu.html" class="border border-black/40 px-6 py-3 rounded-full font-bold">Order now</a>
+                        <a href="track.html" class="border border-black/40 px-6 py-3 rounded-full font-bold">Track an order</a>
+                    </div>
+                </div>
+                <!-- CAROUSEL (JS): show one slide at a time, auto-change + prev/next + dots -->
+                <div id="carousel"
+                    class="bg-white text-blue-950 rounded-3xl p-8 min-h-[300px] flex flex-col justify-between border border-black">
+                    <div class="slide flex justify-between gap-4">
+                        <div>
+                            <p class="font-semibold">Today's deal</p>
+                            <p class="font-display text-3xl font-extrabold mt-2">Sipocot Lechon Rice for ₱159</p>
+                            <p class="mt-2">Free delivery on orders over ₱300.</p>
+                        </div>
+                        <div class="text-7xl">🐖</div>
+                    </div>
+                    <!-- more .slide divs go here, hidden except the active one -->
+
+                    <div class="flex items-center justify-between mt-8">
+                        <div class="flex gap-2"><span class="w-6 h-2 rounded-full bg-blue-950"></span><span
+                                class="w-2 h-2 rounded-full bg-blue-950/30"></span><span
+                                class="w-2 h-2 rounded-full bg-blue-950/30"></span></div>
+                        <div class="flex gap-2"><button id="prev"
+                                class="w-10 h-10 rounded-full bg-blue-950 text-white hover:bg-blue-950/70">&lt;</button><button id="next"
+                                class="w-10 h-10 rounded-full bg-blue-950 text-white hover:bg-blue-950/70">&gt;</button></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="max-w-6xl mx-auto px-4 mt-14">
+            <h2 class="font-display text-2xl font-bold">Browse by craving</h2>
+            <div class="mt-5 grid grid-cols-2 sm:grid-cols-4 gap-3">
+                <a href="menu.html" class="bg-blue-50 rounded-2xl p-5 text-center hover:bg-blue-100">
+                    <div class="text-4xl">🍚</div>
+                    <p class="mt-2 font-medium">Rice meals</p>
+                </a>
+                <a href="menu.html" class="bg-blue-50 rounded-2xl p-5 text-center hover:bg-blue-100">
+                    <div class="text-4xl">🍜</div>
+                    <p class="mt-2 font-medium">Noodles</p>
+                </a>
+                <a href="menu.html" class="bg-blue-50 rounded-2xl p-5 text-center hover:bg-blue-100">
+                    <div class="text-4xl">🍲</div>
+                    <p class="mt-2 font-medium">Soups</p>
+                </a>
+                <a href="menu.html" class="bg-blue-50 rounded-2xl p-5 text-center hover:bg-blue-100">
+                    <div class="text-4xl">🍧</div>
+                    <p class="mt-2 font-medium">Desserts</p>
+                </a>
+            </div>
+        </section>
+        <section class="max-w-6xl mx-auto px-4 mt-14">
+            <div class="flex items-end justify-between">
+                <h2 class="font-display text-2xl font-bold">Popular this week</h2><a href="menu.html"
+                    class="font-semibold underline">See full menu</a>
+            </div>
+            <div class="mt-5 grid md:grid-cols-3 gap-5">
+                <article class="border border-blue-950/10 rounded-2xl overflow-hidden">
+                    <div class="bg-blue-50 h-36 grid place-items-center text-6xl">🍗</div>
+                    <div class="p-4">
+                        <h3 class="font-bold">Chicken Inasal</h3>
+                        <p class="text-sm text-blue-950/60">Grilled, with garlic rice</p>
+                        <p class="mt-2 font-bold">₱149</p>
+                    </div>
+                </article>
+                <article class="border border-blue-950/10 rounded-2xl overflow-hidden">
+                    <div class="bg-blue-50 h-36 grid place-items-center text-6xl">🍜</div>
+                    <div class="p-4">
+                        <h3 class="font-bold">Bam-i</h3>
+                        <p class="text-sm text-blue-950/60">Mixed noodles, Bicol style</p>
+                        <p class="mt-2 font-bold">₱129</p>
+                    </div>
+                </article>
+                <article class="border border-blue-950/10 rounded-2xl overflow-hidden">
+                    <div class="bg-blue-50 h-36 grid place-items-center text-6xl">🍲</div>
+                    <div class="p-4">
+                        <h3 class="font-bold">Sinigang na Baboy</h3>
+                        <p class="text-sm text-blue-950/60">Sour tamarind broth</p>
+                        <p class="mt-2 font-bold">₱165</p>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section class="max-w-6xl mx-auto px-4 mt-14">
+            <h2 class="font-display text-2xl font-bold">How ordering works</h2>
+            <ol class="mt-5 grid md:grid-cols-3 gap-5">
+                <li class="bg-blue-50 rounded-2xl p-5">
+                    <p class="font-display text-3xl font-extrabold">1</p>
+                    <p class="mt-1 font-bold">Pick your food</p>
+                    <p class="text-sm text-blue-950/70">Search the menu and add items to your cart.</p>
+                </li>
+                <li class="bg-blue-50 rounded-2xl p-5">
+                    <p class="font-display text-3xl font-extrabold">2</p>
+                    <p class="mt-1 font-bold">Check out</p>
+                    <p class="text-sm text-blue-950/70">Enter your address and choose a delivery date.</p>
+                </li>
+                <li class="bg-blue-50 rounded-2xl p-5">
+                    <p class="font-display text-3xl font-extrabold">3</p>
+                    <p class="mt-1 font-bold">Track it</p>
+                    <p class="text-sm text-blue-950/70">Watch the progress bar until it reaches your door.</p>
+                </li>
+            </ol>
+        </section>
+    </main>
+    <footer class="bg-blue-950 text-white/70 mt-16">
+        <div class="max-w-6xl mx-auto px-4 py-8 flex flex-wrap justify-between gap-4 text-sm">
+            <p><span class="font-display text-white font-bold">Sonic.</span> Food delivery based in Sipocot Camarines Sur.</p>
         </div>
-
-        <div class="mt-5 flex flex-wrap gap-3">
-          <a href="menu.html" class="h-12 px-7 rounded-full bg-gold text-navy font-bold inline-flex items-center gap-2 hover:brightness-105">Order now <span class="material-symbols-outlined">arrow_forward</span></a>
-          <a href="track.html" class="h-12 px-6 rounded-full border border-white/40 font-semibold inline-flex items-center hover:bg-white/10">Track an order</a>
-        </div>
-      </div>
-
-      <article class="bg-white text-ink rounded-3xl overflow-hidden shadow-2xl">
-        <div class="relative">
-          <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDfzAR9PSpBQqzBIKCwbV79QjRlZVfRGFuW053mNhzrYr04RrrTWSkhYTRQpSoGMoEdAaR3oSxsEOrQFNKILcwePIFCBOq7JPc0Ce3Lkvs7KWxUrQDVhuNDrc2FjcHjntCg9TeO9osPeGSysEvsCd-N25cfwfklLemLQEDHxa3epd3YcsNX3C0k1h2SMXaV1WQJ4mMDOe3u3Fy-x__B7Zo_z8IkP0i1iVG9oDTmopFFkonPqsBOr0G5lQ" alt="Crispy lechon belly with rice" class="w-full aspect-[16/10] object-cover bg-tint">
-          <span class="absolute top-3 left-3 bg-gold text-navy text-xs font-bold px-3 py-1 rounded-full">Today's special</span>
-        </div>
-        <div class="p-5 sm:p-6">
-          <p class="text-sm text-muted flex items-center gap-1"><span class="material-symbols-outlined" style="font-size:18px">alarm</span> Ends in <b id="timer" role="timer" class="text-ink tabular-nums">--:--:--</b></p>
-          <h2 class="mt-2 font-display text-xl sm:text-2xl font-extrabold">Crispy Lechon + Extra Rice + Sago't Gulaman</h2>
-          <p class="mt-2 text-sm text-muted">Roasted lechon belly with dipping gravy, garlic rice and a chilled brown sugar cooler.</p>
-          <div class="mt-4 flex items-center justify-between gap-4">
-            <div><span class="line-through text-muted text-sm">₱240</span> <span class="font-display text-3xl font-extrabold">₱189</span></div>
-            <button id="deal" class="h-12 px-6 rounded-full bg-navy text-white font-bold active:scale-95 transition">Add to cart</button>
-          </div>
-        </div>
-      </article>
-    </div>
-  </section>
-
-  <!-- WELCOME OFFER: visible but never blocks ordering -->
-  <div class="bg-gold text-navy">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex flex-wrap items-center justify-center gap-x-4 gap-y-1 text-sm text-center">
-      <span class="font-semibold">New here? Get ₱50 off your first order.</span>
-      <a href="signin.html" class="font-bold underline">Sign in or create an account</a>
-    </div>
-  </div>
-
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 pb-28">
-
-    <!-- STORES: link to the menu already filtered by store -->
-    <section class="mt-10 sm:mt-14" aria-labelledby="stores-h">
-      <div class="flex items-end justify-between gap-3">
-        <h2 id="stores-h" class="font-display text-xl sm:text-2xl font-extrabold">Order from your favorite stores</h2>
-        <a href="menu.html" class="text-sm font-bold underline whitespace-nowrap">See full menu</a>
-      </div>
-      <div id="stores" class="mt-4 flex gap-3 overflow-x-auto sm:overflow-visible sm:flex-wrap no-scrollbar -mx-4 px-4 sm:mx-0 sm:px-0 pb-1"></div>
-    </section>
-
-    <!-- CATEGORIES -->
-    <section class="mt-10 sm:mt-14" aria-labelledby="cats-h">
-      <h2 id="cats-h" class="font-display text-xl sm:text-2xl font-extrabold">Browse by craving</h2>
-      <div id="cats" class="mt-4 grid grid-cols-2 sm:grid-cols-4 gap-3"></div>
-    </section>
-
-    <!-- POPULAR -->
-    <section class="mt-10 sm:mt-14" aria-labelledby="pop-h">
-      <div class="flex items-end justify-between gap-3">
-        <h2 id="pop-h" class="font-display text-xl sm:text-2xl font-extrabold">Popular this week</h2>
-        <a href="menu.html" class="text-sm font-bold underline whitespace-nowrap">See full menu</a>
-      </div>
-      <div id="popular" class="mt-4 grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-5"></div>
-    </section>
-
-    <!-- HOW IT WORKS: each step links to its page -->
-    <section class="mt-10 sm:mt-14" aria-labelledby="how-h">
-      <h2 id="how-h" class="font-display text-xl sm:text-2xl font-extrabold">How ordering works</h2>
-      <ol class="mt-4 grid md:grid-cols-3 gap-3 md:gap-5">
-        <li><a href="menu.html" class="block h-full bg-white border border-line rounded-2xl p-5 hover:shadow-md transition-shadow">
-          <span class="w-10 h-10 rounded-full bg-navy text-white font-display font-extrabold grid place-items-center">1</span>
-          <h3 class="mt-3 font-display font-bold text-lg">Pick your food</h3>
-          <p class="mt-1 text-sm text-muted">Search the menu and add meals from your favorite stores to the cart.</p></a></li>
-        <li><a href="cart.html" class="block h-full bg-white border border-line rounded-2xl p-5 hover:shadow-md transition-shadow">
-          <span class="w-10 h-10 rounded-full bg-navy text-white font-display font-extrabold grid place-items-center">2</span>
-          <h3 class="mt-3 font-display font-bold text-lg">Check out</h3>
-          <p class="mt-1 text-sm text-muted">Enter your address and choose a delivery date. Pay with cash on delivery or GCash.</p></a></li>
-        <li><a href="track.html" class="block h-full bg-white border border-line rounded-2xl p-5 hover:shadow-md transition-shadow">
-          <span class="w-10 h-10 rounded-full bg-navy text-white font-display font-extrabold grid place-items-center">3</span>
-          <h3 class="mt-3 font-display font-bold text-lg">Track your order</h3>
-          <p class="mt-1 text-sm text-muted">Watch the progress bar from the kitchen to your door.</p></a></li>
-      </ol>
-    </section>
-
-    <!-- COVERAGE: tap an area to set where you want delivery; synced with the picker above -->
-    <section class="mt-10 sm:mt-14" aria-labelledby="zones-h">
-      <h2 id="zones-h" class="font-display text-xl sm:text-2xl font-extrabold">Where we deliver</h2>
-      <p class="mt-1 text-sm text-muted">Tap your area to see the delivery time and fee. Not on the list? <a href="contact.html" class="font-bold underline">Contact us</a>.</p>
-      <div id="zones" class="mt-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3" role="group" aria-label="Delivery areas"></div>
-    </section>
-  </div>
-</main>
-
-<footer class="bg-navy text-white/70 text-sm">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 py-8 flex flex-wrap justify-between gap-3">
-    <p><span class="font-display text-white font-bold">Sonic.</span> Food delivery based in Sipocot, Camarines Sur.</p>
-    <p>Cash on delivery and GCash accepted.</p>
-  </div>
-</footer>
-
-<!-- FLOATING CART BAR -->
-<div id="cartbar" class="hidden fixed inset-x-0 bottom-0 z-40 p-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] pointer-events-none">
-  <a href="cart.html" class="pointer-events-auto mx-auto max-w-xl h-14 px-5 rounded-full bg-gold text-navy font-bold shadow-xl flex items-center justify-between gap-3">
-    <span class="flex items-center gap-2"><span class="material-symbols-outlined">shopping_bag</span><span id="bar-count"></span></span>
-    <span class="flex items-center gap-1.5"><span id="bar-total"></span><span class="hidden min-[380px]:inline">· View cart</span><span class="material-symbols-outlined">arrow_forward</span></span>
-  </a>
-</div>
-
-<script>
-/* ---------- DATA (later move to js/data.js) ---------- */
-const stores = [['jollibee','Jollibee','JB'],['mcdo',"McDonald's",'MD'],['manginasal','Mang Inasal','MI'],['chowking','Chowking','CK'],['biggs','Biggs Diner','BD'],['local','Local kitchens','LK']];
-const cats = [['rice','Rice meals','🍚'],['chicken','Chicken','🍗'],['burgers','Burgers','🍔'],['noodles','Noodles','🍜'],['soups','Soups','🍲'],['bbq','Grilled & BBQ','🍢'],['desserts','Desserts','🍧']];
-const zones = [
-  { id:'poblacion', name:'Poblacion Centro', time:'12-18 min', fee:0 },
-  { id:'south',     name:'South Centro',     time:'18-25 min', fee:15 },
-  { id:'tara',      name:'Tara',             time:'18-25 min', fee:15 },
-  { id:'impig',     name:'Impig',            time:'20-28 min', fee:20 },
-  { id:'sanjuan',   name:'San Juan Avenue',  time:'20-28 min', fee:20 },
-  { id:'gaongan',   name:'Gaongan',          time:'25-35 min', fee:25 },
-  { id:'malubago',  name:'Malubago',         time:'25-35 min', fee:25 }
-];
-/* ids and names match menu.html so the shared cart stays consistent */
-const popular = [
-  { id:'inasal',   name:'Chicken Inasal with Garlic Rice', shop:"Aling Nena's Grill • Poblacion", price:149, rating:4.9, reviews:'140+', time:'15-20 min', badge:'Best seller',   desc:'Grilled quarter leg with lemongrass, ginger and calamansi, served with garlic rice.', img:'https://lh3.googleusercontent.com/aida-public/AB6AXuCMRjnpV4QWbUJq38PI0pSaAAMv9JQNvq_TgwGg069oZj9o-Y_8ZtYJLvMK59q4fNIBFFk0z4xgDCNk-xo5mgcBs3U2XEdRBJM5JRCBrjFaTRAaet2F-5o74kLuqc-wbwAXgmqnT1VzCWgc-O6KouNmr_UBO4uGF2hsTLIH9IKy7X5ocSN61I4uQHu_Pw6Zlpn5IglbrHpAQTpmDLU9y084HEoUueqfPFN76YhVH7LIcggg55hZZD45TA' },
-  { id:'bami',     name:'Bam-i Bicol Special',             shop:"Nanay Thelma's Panciteria",      price:129, rating:4.9, reviews:'94',   time:'12-18 min', badge:'Bicol special', desc:'Stir-fried miki and sotanghon with pork, shrimp, wood ear mushrooms and calamansi.', img:'https://lh3.googleusercontent.com/aida-public/AB6AXuDD4Rb8uTAToXeCf4xQi4PIlQCg7LIcF0DbV6lMuI1PoiNBpEJGzt-hnWVvfwzG_e_oL2ie_5VgCqhBDKxhK8G9P5gmtRqKxKg7vfgnBxTe37iSptIAwyjLc5IVEmaUdxkTwwbmeT4aKz3ec6WBzg50FY395WUBoUhQ62hPtvX5_AzLwQcssEZJBE4tWTjVae_-7BFHreYiQNcy1PKXyx1QO1Wj7doXmzCtOe6-20-lVlamZ4UHPh1K1g' },
-  { id:'sinigang', name:'Sinigang na Baboy sa Kamias',     shop:'Kusina de Sipocot • Highway',    price:165, rating:4.8, reviews:'88',   time:'20-25 min', badge:'Tangy broth',   desc:'Tender pork ribs in sour kamias broth with kangkong, radish and green chili.', img:'https://lh3.googleusercontent.com/aida-public/AB6AXuDXVzm3Mf2d3TNQ0tr91R0kindF-h6k02p5VV_bAZculiT7J4vBJvgAdzwXjrknIMTpSfduwtUquoc9-Wx31108T_D2FX5Trs3d52tPI-6OYGpVZNKpI7i0MexNfRUat3rXNoaXrV6B0k2Y90ytSe5--fg3VedkjJ2oVWu7qodshNg2NFjK4oECWnvTdHZhQK_GE0Lb1Hk1v8dKfyNlSb7Is-ATGxwR1Oy9n8R6cIo2LSJoRX27IlMmQw' }
-];
-const deal = { id:'combo', name:'Flash Combo (Lechon + Rice + Drink)', price:189, img:'https://lh3.googleusercontent.com/aida-public/AB6AXuDfzAR9PSpBQqzBIKCwbV79QjRlZVfRGFuW053mNhzrYr04RrrTWSkhYTRQpSoGMoEdAaR3oSxsEOrQFNKILcwePIFCBOq7JPc0Ce3Lkvs7KWxUrQDVhuNDrc2FjcHjntCg9TeO9osPeGSysEvsCd-N25cfwfklLemLQEDHxa3epd3YcsNX3C0k1h2SMXaV1WQJ4mMDOe3u3Fy-x__B7Zo_z8IkP0i1iVG9oDTmopFFkonPqsBOr0G5lQ', emoji:'🍱', shop:'Local kitchens' };
-const $ = s => document.querySelector(s);
-const peso = n => '₱' + n.toLocaleString('en-PH');
-const find = id => popular.find(d => d.id === id) || deal;
-
-/* ---------- CART (same localStorage key as menu.html) ---------- */
-const KEY = 'sonic_cart';
-let cart = [];
-try { cart = JSON.parse(localStorage.getItem(KEY)) || []; } catch (e) {}
-const qtyOf = id => (cart.find(c => c.id === id) || { qty: 0 }).qty;
-
-function setQty(id, qty) {
-  const item = find(id);
-  const line = cart.find(c => c.id === id);
-  if (line) line.qty = qty; else cart.push({ id, name:item.name, price:item.price, qty, img:item.img, emoji:item.emoji || '', shop:item.shop });
-  cart = cart.filter(c => c.qty > 0);
-  try { localStorage.setItem(KEY, JSON.stringify(cart)); } catch (e) {}
-  refreshCart();
-}
-
-function actionHTML(id) {
-  const q = qtyOf(id), name = find(id).name;
-  if (!q) return `<button data-add="${id}" aria-label="Add ${name} to cart" class="h-10 px-4 rounded-full bg-gold text-navy text-sm font-bold flex items-center gap-1 active:scale-95 transition"><span class="material-symbols-outlined" style="font-size:18px">add</span>Add</button>`;
-  return `<div class="flex items-center bg-tint rounded-full p-0.5">
-    <button data-dec="${id}" aria-label="Remove one ${name}" class="w-10 h-10 rounded-full bg-white grid place-items-center"><span class="material-symbols-outlined" style="font-size:18px">remove</span></button>
-    <span class="w-7 text-center font-bold text-sm">${q}</span>
-    <button data-inc="${id}" aria-label="Add one more ${name}" class="w-10 h-10 rounded-full bg-navy text-white grid place-items-center"><span class="material-symbols-outlined" style="font-size:18px">add</span></button></div>`;
-}
-
-function refreshCart() {
-  const count = cart.reduce((n, c) => n + c.qty, 0);
-  const total = cart.reduce((n, c) => n + c.qty * c.price, 0);
-  document.querySelectorAll('[data-cart-count]').forEach(el => { el.textContent = count; el.classList.toggle('hidden', !count); });
-  $('#cartbar').classList.toggle('hidden', !count);
-  $('#bar-count').textContent = count + (count === 1 ? ' item' : ' items');
-  $('#bar-total').textContent = peso(total);
-  document.querySelectorAll('[data-action]').forEach(el => { el.innerHTML = actionHTML(el.dataset.action); });
-  const q = qtyOf('combo');
-  $('#deal').textContent = q ? `Added (${q}) · add another` : 'Add to cart';
-}
-
-/* ---------- RENDER THE LISTS ---------- */
-$('#stores').innerHTML = stores.map(([k, l, i]) => `<a href="menu.html?store=${k}" class="group shrink-0 w-[84px] flex flex-col items-center gap-1.5 text-center py-1">
-  <span class="w-16 h-16 rounded-full bg-white border-2 border-line grid place-items-center font-display font-extrabold text-navy group-hover:bg-tint group-hover:border-navy transition">${i}</span>
-  <span class="text-xs font-semibold leading-tight">${l}</span></a>`).join('');
-
-$('#cats').innerHTML = cats.map(([k, l, e]) => `<a href="menu.html?cat=${k}" class="flex items-center gap-3 bg-white border border-line rounded-2xl p-4 hover:shadow-md hover:border-navy transition">
-  <span class="text-3xl" aria-hidden="true">${e}</span><span class="font-semibold text-sm sm:text-base">${l}</span></a>`).join('') +
-  `<a href="menu.html" class="flex items-center justify-between gap-2 bg-navy text-white rounded-2xl p-4 font-semibold hover:brightness-110 transition"><span>Full menu</span><span class="material-symbols-outlined">arrow_forward</span></a>`;
-
-$('#popular').innerHTML = popular.map(d => `<article class="flex md:flex-col bg-white rounded-2xl border border-line overflow-hidden hover:shadow-md transition-shadow">
-  <a href="menu.html" class="relative shrink-0 w-28 md:w-full aspect-square md:aspect-[16/10] bg-tint overflow-hidden" aria-label="See ${d.name} on the menu">
-    <img src="${d.img}" alt="${d.name}" loading="lazy" class="w-full h-full object-cover">
-    <span class="absolute top-2 left-2 px-2 py-0.5 rounded-full bg-gold text-navy text-[11px] font-bold">${d.badge}</span>
-  </a>
-  <div class="flex-1 min-w-0 p-3 md:p-4 flex flex-col">
-    <p class="text-xs font-semibold text-navy/70 truncate">${d.shop}</p>
-    <h3 class="mt-0.5 font-display font-bold text-[15px] md:text-base leading-snug">${d.name}</h3>
-    <p class="mt-1 flex items-center gap-1 text-xs text-muted"><span class="material-symbols-outlined text-gold" style="font-size:16px;font-variation-settings:'FILL' 1">star</span><b class="text-ink">${d.rating}</b> (${d.reviews}) · ${d.time}</p>
-    <p class="hidden md:block mt-2 text-xs text-muted line-clamp-2">${d.desc}</p>
-    <div class="mt-auto pt-3 flex items-center justify-between gap-2">
-      <span class="font-display text-lg font-extrabold">${peso(d.price)}</span>
-      <div data-action="${d.id}"></div>
-    </div>
-  </div></article>`).join('');
-
-/* ---------- DELIVERY AREA ---------- */
-let area = 'poblacion';
-try { area = localStorage.getItem('sonic_area') || area; } catch (e) {}
-if (!zones.some(z => z.id === area)) area = 'poblacion';
-$('#area').innerHTML = zones.map(z => `<option value="${z.id}">${z.name}</option>`).join('');
-
-function paintArea() {
-  const z = zones.find(z => z.id === area);
-  $('#area').value = area;
-  $('#area-result').innerHTML = `<span class="material-symbols-outlined text-navy" style="font-size:20px">electric_moped</span><span><b class="text-ink">${z.time}</b> · ${z.fee ? peso(z.fee) + ' delivery fee' : 'Free delivery'}</span>`;
-  $('#zones').innerHTML = zones.map(x => {
-    const on = x.id === area;
-    return `<button data-zone="${x.id}" aria-pressed="${on}" class="text-left rounded-2xl p-4 border-2 transition ${on ? 'bg-tint border-navy' : 'bg-white border-line hover:border-navy'}">
-      <span class="flex items-center justify-between gap-2"><span class="font-display font-bold">${x.name}</span>${on ? '<span class="material-symbols-outlined text-navy">check_circle</span>' : ''}</span>
-      <span class="mt-1 block text-sm text-muted">${x.time} · ${x.fee ? peso(x.fee) : 'Free delivery'}</span></button>`;
-  }).join('');
-}
-function setArea(id) {
-  area = id;
-  try { localStorage.setItem('sonic_area', id); } catch (e) {}
-  paintArea();
-}
-$('#area').addEventListener('change', e => setArea(e.target.value));
-$('#zones').addEventListener('click', e => {
-  const b = e.target.closest('[data-zone]'); if (!b) return;
-  setArea(b.dataset.zone);
-  $('#zones [data-zone="' + b.dataset.zone + '"]').focus();
-});
-
-/* ---------- EVENTS ---------- */
-$('#popular').addEventListener('click', e => {
-  const t = e.target.closest('[data-add],[data-inc],[data-dec]'); if (!t) return;
-  const id = t.dataset.add || t.dataset.inc || t.dataset.dec;
-  setQty(id, qtyOf(id) + (t.dataset.dec ? -1 : 1));
-  $('#popular [data-action="' + id + '"]').querySelector(t.dataset.dec ? '[data-dec],[data-add]' : '[data-inc]').focus();
-});
-$('#deal').addEventListener('click', () => setQty('combo', qtyOf('combo') + 1));
-
-$('#menu-btn').addEventListener('click', () => {
-  const open = $('#mobile-nav').classList.toggle('hidden') === false;
-  $('#menu-btn').setAttribute('aria-expanded', open);
-  $('#menu-icon').textContent = open ? 'close' : 'menu';
-});
-
-/* ---------- COUNTDOWN to 3:00 PM (daily deal) ---------- */
-function tick() {
-  const now = new Date(), end = new Date(now);
-  end.setHours(15, 0, 0, 0);
-  if (end <= now) end.setDate(end.getDate() + 1);
-  const s = Math.floor((end - now) / 1000), pad = n => String(n).padStart(2, '0');
-  $('#timer').textContent = `${pad(Math.floor(s / 3600))}:${pad(Math.floor(s % 3600 / 60))}:${pad(s % 60)}`;
-}
-tick(); setInterval(tick, 1000);
-
-paintArea();
-refreshCart();
-</script>
+    </footer>
 </body>
 </html>
