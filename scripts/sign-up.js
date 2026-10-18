@@ -44,7 +44,6 @@ registerForm.addEventListener('submit', function (e) {
   });
   save(USERS_KEY, users);
 
-  localStorage.setItem(SESSION_KEY, newEmail); // sign in right away
-  showToast('Account created. Welcome, ' + name.value.trim().split(' ')[0] + '!');
-  setTimeout(function () { window.location.href = 'menu.html'; }, 900);
+  showToast('Account created. Redirecting to sign in...');
+  setTimeout(function () { window.location.href = 'signin.html?created=1'; }, 900);
 });

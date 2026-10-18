@@ -157,7 +157,8 @@ function setupAuthLink() {
   const nav = document.querySelector('header nav');
   if (!nav) return;
   const el = Array.from(nav.querySelectorAll('a, button')).find(function (e) {
-    return e.textContent.trim().toLowerCase() === 'sign in';
+    const label = e.textContent.trim().toLowerCase();
+    return label === 'sign in' || label === 'get started';
   });
   if (!el) return;
   const user = currentUser();
@@ -171,6 +172,14 @@ function setupAuthLink() {
     });
   } else if (el.tagName === 'BUTTON') {
     el.addEventListener('click', function () { window.location.href = 'signin.html'; });
+  }
+}
+
+function requireAuthentication() {
+  const protectedPages = ['menu.html', 'cart.html', 'track.html', 'orders.html', 'contact.html'];
+  const page = window.location.pathname.split('/').pop().toLowerCase();
+  if (protectedPages.includes(page) && !currentUser()) {
+    window.location.replace('signup.html');
   }
 }
 
@@ -210,3 +219,4 @@ function orderGroup(order) {
 /* ---------- run on every page ---------- */
 updateCartBadge();
 setupAuthLink();
+requireAuthentication();

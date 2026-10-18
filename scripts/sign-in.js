@@ -3,6 +3,10 @@
 
 const signinForm = document.getElementById('signin-form');
 
+if (new URLSearchParams(window.location.search).has('created')) {
+  showToast('Account created. Please sign in to continue.');
+}
+
 clearErrorOnInput(signinForm);
 
 signinForm.addEventListener('submit', function (e) {
