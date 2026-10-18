@@ -39,6 +39,18 @@
                     <label class="block "><span class="text-sm font-medium">Password</span><input type="password" name="password" class="mt-1 w-full border border-navyblue/20 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-950"><p class="error text-chili text-sm mt-1 hidden">Enter your password.</p></label>
                     <button type="submit" class="w-full bg-blue-950 text-white font-bold py-3 rounded-full hover:bg-blue-900">Sign in</button>
                 </form>
+                <div class="my-5 flex items-center gap-3 text-sm text-navyblue/50" aria-hidden="true">
+                    <span class="h-px flex-1 bg-navyblue/15"></span><span>or continue with a demo account</span><span class="h-px flex-1 bg-navyblue/15"></span>
+                </div>
+                <div class="grid gap-3 sm:grid-cols-2">
+                    <button type="button" data-demo-provider="Google" class="flex items-center justify-center gap-2 rounded-xl border border-navyblue/20 bg-white px-4 py-3 text-sm font-semibold hover:bg-blue-50">
+                        <img src="images/signup_logo/google-logo.png" alt="" aria-hidden="true" class="h-5 w-5 shrink-0 object-contain"><span class="text-xs leading-5">Continue with Google</span>
+                    </button>
+                    <button type="button" data-demo-provider="Facebook" class="flex items-center justify-center gap-2 rounded-xl border border-navyblue/20 bg-white px-4 py-3 text-sm font-semibold hover:bg-blue-50">
+                        <img src="images/signup_logo/facebook_logo.png" alt="" aria-hidden="true" class="h-5 w-5 shrink-0 object-contain"><span class="text-xs leading-5">Continue with Facebook</span>
+                    </button>
+                </div>
+                <p class="mt-3 text-xs text-navyblue/60">Demo only: these options do not connect to Google or Facebook. Never enter your provider password here.</p>
             </div>
             <p class="mt-6 text-center text-sm text-navyblue/70">New to Sonic? <a href="signup.html" class="font-semibold text-blue-950 underline">Create an account</a></p>
         </section>
@@ -49,7 +61,22 @@
         </div>
     </footer>
 
+    <div id="demo-social-dialog" class="hidden fixed inset-0 z-50 grid place-items-center bg-navyblue/60 p-4" role="dialog" aria-modal="true" aria-labelledby="demo-social-title">
+        <div class="w-full max-w-md rounded-3xl bg-white p-6 shadow-xl md:p-8">
+            <h2 id="demo-social-title" class="font-display text-2xl font-bold">Continue with demo account</h2>
+            <p id="demo-social-description" class="mt-2 text-sm text-navyblue/70">This is a local demo only. No Google or Facebook login will occur.</p>
+            <form id="demo-social-form" class="mt-5 space-y-4" novalidate>
+                <label class="block"><span class="text-sm font-medium">Demo display name</span><input type="text" name="demo-name" placeholder="e.g. Maria Santos" autocomplete="off" class="mt-1 w-full rounded-xl border border-navyblue/20 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-950"><p class="error hidden mt-1 text-sm text-chili">Enter a name with at least 2 characters.</p></label>
+                <label class="block"><span class="text-sm font-medium">Demo email</span><input type="email" name="demo-email" placeholder="you@example.com" autocomplete="off" class="mt-1 w-full rounded-xl border border-navyblue/20 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-950"><p class="error hidden mt-1 text-sm text-chili">Enter a valid email address.</p></label>
+                <div class="flex flex-col-reverse gap-3 sm:flex-row sm:justify-end">
+                    <button type="button" id="cancel-demo-social" class="rounded-full border border-navyblue/20 px-5 py-3 font-semibold">Cancel</button>
+                    <button type="submit" class="rounded-full bg-blue-950 px-5 py-3 font-bold text-white hover:bg-blue-900">Continue with demo</button>
+                </div>
+            </form>
+        </div>
+    </div>
     <script src="scripts/common.js"></script>
     <script src="scripts/sign-in.js"></script>
+    <script src="scripts/demo-social.js"></script>
 </body>
 </html>
