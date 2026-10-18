@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Continue with social account | Sonic</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;800&family=Figtree:wght@400;500;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+    <script>
+        tailwind.config = { darkMode: 'class', theme: { extend: { colors: { calamansi: '#F2C230', chili: '#C8341F', ink: '#17251C', mist: '#EEF3EC', navyblue: '#010736' }, fontFamily: { display: ['Bricolage Grotesque', 'sans-serif'], sans: ['Figtree', 'sans-serif'] } } } }
+    </script>
+</head>
+<body class="font-sans bg-blue-50 text-navyblue min-h-screen flex flex-col">
+
+    <!-- Local demo flow only; this page does not authenticate with Google or Facebook. -->
+
+    <!-- simple header: a real social login leaves the website, so there is no full navbar here -->
+    <header class="sticky top-0 z-50 bg-blue-950 text-white">
+        <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+            <a href="index.html" class="font-display text-3xl font-extrabold p-5">Sonic<span class="text-yellow-500">.</span></a>
+            <a id="return-link" href="signin.html" class="text-sm underline">Back to sign in</a>
+        </div>
+    </header>
+
+    <main class="flex-1 grid place-items-center px-4 py-10">
+        <div class="w-full max-w-md">
+
+            <!-- demo notice: keep this, it tells the user that no real account is used -->
+            <p class="mb-4 bg-calamansi text-ink text-sm font-semibold rounded-xl px-4 py-3 text-center">
+                Demo only. No real social media account or password is used on this page.
+            </p>
+
+            <div class="bg-white border border-blue-950/10 rounded-3xl p-6 md:p-8 shadow-sm">
+
+                <!-- heading (stays the same in every step) -->
+                <div class="text-center">
+                    <!-- provider logo badge -->
+                    <div class="mx-auto w-16 h-16 overflow-hidden rounded-full border border-blue-950/10 bg-white grid place-items-center">
+                        <img id="provider-logo" src="images/signup_logo/google-logo.png" alt="Google logo" class="h-12 w-12 object-contain">
+                    </div>
+                    <h1 class="mt-4 font-display text-2xl font-extrabold">Continue with <span id="provider-name">social account</span></h1>
+                    <p class="mt-1 text-sm text-navyblue/70">to continue to <span class="font-semibold">Sonic</span></p>
+                </div>
+
+                <!-- ============ STEP 1: CHOOSE AN ACCOUNT ============ -->
+                <section id="step-accounts" class="mt-6">
+                    <h2 class="text-sm font-semibold text-navyblue/70">Choose an account</h2>
+
+                    <ul class="mt-3 divide-y divide-blue-950/10 border border-blue-950/10 rounded-2xl overflow-hidden">
+                        <li>
+                            <button type="button" class="account-btn w-full flex items-center gap-3 px-4 py-3 text-left hover:bg-blue-50"
+                                data-name="Juan Dela Cruz" data-email="juan.delacruz@example.com">
+                                <span class="w-10 h-10 rounded-full bg-calamansi text-ink grid place-items-center font-bold">J</span>
+                                <span class="flex-1">
+                                    <span class="block font-semibold">Juan Dela Cruz</span>
+                                    <span class="block text-sm text-navyblue/60">juan.delacruz@example.com</span>
+                                </span>
+                                <span aria-hidden="true" class="text-navyblue/40">&rsaquo;</span>
+                            </button>
+                        </li>
+                        <li>
+                            <button type="button" class="account-btn w-full flex items-center gap-3 px-4 py-3 text-left hover:bg-blue-50"
+                                data-name="Maria Santos" data-email="maria.santos@example.com">
+                                <span class="w-10 h-10 rounded-full bg-blue-950 text-white grid place-items-center font-bold">M</span>
+                                <span class="flex-1">
+                                    <span class="block font-semibold">Maria Santos</span>
+                                    <span class="block text-sm text-navyblue/60">maria.santos@example.com</span>
+                                </span>
+                                <span aria-hidden="true" class="text-navyblue/40">&rsaquo;</span>
+                            </button>
+                        </li>
+                        <li>
+                            <button type="button" id="another-btn" class="w-full flex items-center gap-3 px-4 py-3 text-left hover:bg-blue-50">
+                                <span class="w-10 h-10 rounded-full border border-blue-950/20 grid place-items-center text-xl">+</span>
+                                <span class="flex-1 font-semibold">Use another account</span>
+                            </button>
+                        </li>
+                    </ul>
+
+                    <!-- shown by JS when "Use another account" is clicked: name + email only, no password -->
+                    <form id="another-form" class="hidden mt-5 space-y-4" novalidate>
+                        <label class="block"><span class="text-sm font-medium">Full name</span>
+                            <input type="text" name="fullname" class="mt-1 w-full border border-navyblue/20 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-950">
+                            <p class="error text-chili text-sm mt-1 hidden">Enter your full name.</p>
+                        </label>
+                        <label class="block"><span class="text-sm font-medium">Email</span>
+                            <input type="email" name="email" class="mt-1 w-full border border-navyblue/20 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-950">
+                            <p class="error text-chili text-sm mt-1 hidden">Enter a valid email, like name@email.com.</p>
+                        </label>
+                        <button type="submit" class="w-full bg-blue-950 text-white font-bold py-3 rounded-full hover:bg-blue-900">Next</button>
+                    </form>
+
+                    <p class="mt-6 text-xs text-navyblue/60 text-center">
+                        The accounts above are made up for the demo.
+                    </p>
+                </section>
+
+                <!-- ============ STEP 2: PERMISSION ============ -->
+                <section id="step-permission" class="hidden mt-6">
+                    <!-- the account chosen in step 1 (JS fills these three) -->
+                    <div class="flex items-center gap-3 border border-blue-950/10 rounded-2xl px-4 py-3">
+                        <span id="selected-initial" class="w-10 h-10 rounded-full bg-calamansi text-ink grid place-items-center font-bold">J</span>
+                        <span class="flex-1">
+                            <span id="selected-name" class="block font-semibold">Juan Dela Cruz</span>
+                            <span id="selected-email" class="block text-sm text-navyblue/60">juan.delacruz@example.com</span>
+                        </span>
+                        <button type="button" id="change-account-btn" class="text-sm font-semibold underline">Change</button>
+                    </div>
+
+                    <h2 class="mt-6 font-display text-lg font-bold">Sonic wants to access your account</h2>
+                    <p class="mt-1 text-sm text-navyblue/70">This will let Sonic:</p>
+                    <ul class="mt-3 space-y-2 text-sm">
+                        <li class="flex gap-3 bg-blue-50 rounded-xl px-4 py-3"><span aria-hidden="true">&#10003;</span><span>See your name</span></li>
+                        <li class="flex gap-3 bg-blue-50 rounded-xl px-4 py-3"><span aria-hidden="true">&#10003;</span><span>See your email address</span></li>
+                        <li class="flex gap-3 bg-blue-50 rounded-xl px-4 py-3"><span aria-hidden="true">&#10003;</span><span>Create a Sonic account for you and keep you signed in</span></li>
+                    </ul>
+                    <p class="mt-3 text-xs text-navyblue/60">Sonic will not post anything or see your password.</p>
+
+                    <div class="mt-6 flex gap-3">
+                        <button type="button" id="cancel-btn" class="flex-1 border border-navyblue/20 font-semibold py-3 rounded-full hover:bg-blue-50">Cancel</button>
+                        <button type="button" id="allow-btn" class="flex-1 bg-blue-950 text-white font-bold py-3 rounded-full hover:bg-blue-900">Allow</button>
+                    </div>
+                </section>
+
+                <!-- ============ STEP 3: LOADING ============ -->
+                <section id="step-loading" class="hidden mt-8 text-center" aria-live="polite">
+                    <div class="mx-auto w-12 h-12 border-4 border-blue-950/20 border-t-blue-950 rounded-full animate-spin"></div>
+                    <p class="mt-4 font-display text-xl font-bold">Signing you in to Sonic...</p>
+                    <p class="mt-1 text-sm text-navyblue/70">Please wait, this only takes a moment.</p>
+                </section>
+
+            </div>
+
+            <p class="mt-6 text-center text-sm text-navyblue/70">
+                Prefer to use an email and password?
+                <a href="signin.html" class="font-semibold text-blue-950 underline">Sign in</a>
+                or
+                <a href="signup.html" class="font-semibold text-blue-950 underline">create an account</a>
+            </p>
+        </div>
+    </main>
+
+    <footer class="bg-blue-950 text-white/70">
+        <div class="max-w-6xl mx-auto px-4 py-8 flex flex-wrap justify-between gap-4 text-sm">
+            <p><span class="font-display text-white font-bold">Sonic.</span> Food delivery based in Sipocot, Camarines Sur.</p>
+        </div>
+    </footer>
+
+    <script src="scripts/common.js"></script>
+    <script src="scripts/social-login.js"></script>
+</body>
+</html>
