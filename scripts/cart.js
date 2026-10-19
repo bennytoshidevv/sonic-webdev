@@ -9,6 +9,7 @@ const dateInput = document.getElementById('delivery-date');
 /* ---------- 1. draw the cart ---------- */
 function renderCart() {
   const cart = getCart();
+  const selectedItems = cart.filter(function (item) { return item.checkoutSelected !== false; });
 
   if (cart.length === 0) {
     cartList.innerHTML =
@@ -24,15 +25,18 @@ function renderCart() {
         : '🍽️';
       return (
         '<li class="p-4 flex items-center gap-4">' +
+        '<input type="checkbox" data-action="select" data-id="' + escapeHtml(item.id) + '"' +
+        (item.checkoutSelected === false ? '' : ' checked') +
+        ' class="h-5 w-5 shrink-0 accent-blue-950" aria-label="Include ' + escapeHtml(item.name) + ' in checkout">' +
         '<div class="w-16 h-16 bg-calamansi/50 rounded-xl overflow-hidden grid place-items-center text-3xl">' + picture + '</div>' +
         '<div class="flex-1">' +
         '<p class="font-bold">' + escapeHtml(item.name) + '</p>' +
         '<p class="text-sm text-ink/60">' + peso(item.price) + ' each</p>' +
         '</div>' +
         '<div class="flex items-center gap-2">' +
-        '<button data-action="dec" data-id="' + item.id + '" class="w-8 h-8 rounded-full bg-mist" aria-label="Decrease quantity">-</button>' +
+        '<button data-action="dec" data-id="' + escapeHtml(item.id) + '" class="w-8 h-8 rounded-full bg-mist" aria-label="Decrease quantity">-</button>' +
         '<span>' + item.qty + '</span>' +
-        '<button data-action="inc" data-id="' + item.id + '" class="w-8 h-8 rounded-full bg-mist" aria-label="Increase quantity">+</button>' +
+        '<button data-action="inc" data-id="' + escapeHtml(item.id) + '" class="w-8 h-8 rounded-full bg-mist" aria-label="Increase quantity">+</button>' +
         '</div>' +
         '<p class="w-16 text-right font-bold">' + peso(item.price * item.qty) + '</p>' +
         '</li>'
@@ -41,18 +45,31 @@ function renderCart() {
   }
 
   // summary box
-  const totals = cartTotals(cart);
+  const totals = cartTotals(selectedItems);
   document.getElementById('subtotal').textContent = peso(totals.subtotal);
-  document.getElementById('fee').textContent = totals.fee === 0 && cart.length > 0 ? 'Free' : peso(totals.fee);
+  document.getElementById('fee').textContent = totals.fee === 0 && selectedItems.length > 0 ? 'Free' : peso(totals.fee);
   document.getElementById('total').textContent = peso(totals.total);
 
-  // cannot place an empty order
-  placeBtn.disabled = cart.length === 0;
-  placeBtn.classList.toggle('opacity-50', cart.length === 0);
-  placeBtn.classList.toggle('cursor-not-allowed', cart.length === 0);
+  // cannot place an empty order or one with no selected items
+  placeBtn.disabled = selectedItems.length === 0;
+  placeBtn.classList.toggle('opacity-50', selectedItems.length === 0);
+  placeBtn.classList.toggle('cursor-not-allowed', selectedItems.length === 0);
 }
 
 /* ---------- 2. + and - buttons (one listener for the whole list) ---------- */
+cartList.addEventListener('change', function (e) {
+  const checkbox = e.target.closest('input[data-action="select"]');
+  if (!checkbox) return;
+
+  const cart = getCart();
+  const line = cart.find(function (item) { return item.id === checkbox.dataset.id; });
+  if (!line) return;
+
+  line.checkoutSelected = checkbox.checked;
+  saveCart(cart);
+  renderCart();
+});
+
 cartList.addEventListener('click', function (e) {
   const button = e.target.closest('button[data-action]');
   if (!button) return;
@@ -106,19 +123,20 @@ form.addEventListener('submit', function (e) {
   if (!(nameOk && phoneOk && addressOk && dateOk)) return;
 
   const cart = getCart();
-  if (cart.length === 0) {
-    showToast('Your cart is empty.');
+  const selectedItems = cart.filter(function (item) { return item.checkoutSelected !== false; });
+  if (selectedItems.length === 0) {
+    showToast(cart.length === 0 ? 'Your cart is empty.' : 'Select at least one item to checkout.');
     return;
   }
 
   // build the order object and save it with the other orders
   const orders = getOrders();
-  const totals = cartTotals(cart);
+  const totals = cartTotals(selectedItems);
   const order = {
     id: 'SN-' + (1024 + orders.length + 1),
     createdAt: Date.now(),
     user: userKey(),
-    items: cart,
+    items: selectedItems,
     subtotal: totals.subtotal,
     fee: totals.fee,
     total: totals.total,
@@ -132,7 +150,7 @@ form.addEventListener('submit', function (e) {
   orders.push(order);
   save(ORDERS_KEY, orders);
   localStorage.setItem(LAST_ORDER_KEY, order.id);
-  saveCart([]); // empty the cart
+  saveCart(cart.filter(function (item) { return item.checkoutSelected === false; }));
 
   // small "loading" moment, then go to the tracking page
   placeBtn.disabled = true;
