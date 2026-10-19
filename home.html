@@ -56,7 +56,7 @@
                         <a href="track.html" class="border border-black/40 px-6 py-3 rounded-full font-bold">Track an order</a>
                     </div>
                 </div>
-                <!-- CAROUSEL (JS): show one slide at a time, auto-change + prev/next + dots -->
+                
                 <div id="carousel"
                     class="bg-white text-blue-950 rounded-3xl p-8 min-h-[300px] flex flex-col justify-between border border-black">
                     <div class="slide flex justify-between gap-4">
@@ -67,7 +67,7 @@
                         </div>
                         <div class="text-7xl">🐖</div>
                     </div>
-                    <!-- more .slide divs go here, hidden except the active one -->
+                    
 
                     <div class="flex items-center justify-between mt-8">
                         <div class="flex gap-2"><span class="w-6 h-2 rounded-full bg-blue-950"></span><span
@@ -111,19 +111,23 @@
             </div>
             <div class="mt-5 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4">
                 <a href="menu.html?store=jollibee" class="group min-h-32 rounded-2xl border border-red-200 bg-red-50 p-4 sm:p-5 flex flex-col justify-between transition hover:-translate-y-1 hover:shadow-md focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-700">
-                    <span class="grid h-10 w-10 place-items-center rounded-full bg-red-600 text-sm font-extrabold text-white" aria-hidden="true">J</span>
+                    <span class="grid h-20 w-20 place-items-center overflow-hidden rounded-full bg-white shadow-sm">
+                        <img src="images/store_logo/Jollibee.logo.jpg" alt="Jollibee" class="h-full w-full object-contain scale-150">
+                    </span>
                     <span class="mt-5 font-display text-lg font-bold leading-tight group-hover:text-red-700">Jollibee</span>
                 </a>
                 <a href="menu.html?store=mcdonalds" class="group min-h-32 rounded-2xl border border-yellow-200 bg-yellow-50 p-4 sm:p-5 flex flex-col justify-between transition hover:-translate-y-1 hover:shadow-md focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-yellow-700">
-                    <span class="grid h-10 w-10 place-items-center rounded-full bg-yellow-400 text-sm font-extrabold text-blue-950" aria-hidden="true">M</span>
+                    <img src="images/store_logo/Mcdo.logo.jpg" alt="McDonald" class="h-20 w-20 rounded-full bg-white object-contain p-1 shadow-sm">
                     <span class="mt-5 font-display text-lg font-bold leading-tight group-hover:text-yellow-800">McDonald's</span>
                 </a>
                 <a href="menu.html?store=biggs" class="group min-h-32 rounded-2xl border border-orange-200 bg-orange-50 p-4 sm:p-5 flex flex-col justify-between transition hover:-translate-y-1 hover:shadow-md focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-700">
-                    <span class="grid h-10 w-10 place-items-center rounded-full bg-orange-500 text-sm font-extrabold text-white" aria-hidden="true">B</span>
+                    <span class="grid h-20 w-20 place-items-center overflow-hidden rounded-full bg-white shadow-sm">
+                        <img src="images/store_logo/biggs.logo.jpg" alt="Biggs" class="h-full w-full object-contain scale-150">
+                    </span>
                     <span class="mt-5 font-display text-lg font-bold leading-tight group-hover:text-orange-700">Biggs</span>
                 </a>
                 <a href="menu.html?store=jybon" class="group min-h-32 rounded-2xl border border-green-200 bg-green-50 p-4 sm:p-5 flex flex-col justify-between transition hover:-translate-y-1 hover:shadow-md focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-700">
-                    <span class="grid h-10 w-10 place-items-center rounded-full bg-green-700 text-sm font-extrabold text-white" aria-hidden="true">Y</span>
+                    <img src="images/store_logo/jybon.logo.jpg" alt="Jybon" class="h-20 w-20 rounded-full bg-white object-contain p-1 shadow-sm">
                     <span class="mt-5 font-display text-lg font-bold leading-tight group-hover:text-green-800">Jybon</span>
                 </a>
                 <a href="menu.html?store=local" class="group min-h-32 rounded-2xl border border-blue-200 bg-blue-50 p-4 sm:p-5 flex flex-col justify-between transition hover:-translate-y-1 hover:shadow-md focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-700">
@@ -139,27 +143,27 @@
             </div>
             <div class="mt-5 grid md:grid-cols-3 gap-5">
                 <article class="border border-blue-950/10 rounded-2xl overflow-hidden">
-                    <div class="bg-blue-50 h-36 grid place-items-center text-6xl">🍗</div>
+                    <div class="bg-blue-50 h-36 overflow-hidden"><img src="images/Chickenjoy.jpg" alt="Chickenjoy" class="h-full w-full object-cover"></div>
                     <div class="p-4">
-                        <h3 class="font-bold">Chicken Inasal</h3>
-                        <p class="text-sm text-blue-950/60">Grilled, with garlic rice</p>
+                        <h3 class="font-bold">Chickenjoy</h3>
+                        <p class="text-sm text-blue-950/60">1pc Chickenjoy w/ rice</p>
                         <p class="mt-2 font-bold">₱149</p>
                     </div>
                 </article>
                 <article class="border border-blue-950/10 rounded-2xl overflow-hidden">
-                    <div class="bg-blue-50 h-36 grid place-items-center text-6xl">🍜</div>
+                    <div class="bg-blue-50 h-36 overflow-hidden"><img src="images/Burger Mcdo.jpg" alt="Burger Mcdo" class="h-full w-full object-cover"></div>
                     <div class="p-4">
-                        <h3 class="font-bold">Bam-i</h3>
-                        <p class="text-sm text-blue-950/60">Mixed noodles, Bicol style</p>
-                        <p class="mt-2 font-bold">₱129</p>
+                        <h3 class="font-bold">Burger Mcdo</h3>
+                        <p class="text-sm text-blue-950/60">Cheesy Burger Mcdo Solo</p>
+                        <p class="mt-2 font-bold">₱61</p>
                     </div>
                 </article>
                 <article class="border border-blue-950/10 rounded-2xl overflow-hidden">
-                    <div class="bg-blue-50 h-36 grid place-items-center text-6xl">🍲</div>
+                    <div class="bg-blue-50 h-36 overflow-hidden"><img src="images/Inasal.jpg" alt="Hita Inasal" class="h-full w-full object-cover"></div>
                     <div class="p-4">
-                        <h3 class="font-bold">Sinigang na Baboy</h3>
-                        <p class="text-sm text-blue-950/60">Sour tamarind broth</p>
-                        <p class="mt-2 font-bold">₱165</p>
+                        <h3 class="font-bold">Hita Inasal</h3>
+                        <p class="text-sm text-blue-950/60">1pc Hita Unli Rice</p>
+                        <p class="mt-2 font-bold">₱105</p>
                     </div>
                 </article>
             </div>
