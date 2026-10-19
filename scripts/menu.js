@@ -10,9 +10,14 @@ const foodCategoryButtons = document.querySelectorAll('#food-filters button');
 const cards = Array.from(document.querySelectorAll('.menu-item'));
 
 const availableStores = Array.from(filterButtons).map(function (button) { return button.dataset.filter; });
-const requestedStore = new URLSearchParams(window.location.search).get('store');
+const searchParams = new URLSearchParams(window.location.search);
+const requestedStore = searchParams.get('store');
+const availableFoodCategories = Array.from(foodCategoryButtons).map(function (button) {
+  return button.dataset.foodFilter;
+});
+const requestedFoodCategory = searchParams.get('category');
 let activeStore = availableStores.includes(requestedStore) ? requestedStore : 'all';
-let activeFoodCategory = 'all';
+let activeFoodCategory = availableFoodCategories.includes(requestedFoodCategory) ? requestedFoodCategory : 'all';
 const storeLabels = {
   jollibee: 'Jollibee',
   mcdonalds: "McDonald's",
