@@ -157,6 +157,26 @@ function setupResponsiveNavigation() {
   const brand = nav.querySelector('a');
   if (!menu || !brand) return;
 
+  if (!menu.querySelector('a[href="orders.html"]')) {
+    const ordersItem = document.createElement('li');
+    const ordersLink = document.createElement('a');
+    const isOrdersPage = window.location.pathname.endsWith('/orders.html');
+    ordersLink.href = 'orders.html';
+    ordersLink.className = isOrdersPage
+      ? 'px-3 py-2 rounded-full bg-calamansi text-ink'
+      : 'px-3 py-2 rounded-full hover:bg-white/10';
+    ordersLink.textContent = 'My orders';
+    ordersItem.appendChild(ordersLink);
+
+    const contactLink = menu.querySelector('a[href="contact.html"]');
+    const contactItem = contactLink && contactLink.closest('li');
+    if (contactItem) {
+      menu.insertBefore(ordersItem, contactItem);
+    } else {
+      menu.appendChild(ordersItem);
+    }
+  }
+
   const cartLink = menu.querySelector('a[href="cart.html"]');
   if (cartLink) {
     const cartItem = cartLink.closest('li');
