@@ -48,7 +48,7 @@
             <h1 class="font-display text-3xl md:text-4xl font-extrabold">Menu</h1>
             <!-- LIVE SEARCH (JS): filter .menu-item cards on every keystroke; optional suggestion list under the input -->
             <div class="mt-5 relative max-w-xl">
-                <input id="search" type="search" placeholder="Search dishes, like inasal or sinigang"
+                <input id="search" type="search" placeholder="Search dishes, stores, or food types"
                     class="w-full border border-navyblue/20 rounded-full px-5 py-3 focus:outline-none focus:ring-2 focus:ring-leaf">
                 <ul id="suggestions"
                     class="hidden absolute z-10 w-full bg-white border border-navyblue/10 rounded-2xl mt-2 shadow">
@@ -60,33 +60,50 @@
                 <button type="button" data-food-filter="all" class="bg-navyblue text-white px-4 py-2 rounded-full" aria-pressed="true">All dishes</button>
                 <button type="button" data-food-filter="rice-meals" class="bg-mist px-4 py-2 rounded-full" aria-pressed="false">Rice meals</button>
                 <button type="button" data-food-filter="noodles" class="bg-mist px-4 py-2 rounded-full" aria-pressed="false">Noodles</button>
+                <button type="button" data-food-filter="burger" class="bg-mist px-4 py-2 rounded-full" aria-pressed="false">Burgers</button>
                 <button type="button" data-food-filter="soups" class="bg-mist px-4 py-2 rounded-full" aria-pressed="false">Soups</button>
                 <button type="button" data-food-filter="desserts" class="bg-mist px-4 py-2 rounded-full" aria-pressed="false">Desserts</button>
             </div>
             <p class="mt-4 text-sm font-semibold">Browse by store</p>
             <div id="filters" class="mt-2 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 text-sm" role="group" aria-label="Filter menu by store">
                 <button type="button" data-filter="all" class="store-filter is-active overflow-hidden rounded-2xl border border-navyblue/10 bg-white text-left" aria-pressed="true">
-                    <span class="store-photo flex h-24 items-center justify-center bg-mist/50"></span>
+                    <span class="store-photo store-photo-all flex h-24 items-center justify-center" aria-hidden="true">
+                        <svg viewBox="0 0 96 72" fill="none">
+                            <path d="M15 31h66l-6-17H21l-6 17Z" fill="#F2C230"/>
+                            <path d="M18 31h60v34H18V31Z" fill="white" stroke="#010736" stroke-width="3" stroke-linejoin="round"/>
+                            <path d="M14 31h68c0 7-5 11-11 11s-11-4-11-11c0 7-5 11-11 11s-11-4-11-11c0 7-5 11-11 11s-11-4-11-11Z" fill="#C8341F" stroke="#010736" stroke-width="3" stroke-linejoin="round"/>
+                            <path d="M27 50h15v15H27V50Zm27 0h17v15H54V50Z" fill="#EEF3EC" stroke="#010736" stroke-width="3"/>
+                            <path d="M20 65h58" stroke="#010736" stroke-width="4" stroke-linecap="round"/>
+                        </svg>
+                    </span>
                     <span class="block px-3 py-3 font-semibold">All stores</span>
                 </button>
                 <button type="button" data-filter="jollibee" class="store-filter overflow-hidden rounded-2xl border border-navyblue/10 bg-white text-left" aria-pressed="false">
-                    <span class="store-photo flex h-24 items-center justify-center bg-mist/50"><img src="images/store_logo/Jollibee.jpg" alt="" aria-hidden="true"></span>
+                    <span class="store-photo flex h-24 items-center justify-center bg-mist/50"><img src="images/store_logo/Jollibee.logo.jpg" alt="" aria-hidden="true"></span>
                     <span class="block px-3 py-3 font-semibold">Jollibee</span>
                 </button>
                 <button type="button" data-filter="mcdonalds" class="store-filter overflow-hidden rounded-2xl border border-navyblue/10 bg-white text-left" aria-pressed="false">
-                    <span class="store-photo flex h-24 items-center justify-center bg-mist/50"><img src="images/store_logo/Burger Mcdo.jpg" alt="" aria-hidden="true"></span>
+                    <span class="store-photo flex h-24 items-center justify-center bg-mist/50"><img src="images/store_logo/Mcdo.logo.jpg" alt="" aria-hidden="true"></span>
                     <span class="block px-3 py-3 font-semibold">McDonald's</span>
                 </button>
                 <button type="button" data-filter="biggs" class="store-filter overflow-hidden rounded-2xl border border-navyblue/10 bg-white text-left" aria-pressed="false">
-                    <span class="store-photo flex h-24 items-center justify-center bg-mist/50"><img src="images/store_logo/Biggs.jpg" alt="" aria-hidden="true"></span>
+                    <span class="store-photo flex h-24 items-center justify-center bg-mist/50"><img src="images/store_logo/biggs.logo.jpg" alt="" aria-hidden="true"></span>
                     <span class="block px-3 py-3 font-semibold">Biggs</span>
                 </button>
                 <button type="button" data-filter="jybon" class="store-filter overflow-hidden rounded-2xl border border-navyblue/10 bg-white text-left" aria-pressed="false">
-                    <span class="store-photo flex h-24 items-center justify-center bg-mist/50"><img src="images/store_logo/Jybon.jpg" alt="" aria-hidden="true"></span>
+                    <span class="store-photo flex h-24 items-center justify-center bg-mist/50"><img src="images/store_logo/jybon.logo.jpg" alt="" aria-hidden="true"></span>
                     <span class="block px-3 py-3 font-semibold">Jybon</span>
                 </button>
                 <button type="button" data-filter="local" class="store-filter overflow-hidden rounded-2xl border border-navyblue/10 bg-white text-left" aria-pressed="false">
-                    <span class="store-photo flex h-24 items-center justify-center bg-mist/50"><img src="images/store_logo/Local.jpg" alt="" aria-hidden="true"></span>
+                    <span class="store-photo store-photo-local flex h-24 items-center justify-center" aria-hidden="true">
+                        <svg viewBox="0 0 96 72" fill="none">
+                            <path d="M25 42h46c-2 15-10 23-23 23S27 57 25 42Z" fill="white" stroke="#010736" stroke-width="3" stroke-linejoin="round"/>
+                            <path d="M21 41h54" stroke="#010736" stroke-width="4" stroke-linecap="round"/>
+                            <path d="M35 33c-5-6 4-8 0-14m13 14c-5-6 4-8 0-14m13 14c-5-6 4-8 0-14" stroke="#C8341F" stroke-width="3" stroke-linecap="round"/>
+                            <path d="m73 15 2.2 5.8L81 23l-5.8 2.2L73 31l-2.2-5.8L65 23l5.8-2.2L73 15Z" fill="#F2C230" stroke="#010736" stroke-width="1.5" stroke-linejoin="round"/>
+                            <circle cx="26" cy="22" r="4" fill="#F2C230"/>
+                        </svg>
+                    </span>
                     <span class="block px-3 py-3 font-semibold">More local favorites</span>
                 </button>
             </div>
@@ -110,6 +127,7 @@
                     <div class="p-4 flex flex-col flex-1">
                         <h3 class="font-bold">Chickenjoy</h3>
                         <p class="text-sm text-navyblue/60 flex-1">1pc Chickenjoy w/ Jolly Spaghetti</p>
+                        <div class="menu-tags mt-3 flex flex-wrap gap-2" aria-label="Food tags"></div>
                         <div class="mt-3 flex items-center justify-between"><span
                                 class="font-bold text-navyblue">₱149</span><button
                                 class="add-btn bg-navyblue text-white text-sm font-semibold px-4 py-2 rounded-full">Add
@@ -124,6 +142,7 @@
                     <div class="p-4 flex flex-col flex-1">
                         <h3 class="font-bold">Biggs Cajun</h3>
                         <p class="text-sm text-navyblue/60 flex-1">1pc Biggs Cajun w/ rice</p>
+                        <div class="menu-tags mt-3 flex flex-wrap gap-2" aria-label="Food tags"></div>
                         <div class="mt-3 flex items-center justify-between"><span
                                 class="font-bold text-navyblue">₱234</span><button
                                 class="add-btn bg-navyblue text-white text-sm font-semibold px-4 py-2 rounded-full">Add
@@ -131,13 +150,14 @@
                                 cart</button></div>
                     </div>
                 </article>
-                <article class="menu-item border border-navyblue/10 rounded-2xl overflow-hidden flex flex-col" data-store="mcdonalds">
+                <article class="menu-item border border-navyblue/10 rounded-2xl overflow-hidden flex flex-col" data-store="mcdonalds" data-category="burger">
                     <button class="block w-full h-32 overflow-hidden bg-calamansi/50" title="View details">
                         <img src="images/Burger Mcdo.jpg" alt="Burger Mcdo" class="w-full h-full object-cover">
                     </button>
                     <div class="p-4 flex flex-col flex-1">
                         <h3 class="font-bold">Burger Mcdo</h3>
                         <p class="text-sm text-navyblue/60 flex-1">Cheesy Burger McDo Solo</p>
+                        <div class="menu-tags mt-3 flex flex-wrap gap-2" aria-label="Food tags"></div>
                         <div class="mt-3 flex items-center justify-between"><span
                                 class="font-bold text-navyblue">₱61</span><button
                                 class="add-btn bg-navyblue text-white text-sm font-semibold px-4 py-2 rounded-full">Add
@@ -145,13 +165,14 @@
                                 cart</button></div>
                     </div>
                 </article>
-                <article class="menu-item border border-navyblue/10 rounded-2xl overflow-hidden flex flex-col" data-store="mcdonalds">
+                <article class="menu-item border border-navyblue/10 rounded-2xl overflow-hidden flex flex-col" data-store="mcdonalds" data-category="burger">
                     <button class="block w-full h-32 overflow-hidden bg-calamansi/50" title="View details">
                         <img src="images/Quarter Pound.jpg" alt="Quarter Pounder" class="w-full h-full object-cover">
                     </button>
                     <div class="p-4 flex flex-col flex-1">
                         <h3 class="font-bold">Quarter Pounder</h3>
                         <p class="text-sm text-navyblue/60 flex-1">Quarter Pounder with Cheese</p>
+                        <div class="menu-tags mt-3 flex flex-wrap gap-2" aria-label="Food tags"></div>
                         <div class="mt-3 flex items-center justify-between"><span
                                 class="font-bold text-navyblue">₱225</span><button
                                 class="add-btn bg-navyblue text-white text-sm font-semibold px-4 py-2 rounded-full">Add
@@ -159,13 +180,14 @@
                                 cart</button></div>
                     </div>
                 </article>
-                <article class="menu-item border border-navyblue/10 rounded-2xl overflow-hidden flex flex-col" data-store="local" data-category="rice-meals">
+                <article class="menu-item border border-navyblue/10 rounded-2xl overflow-hidden flex flex-col" data-store="jybon" data-category="rice-meals">
                     <button class="block w-full h-32 overflow-hidden bg-calamansi/50" title="View details">
                         <img src="images/Inasal.jpg" alt="Chicken Inasal" class="w-full h-full object-cover">
                     </button>
                     <div class="p-4 flex flex-col flex-1">
                         <h3 class="font-bold">Chicken Inasal</h3>
                         <p class="text-sm text-navyblue/60 flex-1">Chicken Hita Inasal</p>
+                        <div class="menu-tags mt-3 flex flex-wrap gap-2" aria-label="Food tags"></div>
                         <div class="mt-3 flex items-center justify-between"><span
                                 class="font-bold text-navyblue">₱110</span><button
                                 class="add-btn bg-navyblue text-white text-sm font-semibold px-4 py-2 rounded-full">Add
@@ -173,13 +195,14 @@
                                 cart</button></div>
                     </div>
                 </article>
-                <article class="menu-item border border-navyblue/10 rounded-2xl overflow-hidden flex flex-col" data-store="local" data-category="desserts">
+                <article class="menu-item border border-navyblue/10 rounded-2xl overflow-hidden flex flex-col" data-store="jybon" data-category="desserts">
                     <button class="block w-full h-32 overflow-hidden bg-calamansi/50" title="View details">
                         <img src="images/Halo-halo.jpg" alt="Halo-halo" class="w-full h-full object-cover">
                     </button>
                     <div class="p-4 flex flex-col flex-1">
                         <h3 class="font-bold">Halo-halo</h3>
                         <p class="text-sm text-navyblue/60 flex-1">Shaved ice with sweet toppings</p>
+                        <div class="menu-tags mt-3 flex flex-wrap gap-2" aria-label="Food tags"></div>
                         <div class="mt-3 flex items-center justify-between"><span
                                 class="font-bold text-navyblue">₱89</span><button
                                 class="add-btn bg-navyblue text-white text-sm font-semibold px-4 py-2 rounded-full">Add

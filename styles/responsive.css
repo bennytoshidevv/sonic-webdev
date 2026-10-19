@@ -95,6 +95,39 @@ header nav .site-navigation-menu a {
   opacity: 1;
 }
 
+.store-photo-all,
+.store-photo-local {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+
+.store-photo-all {
+  background: linear-gradient(135deg, #fff5cd, #fce6bb);
+}
+
+.store-photo-local {
+  background: linear-gradient(135deg, #e4f3e9, #d9edf5);
+}
+
+.store-photo-all::before,
+.store-photo-local::before {
+  position: absolute;
+  z-index: -1;
+  width: 5.25rem;
+  height: 5.25rem;
+  border-radius: 9999px;
+  background: rgb(255 255 255 / 55%);
+  content: "";
+}
+
+.store-photo-all svg,
+.store-photo-local svg {
+  width: 5.25rem;
+  height: 4rem;
+  filter: drop-shadow(0 3px 3px rgb(1 7 54 / 12%));
+}
+
 @media (min-width: 1280px) {
   header nav.site-navigation {
     flex-wrap: nowrap;
