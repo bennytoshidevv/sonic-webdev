@@ -6,9 +6,13 @@ const searchInput = document.getElementById('search');
 const suggestions = document.getElementById('suggestions');
 const noResults = document.getElementById('no-results');
 const filterButtons = document.querySelectorAll('#filters button');
+const foodCategoryButtons = document.querySelectorAll('#food-filters button');
 const cards = Array.from(document.querySelectorAll('.menu-item'));
 
-let activeCategory = 'all';
+const availableStores = Array.from(filterButtons).map(function (button) { return button.dataset.filter; });
+const requestedStore = new URLSearchParams(window.location.search).get('store');
+let activeStore = availableStores.includes(requestedStore) ? requestedStore : 'all';
+let activeFoodCategory = 'all';
 
 /* ---------- read the data of one card ---------- */
 function cardData(card) {
@@ -44,9 +48,10 @@ function applyFilters() {
 
   cards.forEach(function (card) {
     const data = cardData(card);
-    const matchesCategory = activeCategory === 'all' || data.category === activeCategory;
+    const matchesCategory = activeStore === 'all' || card.dataset.store === activeStore;
+    const matchesFoodCategory = activeFoodCategory === 'all' || card.dataset.category === activeFoodCategory;
     const matchesSearch = data.name.toLowerCase().includes(query) || data.desc.toLowerCase().includes(query);
-    const show = matchesCategory && matchesSearch;
+    const show = matchesCategory && matchesFoodCategory && matchesSearch;
     card.classList.toggle('hidden', !show);
     if (show) visible++;
   });
@@ -101,16 +106,49 @@ document.addEventListener('click', function (e) {
 
 filterButtons.forEach(function (button) {
   button.addEventListener('click', function () {
-    activeCategory = button.dataset.filter;
+    activeStore = button.dataset.filter;
     filterButtons.forEach(function (b) {
       const active = b === button;
       b.classList.toggle('bg-navyblue', active);
       b.classList.toggle('text-white', active);
       b.classList.toggle('bg-mist', !active);
+      b.setAttribute('aria-pressed', String(active));
     });
     applyFilters();
   });
 });
+
+foodCategoryButtons.forEach(function (button) {
+  button.addEventListener('click', function () {
+    activeFoodCategory = button.dataset.foodFilter;
+    foodCategoryButtons.forEach(function (categoryButton) {
+      const active = categoryButton === button;
+      categoryButton.classList.toggle('bg-navyblue', active);
+      categoryButton.classList.toggle('text-white', active);
+      categoryButton.classList.toggle('bg-mist', !active);
+      categoryButton.setAttribute('aria-pressed', String(active));
+    });
+    applyFilters();
+  });
+});
+
+filterButtons.forEach(function (button) {
+  const active = button.dataset.filter === activeStore;
+  button.classList.toggle('bg-navyblue', active);
+  button.classList.toggle('text-white', active);
+  button.classList.toggle('bg-mist', !active);
+  button.setAttribute('aria-pressed', String(active));
+});
+
+foodCategoryButtons.forEach(function (button) {
+  const active = button.dataset.foodFilter === activeFoodCategory;
+  button.classList.toggle('bg-navyblue', active);
+  button.classList.toggle('text-white', active);
+  button.classList.toggle('bg-mist', !active);
+  button.setAttribute('aria-pressed', String(active));
+});
+
+applyFilters();
 
 /* ---------- 3. ADD TO CART ---------- */
 function addAndNotify(data, button) {

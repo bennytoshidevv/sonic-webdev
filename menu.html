@@ -56,13 +56,23 @@
                     <li class="px-5 py-2 hover:bg-mist">Cebu Lechon Rice</li>
                 </ul>
             </div>
-            <div class="mt-4 flex flex-wrap gap-2 text-sm">
-                <button class="bg-navyblue text-white px-4 py-2 rounded-full">All</button>
-                <button class="bg-mist px-4 py-2 rounded-full">Rice meals</button>
-                <button class="bg-mist px-4 py-2 rounded-full">Noodles</button>
-                <button class="bg-mist px-4 py-2 rounded-full">Soups</button>
-                <button class="bg-mist px-4 py-2 rounded-full">Desserts</button>
+            <div id="food-filters" class="mt-4 flex flex-wrap gap-2 text-sm" role="group" aria-label="Filter menu by meal type">
+                <button type="button" data-food-filter="all" class="bg-navyblue text-white px-4 py-2 rounded-full" aria-pressed="true">All dishes</button>
+                <button type="button" data-food-filter="rice-meals" class="bg-mist px-4 py-2 rounded-full" aria-pressed="false">Rice meals</button>
+                <button type="button" data-food-filter="noodles" class="bg-mist px-4 py-2 rounded-full" aria-pressed="false">Noodles</button>
+                <button type="button" data-food-filter="soups" class="bg-mist px-4 py-2 rounded-full" aria-pressed="false">Soups</button>
+                <button type="button" data-food-filter="desserts" class="bg-mist px-4 py-2 rounded-full" aria-pressed="false">Desserts</button>
             </div>
+            <p class="mt-4 text-sm font-semibold">Browse by store</p>
+            <div id="filters" class="mt-2 flex flex-wrap gap-2 text-sm" role="group" aria-label="Filter menu by store">
+                <button type="button" data-filter="all" class="bg-navyblue text-white px-4 py-2 rounded-full" aria-pressed="true">All stores</button>
+                <button type="button" data-filter="jollibee" class="bg-mist px-4 py-2 rounded-full" aria-pressed="false">Jollibee</button>
+                <button type="button" data-filter="mcdonalds" class="bg-mist px-4 py-2 rounded-full" aria-pressed="false">McDonald's</button>
+                <button type="button" data-filter="biggs" class="bg-mist px-4 py-2 rounded-full" aria-pressed="false">Biggs</button>
+                <button type="button" data-filter="jybon" class="bg-mist px-4 py-2 rounded-full" aria-pressed="false">Jybon</button>
+                <button type="button" data-filter="local" class="bg-mist px-4 py-2 rounded-full" aria-pressed="false">More local favorites</button>
+            </div>
+            <p id="no-results" class="hidden mt-8 rounded-2xl bg-mist p-6 text-center text-sm text-navyblue/70" role="status">No dishes match these filters and search. Try another store or clear your search.</p>
             <!-- SKELETON (JS): show these gray cards first, then swap in the real grid after ~1.5s -->
             <div id="skeleton" class="mt-6 grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
                 <div class="animate-pulse border border-navyblue/10 rounded-2xl overflow-hidden">
@@ -75,7 +85,7 @@
                 </div>
             </div>
             <div id="menu-grid" class="mt-6 grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-                <article class="menu-item border border-navyblue/10 rounded-2xl overflow-hidden flex flex-col">
+                <article class="menu-item border border-navyblue/10 rounded-2xl overflow-hidden flex flex-col" data-store="jollibee" data-category="noodles">
                     <button class="block w-full h-32 overflow-hidden bg-calamansi/50" title="View details">
                         <img src="images/Chickenjoy.jpg" alt="Chickenjoy" class="w-full h-full object-cover">
                     </button>
@@ -89,7 +99,7 @@
                                 cart</button></div>
                     </div>
                 </article>
-                <article class="menu-item border border-navyblue/10 rounded-2xl overflow-hidden flex flex-col">
+                <article class="menu-item border border-navyblue/10 rounded-2xl overflow-hidden flex flex-col" data-store="biggs" data-category="rice-meals">
                     <button class="block w-full h-32 overflow-hidden bg-calamansi/50" title="View details">
                         <img src="images/Biggs Cajun.jpg" alt="Biggs Cajun" class="w-full h-full object-cover">
                     </button>
@@ -103,7 +113,7 @@
                                 cart</button></div>
                     </div>
                 </article>
-                <article class="menu-item border border-navyblue/10 rounded-2xl overflow-hidden flex flex-col">
+                <article class="menu-item border border-navyblue/10 rounded-2xl overflow-hidden flex flex-col" data-store="mcdonalds">
                     <button class="block w-full h-32 overflow-hidden bg-calamansi/50" title="View details">
                         <img src="images/Burger Mcdo.jpg" alt="Burger Mcdo" class="w-full h-full object-cover">
                     </button>
@@ -117,7 +127,7 @@
                                 cart</button></div>
                     </div>
                 </article>
-                <article class="menu-item border border-navyblue/10 rounded-2xl overflow-hidden flex flex-col">
+                <article class="menu-item border border-navyblue/10 rounded-2xl overflow-hidden flex flex-col" data-store="mcdonalds">
                     <button class="block w-full h-32 overflow-hidden bg-calamansi/50" title="View details">
                         <img src="images/Quarter Pound.jpg" alt="Quarter Pounder" class="w-full h-full object-cover">
                     </button>
@@ -131,7 +141,7 @@
                                 cart</button></div>
                     </div>
                 </article>
-                <article class="menu-item border border-navyblue/10 rounded-2xl overflow-hidden flex flex-col">
+                <article class="menu-item border border-navyblue/10 rounded-2xl overflow-hidden flex flex-col" data-store="local" data-category="rice-meals">
                     <button class="block w-full h-32 overflow-hidden bg-calamansi/50" title="View details">
                         <img src="images/Inasal.jpg" alt="Chicken Inasal" class="w-full h-full object-cover">
                     </button>
@@ -145,7 +155,7 @@
                                 cart</button></div>
                     </div>
                 </article>
-                <article class="menu-item border border-navyblue/10 rounded-2xl overflow-hidden flex flex-col">
+                <article class="menu-item border border-navyblue/10 rounded-2xl overflow-hidden flex flex-col" data-store="local" data-category="desserts">
                     <button class="block w-full h-32 overflow-hidden bg-calamansi/50" title="View details">
                         <img src="images/Halo-halo.jpg" alt="Halo-halo" class="w-full h-full object-cover">
                     </button>
