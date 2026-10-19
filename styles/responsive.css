@@ -1,0 +1,107 @@
+header nav.site-navigation {
+  position: relative;
+  flex-wrap: wrap;
+}
+
+header nav.site-navigation > a:first-child {
+  padding: 0.5rem;
+  font-size: clamp(1.5rem, 4vw, 1.875rem);
+  line-height: 1.2;
+}
+
+header nav .site-navigation-toggle {
+  display: inline-flex;
+  width: 2.75rem;
+  height: 2.75rem;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgb(255 255 255 / 30%);
+  border-radius: 9999px;
+  color: white;
+  background: transparent;
+  cursor: pointer;
+}
+
+header nav .site-navigation-toggle:hover,
+header nav .site-navigation-toggle:focus-visible {
+  background: rgb(255 255 255 / 10%);
+}
+
+header nav .site-navigation-toggle:focus-visible,
+header nav .site-navigation-menu a:focus-visible {
+  outline: 2px solid #f2c230;
+  outline-offset: 2px;
+}
+
+header nav .site-navigation-toggle svg {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+header nav .site-navigation-menu {
+  display: none;
+  order: 3;
+  width: 100%;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0.25rem;
+  margin: 0;
+  padding: 0.75rem;
+  border-radius: 1rem;
+  background: #081448;
+  list-style: none;
+}
+
+header nav .site-navigation-menu.is-open {
+  display: flex;
+}
+
+header nav .site-navigation-menu a {
+  display: block;
+  padding: 0.75rem 1rem;
+  border-radius: 9999px;
+}
+
+@media (min-width: 1280px) {
+  header nav.site-navigation {
+    flex-wrap: nowrap;
+  }
+
+  header nav .site-navigation-toggle {
+    display: none;
+  }
+
+  header nav .site-navigation-menu,
+  header nav .site-navigation-menu.is-open {
+    display: flex;
+    width: auto;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.25rem;
+    order: 0;
+    margin-left: auto;
+    padding: 0;
+    background: transparent;
+  }
+
+  header nav .site-navigation-menu a {
+    padding: 0.5rem 0.75rem;
+    white-space: nowrap;
+  }
+}
+
+@media (max-width: 639px) {
+  header > div {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  header > div > a:first-child {
+    padding: 0.5rem;
+    font-size: 1.5rem;
+  }
+
+  #cart-list > li {
+    flex-wrap: wrap;
+  }
+}

@@ -9,6 +9,7 @@
     href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;800&family=Figtree:wght@400;500;700&display=swap"
     rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <link rel="stylesheet" href="styles/responsive.css">
   <style type="text/tailwindcss">
 
         @theme {
@@ -37,7 +38,7 @@
       <ul class="flex flex-wrap items-center gap-1 text-sm font-medium">
         <li><a href="home.html" class="px-3 py-2 rounded-full hover:bg-white/10">Home</a></li>
         <li><a href="menu.html" class="px-3 py-2 rounded-full hover:bg-white/10">Menu</a></li>
-        <li><a href="cart.html" class="px-3 py-2 rounded-full bg-calamansi text-ink">Cart (2)</a></li>
+        <li><a href="cart.html" class="px-3 py-2 rounded-full bg-calamansi text-ink">Cart (0)</a></li>
         <li><a href="track.html" class="px-3 py-2 rounded-full hover:bg-white/10">Track order</a></li>
         <li><a href="contact.html" class="px-3 py-2 rounded-full hover:bg-white/10">Contact</a></li>
 
@@ -51,46 +52,23 @@
 
           <!-- CART ITEMS (JS): render from the cart array saved in localStorage -->
            
-          <ul id="cart-list" class="divide-y divide-ink/10 border border-ink/10 rounded-2xl">
-            <li class="p-4 flex items-center gap-4">
-              <div class="w-16 h-16 bg-calamansi/50 rounded-xl grid place-items-center text-3xl">🍗</div>
-              <div class="flex-1">
-                <p class="font-bold">Chicken Inasal</p>
-                <p class="text-sm text-ink/60">₱149 each</p>
-              </div>
-              <div class="flex items-center gap-2"><button
-                  class="w-8 h-8 rounded-full bg-mist">-</button><span>1</span><button
-                  class="w-8 h-8 rounded-full bg-mist">+</button></div>
-              <p class="w-16 text-right font-bold">₱149</p>
-            </li>
-            <li class="p-4 flex items-center gap-4">
-              <div class="w-16 h-16 bg-calamansi/50 rounded-xl grid place-items-center text-3xl">🍧</div>
-              <div class="flex-1">
-                <p class="font-bold">Halo-halo</p>
-                <p class="text-sm text-ink/60">₱89 each</p>
-              </div>
-              <div class="flex items-center gap-2"><button
-                  class="w-8 h-8 rounded-full bg-mist">-</button><span>2</span><button
-                  class="w-8 h-8 rounded-full bg-mist">+</button></div>
-              <p class="w-16 text-right font-bold">₱178</p>
-            </li>
-          </ul>
+          <ul id="cart-list" class="divide-y divide-ink/10 border border-ink/10 rounded-2xl"></ul>
 
           <h2 class="font-display text-xl font-bold mt-10">Delivery details</h2>
 
           <!-- FORM VALIDATION (JS): check empty fields, phone length, valid date; show messages in the <p class="error"> lines -->
             
           <form id="checkout-form" class="mt-4 grid sm:grid-cols-2 gap-4" novalidate>
-            <label class="block"><span class="text-sm font-medium">Full name</span><input type="text"
+            <label class="block"><span class="text-sm font-medium">Full name</span><input type="text" name="fullname"
                 class="mt-1 w-full border border-ink/20 rounded-xl px-4 py-3">
               <p class="error text-chili text-sm mt-1 hidden">Enter your full name.</p>
             </label>
-            <label class="block"><span class="text-sm font-medium">Phone number</span><input type="tel"
+            <label class="block"><span class="text-sm font-medium">Phone number</span><input type="tel" name="phone"
                 class="mt-1 w-full border border-ink/20 rounded-xl px-4 py-3">
               <p class="error text-chili text-sm mt-1 hidden">Enter an 11-digit phone number.</p>
             </label>
             <label class="block sm:col-span-2"><span class="text-sm font-medium">Delivery address</span><input
-                type="text" class="mt-1 w-full border border-ink/20 rounded-xl px-4 py-3">
+                type="text" name="address" class="mt-1 w-full border border-ink/20 rounded-xl px-4 py-3">
               <p class="error text-chili text-sm mt-1 hidden">Enter your address.</p>
             </label>
 
@@ -98,7 +76,7 @@
 
             <label class="block"><span class="text-sm font-medium">Delivery date</span><input id="delivery-date"
                 type="date" class="mt-1 w-full border border-ink/20 rounded-xl px-4 py-3"></label>
-            <label class="block"><span class="text-sm font-medium">Payment</span><select
+            <label class="block"><span class="text-sm font-medium">Payment</span><select name="payment"
                 class="mt-1 w-full border border-ink/20 rounded-xl px-4 py-3 bg-white">
                 <option>Cash on delivery</option>
                 <option>GCash</option>
@@ -111,18 +89,18 @@
           <dl class="mt-4 space-y-2 text-sm">
             <div class="flex justify-between">
               <dt>Subtotal</dt>
-              <dd>₱327</dd>
+              <dd id="subtotal">₱0</dd>
             </div>
             <div class="flex justify-between">
               <dt>Delivery fee</dt>
-              <dd>₱39</dd>
+              <dd id="fee">₱0</dd>
             </div>
             <div class="flex justify-between font-bold text-lg border-t border-ink/10 pt-3">
               <dt>Total</dt>
-              <dd>₱366</dd>
+              <dd id="total">₱0</dd>
             </div>
           </dl>
-          <button type="submit" form="checkout-form"
+          <button id="place-order" type="submit" form="checkout-form"
             class="mt-6 w-full bg-blue-950 text-white font-bold py-3 rounded-full hover:bg-blue-900">Place
             order</button>
           <a href="menu.html" class="block text-center mt-3 text-sm underline">Add more food</a>

@@ -139,6 +139,64 @@ function updateCartBadge() {
   });
 }
 
+/* ---------- responsive navigation ---------- */
+function setupResponsiveNavigation() {
+  const nav = document.querySelector('header nav');
+  if (!nav) return;
+
+  const menu = Array.from(nav.children).find(function (child) {
+    return child.tagName === 'UL';
+  });
+  const brand = nav.querySelector('a');
+  if (!menu || !brand) return;
+
+  nav.classList.add('site-navigation');
+  menu.classList.add('site-navigation-menu');
+  menu.id = 'site-navigation-menu';
+
+  const toggle = document.createElement('button');
+  toggle.type = 'button';
+  toggle.className = 'site-navigation-toggle';
+  toggle.setAttribute('aria-controls', menu.id);
+  toggle.setAttribute('aria-expanded', 'false');
+  toggle.setAttribute('aria-label', 'Open navigation menu');
+  toggle.innerHTML =
+    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">' +
+    '<path d="M4 6h16M4 12h16M4 18h16"></path>' +
+    '</svg>';
+  brand.insertAdjacentElement('afterend', toggle);
+
+  function setMenuOpen(open) {
+    menu.classList.toggle('is-open', open);
+    toggle.classList.toggle('is-open', open);
+    toggle.setAttribute('aria-expanded', String(open));
+    toggle.setAttribute('aria-label', open ? 'Close navigation menu' : 'Open navigation menu');
+  }
+
+  toggle.addEventListener('click', function () {
+    setMenuOpen(!menu.classList.contains('is-open'));
+  });
+
+  menu.addEventListener('click', function (event) {
+    if (event.target.closest('a')) setMenuOpen(false);
+  });
+
+  document.addEventListener('click', function (event) {
+    if (!nav.contains(event.target)) setMenuOpen(false);
+  });
+
+  document.addEventListener('keydown', function (event) {
+    if (event.key === 'Escape' && menu.classList.contains('is-open')) {
+      setMenuOpen(false);
+      toggle.focus();
+    }
+  });
+
+  window.matchMedia('(min-width: 1280px)').addEventListener('change', function (event) {
+    if (event.matches) setMenuOpen(false);
+  });
+}
+
 /* ---------- accounts ---------- */
 function currentUser() {
   const email = localStorage.getItem(SESSION_KEY);
@@ -244,6 +302,7 @@ function orderGroup(order) {
 }
 
 /* ---------- run on every page ---------- */
+setupResponsiveNavigation();
 updateCartBadge();
 setupAuthLink();
 requireAuthentication();
