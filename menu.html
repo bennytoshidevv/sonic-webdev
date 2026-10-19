@@ -48,7 +48,7 @@
             <h1 class="font-display text-3xl md:text-4xl font-extrabold">Menu</h1>
             <!-- LIVE SEARCH (JS): filter .menu-item cards on every keystroke; optional suggestion list under the input -->
             <div class="mt-5 relative max-w-xl">
-                <input id="search" type="search" placeholder="Search dishes, like inasal or sinigang"
+                <input id="search" type="search" placeholder="Search dishes, stores, or food types"
                     class="w-full border border-navyblue/20 rounded-full px-5 py-3 focus:outline-none focus:ring-2 focus:ring-leaf">
                 <ul id="suggestions"
                     class="hidden absolute z-10 w-full bg-white border border-navyblue/10 rounded-2xl mt-2 shadow">
@@ -60,6 +60,7 @@
                 <button type="button" data-food-filter="all" class="bg-navyblue text-white px-4 py-2 rounded-full" aria-pressed="true">All dishes</button>
                 <button type="button" data-food-filter="rice-meals" class="bg-mist px-4 py-2 rounded-full" aria-pressed="false">Rice meals</button>
                 <button type="button" data-food-filter="noodles" class="bg-mist px-4 py-2 rounded-full" aria-pressed="false">Noodles</button>
+                <button type="button" data-food-filter="burger" class="bg-mist px-4 py-2 rounded-full" aria-pressed="false">Burgers</button>
                 <button type="button" data-food-filter="soups" class="bg-mist px-4 py-2 rounded-full" aria-pressed="false">Soups</button>
                 <button type="button" data-food-filter="desserts" class="bg-mist px-4 py-2 rounded-full" aria-pressed="false">Desserts</button>
             </div>
@@ -110,6 +111,7 @@
                     <div class="p-4 flex flex-col flex-1">
                         <h3 class="font-bold">Chickenjoy</h3>
                         <p class="text-sm text-navyblue/60 flex-1">1pc Chickenjoy w/ Jolly Spaghetti</p>
+                        <div class="menu-tags mt-3 flex flex-wrap gap-2" aria-label="Food tags"></div>
                         <div class="mt-3 flex items-center justify-between"><span
                                 class="font-bold text-navyblue">₱149</span><button
                                 class="add-btn bg-navyblue text-white text-sm font-semibold px-4 py-2 rounded-full">Add
@@ -124,6 +126,7 @@
                     <div class="p-4 flex flex-col flex-1">
                         <h3 class="font-bold">Biggs Cajun</h3>
                         <p class="text-sm text-navyblue/60 flex-1">1pc Biggs Cajun w/ rice</p>
+                        <div class="menu-tags mt-3 flex flex-wrap gap-2" aria-label="Food tags"></div>
                         <div class="mt-3 flex items-center justify-between"><span
                                 class="font-bold text-navyblue">₱234</span><button
                                 class="add-btn bg-navyblue text-white text-sm font-semibold px-4 py-2 rounded-full">Add
@@ -131,13 +134,14 @@
                                 cart</button></div>
                     </div>
                 </article>
-                <article class="menu-item border border-navyblue/10 rounded-2xl overflow-hidden flex flex-col" data-store="mcdonalds">
+                <article class="menu-item border border-navyblue/10 rounded-2xl overflow-hidden flex flex-col" data-store="mcdonalds" data-category="burger">
                     <button class="block w-full h-32 overflow-hidden bg-calamansi/50" title="View details">
                         <img src="images/Burger Mcdo.jpg" alt="Burger Mcdo" class="w-full h-full object-cover">
                     </button>
                     <div class="p-4 flex flex-col flex-1">
                         <h3 class="font-bold">Burger Mcdo</h3>
                         <p class="text-sm text-navyblue/60 flex-1">Cheesy Burger McDo Solo</p>
+                        <div class="menu-tags mt-3 flex flex-wrap gap-2" aria-label="Food tags"></div>
                         <div class="mt-3 flex items-center justify-between"><span
                                 class="font-bold text-navyblue">₱61</span><button
                                 class="add-btn bg-navyblue text-white text-sm font-semibold px-4 py-2 rounded-full">Add
@@ -145,13 +149,14 @@
                                 cart</button></div>
                     </div>
                 </article>
-                <article class="menu-item border border-navyblue/10 rounded-2xl overflow-hidden flex flex-col" data-store="mcdonalds">
+                <article class="menu-item border border-navyblue/10 rounded-2xl overflow-hidden flex flex-col" data-store="mcdonalds" data-category="burger">
                     <button class="block w-full h-32 overflow-hidden bg-calamansi/50" title="View details">
                         <img src="images/Quarter Pound.jpg" alt="Quarter Pounder" class="w-full h-full object-cover">
                     </button>
                     <div class="p-4 flex flex-col flex-1">
                         <h3 class="font-bold">Quarter Pounder</h3>
                         <p class="text-sm text-navyblue/60 flex-1">Quarter Pounder with Cheese</p>
+                        <div class="menu-tags mt-3 flex flex-wrap gap-2" aria-label="Food tags"></div>
                         <div class="mt-3 flex items-center justify-between"><span
                                 class="font-bold text-navyblue">₱225</span><button
                                 class="add-btn bg-navyblue text-white text-sm font-semibold px-4 py-2 rounded-full">Add
@@ -159,13 +164,14 @@
                                 cart</button></div>
                     </div>
                 </article>
-                <article class="menu-item border border-navyblue/10 rounded-2xl overflow-hidden flex flex-col" data-store="local" data-category="rice-meals">
+                <article class="menu-item border border-navyblue/10 rounded-2xl overflow-hidden flex flex-col" data-store="jybon" data-category="rice-meals">
                     <button class="block w-full h-32 overflow-hidden bg-calamansi/50" title="View details">
                         <img src="images/Inasal.jpg" alt="Chicken Inasal" class="w-full h-full object-cover">
                     </button>
                     <div class="p-4 flex flex-col flex-1">
                         <h3 class="font-bold">Chicken Inasal</h3>
                         <p class="text-sm text-navyblue/60 flex-1">Chicken Hita Inasal</p>
+                        <div class="menu-tags mt-3 flex flex-wrap gap-2" aria-label="Food tags"></div>
                         <div class="mt-3 flex items-center justify-between"><span
                                 class="font-bold text-navyblue">₱110</span><button
                                 class="add-btn bg-navyblue text-white text-sm font-semibold px-4 py-2 rounded-full">Add
@@ -173,13 +179,14 @@
                                 cart</button></div>
                     </div>
                 </article>
-                <article class="menu-item border border-navyblue/10 rounded-2xl overflow-hidden flex flex-col" data-store="local" data-category="desserts">
+                <article class="menu-item border border-navyblue/10 rounded-2xl overflow-hidden flex flex-col" data-store="jybon" data-category="desserts">
                     <button class="block w-full h-32 overflow-hidden bg-calamansi/50" title="View details">
                         <img src="images/Halo-halo.jpg" alt="Halo-halo" class="w-full h-full object-cover">
                     </button>
                     <div class="p-4 flex flex-col flex-1">
                         <h3 class="font-bold">Halo-halo</h3>
                         <p class="text-sm text-navyblue/60 flex-1">Shaved ice with sweet toppings</p>
+                        <div class="menu-tags mt-3 flex flex-wrap gap-2" aria-label="Food tags"></div>
                         <div class="mt-3 flex items-center justify-between"><span
                                 class="font-bold text-navyblue">₱89</span><button
                                 class="add-btn bg-navyblue text-white text-sm font-semibold px-4 py-2 rounded-full">Add

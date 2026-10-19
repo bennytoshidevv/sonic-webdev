@@ -13,6 +13,20 @@ const availableStores = Array.from(filterButtons).map(function (button) { return
 const requestedStore = new URLSearchParams(window.location.search).get('store');
 let activeStore = availableStores.includes(requestedStore) ? requestedStore : 'all';
 let activeFoodCategory = 'all';
+const storeLabels = {
+  jollibee: 'Jollibee',
+  mcdonalds: "McDonald's",
+  biggs: 'Biggs',
+  jybon: 'Jybon',
+  local: 'More local favorites'
+};
+const categoryLabels = {
+  'rice-meals': 'Rice meals',
+  noodles: 'Noodles',
+  burger: 'Burgers',
+  soups: 'Soups',
+  desserts: 'Desserts'
+};
 
 document.querySelectorAll('.store-photo img').forEach(function (image) {
   image.addEventListener('load', function () {
@@ -32,15 +46,62 @@ function cardData(card) {
   const name = card.querySelector('h3').textContent.trim();
   const priceText = card.querySelector('.add-btn').previousElementSibling.textContent;
   const img = card.querySelector('img');
+  const store = card.dataset.store;
+  const category = card.dataset.category;
   return {
     id: name.toLowerCase().replace(/[^a-z0-9]+/g, '-'), // "Chicken Inasal" -> "chicken-inasal"
     name: name,
     desc: card.querySelector('p').textContent.trim(),
     price: Number(priceText.replace(/[^\d]/g, '')),     // "₱149" -> 149
     img: img ? img.getAttribute('src') : '',
-    category: card.dataset.category
+    store: store,
+    storeLabel: storeLabels[store] || store,
+    category: category,
+    categoryLabel: categoryLabels[category] || category
   };
 }
+
+function normalizeSearchText(value) {
+  return value.toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim();
+}
+
+function matchesActiveFilters(card) {
+  const matchesStore = activeStore === 'all' ||
+    card.dataset.store === activeStore ||
+    (activeStore === 'local' && card.dataset.store === 'jybon');
+  const matchesFoodCategory = activeFoodCategory === 'all' || card.dataset.category === activeFoodCategory;
+  return matchesStore && matchesFoodCategory;
+}
+
+function matchesSearch(data, query) {
+  if (!query) return true;
+  const normalizedQuery = normalizeSearchText(query);
+  const searchableText = normalizeSearchText([
+    data.name,
+    data.desc,
+    data.storeLabel,
+    data.store,
+    data.categoryLabel,
+    data.category
+  ].join(' '));
+  return searchableText.includes(normalizedQuery);
+}
+
+function renderCardTags(card, data) {
+  const tags = card.querySelector('.menu-tags');
+  if (!tags) return;
+  [data.storeLabel, data.categoryLabel].forEach(function (label) {
+    const tag = document.createElement('span');
+    tag.className = 'rounded-full bg-mist px-3 py-1 text-xs font-medium text-navyblue';
+    tag.textContent = label;
+    tags.appendChild(tag);
+  });
+}
+
+cards.forEach(function (card) {
+  const data = cardData(card);
+  renderCardTags(card, data);
+});
 
 /* ---------- 1. SKELETON LOADING ---------- */
 // copy the one gray card so we have 6, show them, then swap in the real grid after 1.5 seconds
@@ -54,17 +115,14 @@ setTimeout(function () {
 }, 1500);
 
 /* ---------- 2. SEARCH + FILTER ---------- */
-// a card is shown only if it matches BOTH the category and the search text
+// A card is shown only if it matches the selected store, food type, and search text.
 function applyFilters() {
-  const query = searchInput.value.trim().toLowerCase();
+  const query = searchInput.value.trim();
   let visible = 0;
 
   cards.forEach(function (card) {
     const data = cardData(card);
-    const matchesCategory = activeStore === 'all' || card.dataset.store === activeStore;
-    const matchesFoodCategory = activeFoodCategory === 'all' || card.dataset.category === activeFoodCategory;
-    const matchesSearch = data.name.toLowerCase().includes(query) || data.desc.toLowerCase().includes(query);
-    const show = matchesCategory && matchesFoodCategory && matchesSearch;
+    const show = matchesActiveFilters(card) && matchesSearch(data, query);
     card.classList.toggle('hidden', !show);
     if (show) visible++;
   });
@@ -73,7 +131,7 @@ function applyFilters() {
 }
 
 function showSuggestions() {
-  const query = searchInput.value.trim().toLowerCase();
+  const query = searchInput.value.trim();
   if (query === '') {
     suggestions.classList.add('hidden');
     return;
@@ -81,8 +139,10 @@ function showSuggestions() {
 
   // up to 5 dish names that contain what the user typed
   const matches = cards
+    .filter(function (card) {
+      return matchesActiveFilters(card) && matchesSearch(cardData(card), query);
+    })
     .map(function (card) { return cardData(card).name; })
-    .filter(function (name) { return name.toLowerCase().includes(query); })
     .slice(0, 5);
 
   if (matches.length === 0) {
