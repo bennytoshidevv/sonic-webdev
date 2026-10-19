@@ -165,10 +165,37 @@ function setupAuthLink() {
   if (user) {
     el.textContent = 'Sign out (' + user.name.split(' ')[0] + ')';
     el.setAttribute('href', '#');
-    el.addEventListener('click', function (e) {
-      e.preventDefault();
+    const logoutDialog = document.createElement('dialog');
+    logoutDialog.className = 'w-full max-w-md rounded-3xl bg-white p-6 text-navyblue shadow-xl backdrop:bg-navyblue/60';
+    logoutDialog.setAttribute('aria-labelledby', 'logout-dialog-title');
+    logoutDialog.innerHTML =
+      '<h2 id="logout-dialog-title" class="font-display text-2xl font-bold">Sign out?</h2>' +
+      '<p class="mt-2 text-sm text-navyblue/70">Are you sure you want to log out of your account?</p>' +
+      '<div class="mt-6 flex justify-end gap-3">' +
+        '<button type="button" data-logout-cancel class="rounded-full border border-navyblue/20 px-5 py-3 font-semibold hover:bg-blue-50">Cancel</button>' +
+        '<button type="button" data-logout-confirm class="rounded-full bg-blue-950 px-5 py-3 font-bold text-white hover:bg-blue-900">Sign out</button>' +
+      '</div>';
+    document.body.appendChild(logoutDialog);
+
+    const cancelLogoutButton = logoutDialog.querySelector('[data-logout-cancel]');
+    const confirmLogoutButton = logoutDialog.querySelector('[data-logout-confirm]');
+    cancelLogoutButton.addEventListener('click', function () {
+      logoutDialog.close();
+    });
+    confirmLogoutButton.addEventListener('click', function () {
       localStorage.removeItem(SESSION_KEY);
       window.location.href = 'home.html';
+    });
+    logoutDialog.addEventListener('click', function (event) {
+      if (event.target === logoutDialog) logoutDialog.close();
+    });
+    logoutDialog.addEventListener('close', function () {
+      el.focus();
+    });
+    el.addEventListener('click', function (e) {
+      e.preventDefault();
+      logoutDialog.showModal();
+      cancelLogoutButton.focus();
     });
   } else if (el.tagName === 'BUTTON') {
     el.addEventListener('click', function () { window.location.href = 'signin.html'; });
