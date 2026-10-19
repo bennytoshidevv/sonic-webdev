@@ -67,27 +67,43 @@
             <p class="mt-4 text-sm font-semibold">Browse by store</p>
             <div id="filters" class="mt-2 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 text-sm" role="group" aria-label="Filter menu by store">
                 <button type="button" data-filter="all" class="store-filter is-active overflow-hidden rounded-2xl border border-navyblue/10 bg-white text-left" aria-pressed="true">
-                    <span class="store-photo flex h-24 items-center justify-center bg-mist/50"></span>
+                    <span class="store-photo store-photo-all flex h-24 items-center justify-center" aria-hidden="true">
+                        <svg viewBox="0 0 96 72" fill="none">
+                            <path d="M15 31h66l-6-17H21l-6 17Z" fill="#F2C230"/>
+                            <path d="M18 31h60v34H18V31Z" fill="white" stroke="#010736" stroke-width="3" stroke-linejoin="round"/>
+                            <path d="M14 31h68c0 7-5 11-11 11s-11-4-11-11c0 7-5 11-11 11s-11-4-11-11c0 7-5 11-11 11s-11-4-11-11Z" fill="#C8341F" stroke="#010736" stroke-width="3" stroke-linejoin="round"/>
+                            <path d="M27 50h15v15H27V50Zm27 0h17v15H54V50Z" fill="#EEF3EC" stroke="#010736" stroke-width="3"/>
+                            <path d="M20 65h58" stroke="#010736" stroke-width="4" stroke-linecap="round"/>
+                        </svg>
+                    </span>
                     <span class="block px-3 py-3 font-semibold">All stores</span>
                 </button>
                 <button type="button" data-filter="jollibee" class="store-filter overflow-hidden rounded-2xl border border-navyblue/10 bg-white text-left" aria-pressed="false">
-                    <span class="store-photo flex h-24 items-center justify-center bg-mist/50"><img src="images/store_logo/Jollibee.jpg" alt="" aria-hidden="true"></span>
+                    <span class="store-photo flex h-24 items-center justify-center bg-mist/50"><img src="images/store_logo/Jollibee.logo.jpg" alt="" aria-hidden="true"></span>
                     <span class="block px-3 py-3 font-semibold">Jollibee</span>
                 </button>
                 <button type="button" data-filter="mcdonalds" class="store-filter overflow-hidden rounded-2xl border border-navyblue/10 bg-white text-left" aria-pressed="false">
-                    <span class="store-photo flex h-24 items-center justify-center bg-mist/50"><img src="images/store_logo/Burger Mcdo.jpg" alt="" aria-hidden="true"></span>
+                    <span class="store-photo flex h-24 items-center justify-center bg-mist/50"><img src="images/store_logo/Mcdo.logo.jpg" alt="" aria-hidden="true"></span>
                     <span class="block px-3 py-3 font-semibold">McDonald's</span>
                 </button>
                 <button type="button" data-filter="biggs" class="store-filter overflow-hidden rounded-2xl border border-navyblue/10 bg-white text-left" aria-pressed="false">
-                    <span class="store-photo flex h-24 items-center justify-center bg-mist/50"><img src="images/store_logo/Biggs.jpg" alt="" aria-hidden="true"></span>
+                    <span class="store-photo flex h-24 items-center justify-center bg-mist/50"><img src="images/store_logo/biggs.logo.jpg" alt="" aria-hidden="true"></span>
                     <span class="block px-3 py-3 font-semibold">Biggs</span>
                 </button>
                 <button type="button" data-filter="jybon" class="store-filter overflow-hidden rounded-2xl border border-navyblue/10 bg-white text-left" aria-pressed="false">
-                    <span class="store-photo flex h-24 items-center justify-center bg-mist/50"><img src="images/store_logo/Jybon.jpg" alt="" aria-hidden="true"></span>
+                    <span class="store-photo flex h-24 items-center justify-center bg-mist/50"><img src="images/store_logo/jybon.logo.jpg" alt="" aria-hidden="true"></span>
                     <span class="block px-3 py-3 font-semibold">Jybon</span>
                 </button>
                 <button type="button" data-filter="local" class="store-filter overflow-hidden rounded-2xl border border-navyblue/10 bg-white text-left" aria-pressed="false">
-                    <span class="store-photo flex h-24 items-center justify-center bg-mist/50"><img src="images/store_logo/Local.jpg" alt="" aria-hidden="true"></span>
+                    <span class="store-photo store-photo-local flex h-24 items-center justify-center" aria-hidden="true">
+                        <svg viewBox="0 0 96 72" fill="none">
+                            <path d="M25 42h46c-2 15-10 23-23 23S27 57 25 42Z" fill="white" stroke="#010736" stroke-width="3" stroke-linejoin="round"/>
+                            <path d="M21 41h54" stroke="#010736" stroke-width="4" stroke-linecap="round"/>
+                            <path d="M35 33c-5-6 4-8 0-14m13 14c-5-6 4-8 0-14m13 14c-5-6 4-8 0-14" stroke="#C8341F" stroke-width="3" stroke-linecap="round"/>
+                            <path d="m73 15 2.2 5.8L81 23l-5.8 2.2L73 31l-2.2-5.8L65 23l5.8-2.2L73 15Z" fill="#F2C230" stroke="#010736" stroke-width="1.5" stroke-linejoin="round"/>
+                            <circle cx="26" cy="22" r="4" fill="#F2C230"/>
+                        </svg>
+                    </span>
                     <span class="block px-3 py-3 font-semibold">More local favorites</span>
                 </button>
             </div>
