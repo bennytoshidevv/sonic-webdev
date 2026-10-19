@@ -57,25 +57,49 @@
                     </div>
                 </div>
                 
-                <div id="carousel"
-                    class="bg-white text-blue-950 rounded-3xl p-8 min-h-[300px] flex flex-col justify-between border border-black">
-                    <div class="slide flex justify-between gap-4">
-                        <div>
-                            <p class="font-semibold">Today's deal</p>
-                            <p class="font-display text-3xl font-extrabold mt-2">Sipocot Lechon Rice for ₱159</p>
-                            <p class="mt-2">Free delivery on orders over ₱300.</p>
+                <div id="carousel" role="region" aria-label="Featured menu items"
+                    class="relative h-[340px] overflow-hidden rounded-3xl border border-black bg-blue-950 text-white">
+                    <div id="slide-track" class="absolute inset-0 flex transition-transform duration-500 ease-in-out">
+                        <div class="slide relative flex h-full w-full shrink-0 items-end p-6 pb-20">
+                            <img src="images/Biggs Cajun.jpg" alt="" aria-hidden="true" class="absolute inset-0 h-full w-full object-cover">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/45 to-transparent"></div>
+                            <div class="relative z-10 drop-shadow-md">
+                                <p class="font-semibold">Featured menu</p>
+                                <p class="font-display text-3xl font-extrabold mt-2">Biggs Cajun</p>
+                                <p class="mt-2">1pc Biggs Cajun w/ rice</p>
+                                <p class="mt-2 font-bold">₱234</p>
+                            </div>
                         </div>
-                        <div class="text-7xl">🐖</div>
+                        <div class="slide relative flex h-full w-full shrink-0 items-end p-6 pb-20">
+                            <img src="images/Inasal.jpg" alt="" aria-hidden="true" class="absolute inset-0 h-full w-full object-cover">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/45 to-transparent"></div>
+                            <div class="relative z-10 drop-shadow-md">
+                                <p class="font-semibold">Featured menu</p>
+                                <p class="font-display text-3xl font-extrabold mt-2">Chicken Inasal</p>
+                                <p class="mt-2">Chicken Hita Inasal</p>
+                                <p class="mt-2 font-bold">₱110</p>
+                            </div>
+                        </div>
+                        <div class="slide relative flex h-full w-full shrink-0 items-end p-6 pb-20">
+                            <img src="images/Halo-halo.jpg" alt="" aria-hidden="true" class="absolute inset-0 h-full w-full object-cover">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/45 to-transparent"></div>
+                            <div class="relative z-10 drop-shadow-md">
+                                <p class="font-semibold">Featured menu</p>
+                                <p class="font-display text-3xl font-extrabold mt-2">Halo-halo</p>
+                                <p class="mt-2">Shaved ice with sweet toppings</p>
+                                <p class="mt-2 font-bold">₱89</p>
+                            </div>
+                        </div>
                     </div>
-                    
-
-                    <div class="flex items-center justify-between mt-8">
-                        <div class="flex gap-2"><span class="w-6 h-2 rounded-full bg-blue-950"></span><span
-                                class="w-2 h-2 rounded-full bg-blue-950/30"></span><span
-                                class="w-2 h-2 rounded-full bg-blue-950/30"></span></div>
+                    <div class="absolute inset-x-0 bottom-0 z-20 flex items-center justify-between p-4">
+                        <div id="dots" class="flex gap-2" aria-label="Choose featured menu item">
+                            <button type="button" aria-label="Show Biggs Cajun" class="h-2 w-6 rounded-full bg-white" aria-current="true"></button>
+                            <button type="button" aria-label="Show Chicken Inasal" class="h-2 w-2 rounded-full bg-white opacity-50" aria-current="false"></button>
+                            <button type="button" aria-label="Show Halo-halo" class="h-2 w-2 rounded-full bg-white opacity-50" aria-current="false"></button>
+                        </div>
                         <div class="flex gap-2"><button id="prev"
-                                class="w-10 h-10 rounded-full bg-blue-950 text-white hover:bg-blue-950/70">&lt;</button><button id="next"
-                                class="w-10 h-10 rounded-full bg-blue-950 text-white hover:bg-blue-950/70">&gt;</button></div>
+                                type="button" aria-label="Previous featured menu item" class="w-10 h-10 rounded-full bg-black/60 text-white hover:bg-black/80">&lt;</button><button id="next"
+                                type="button" aria-label="Next featured menu item" class="w-10 h-10 rounded-full bg-black/60 text-white hover:bg-black/80">&gt;</button></div>
                     </div>
                 </div>
             </div>

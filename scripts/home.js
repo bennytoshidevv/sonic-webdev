@@ -1,42 +1,58 @@
-/* home.js - CAROUSEL on the home page
-   Idea: keep the number of the slide that is showing (index).
-   Showing a slide = hide all slides, then un-hide the one at "index". */
+/* home.js - automatic, looping featured menu carousel */
 
-const slides = document.querySelectorAll('#carousel .slide');
+const slides = Array.from(document.querySelectorAll('#slide-track .slide'));
 const dots = document.querySelectorAll('#dots button');
 const prevBtn = document.getElementById('prev');
 const nextBtn = document.getElementById('next');
 const carousel = document.getElementById('carousel');
+const track = document.getElementById('slide-track');
+const slideCount = slides.length;
+const firstSlideClone = slides[0].cloneNode(true);
+
+firstSlideClone.setAttribute('aria-hidden', 'true');
+track.appendChild(firstSlideClone);
 
 let index = 0;
 let timer = null;
 
 function showSlide(i) {
-  // wrap around: after the last slide go to the first, before the first go to the last
-  index = (i + slides.length) % slides.length;
-
-  slides.forEach(function (slide, n) {
-    slide.classList.toggle('hidden', n !== index);
-  });
+  index = i;
+  track.style.transform = 'translateX(-' + (index * carousel.clientWidth) + 'px)';
 
   dots.forEach(function (dot, n) {
-    // active dot is long and dark, the others are small and light
-    dot.className = 'h-2 rounded-full bg-blue-950 ' + (n === index ? 'w-6' : 'w-2 opacity-30');
+    const isActive = n === index % slideCount;
+    dot.classList.toggle('w-6', isActive);
+    dot.classList.toggle('w-2', !isActive);
+    dot.classList.toggle('opacity-30', !isActive);
+    dot.setAttribute('aria-current', String(isActive));
   });
 }
 
+track.addEventListener('transitionend', function () {
+  if (index === slideCount) {
+    track.style.transition = 'none';
+    showSlide(0);
+    track.offsetHeight;
+    track.style.transition = '';
+  }
+});
+
 function startAutoPlay() {
   stopAutoPlay();
-  timer = setInterval(function () { showSlide(index + 1); }, 4000);
+  if (slideCount < 2 || carousel.matches(':hover') || carousel.contains(document.activeElement) || document.hidden) {
+    return;
+  }
+  timer = setInterval(function () { showSlide(index + 1); }, 2000);
 }
 
 function stopAutoPlay() {
   clearInterval(timer);
+  timer = null;
 }
 
 prevBtn.addEventListener('click', function () {
-  showSlide(index - 1);
-  startAutoPlay(); // restart the 4 second timer after a manual click
+  showSlide((index - 1 + slideCount) % slideCount);
+  startAutoPlay();
 });
 
 nextBtn.addEventListener('click', function () {
@@ -51,9 +67,22 @@ dots.forEach(function (dot, n) {
   });
 });
 
-// pause while the mouse is over the carousel
+window.addEventListener('resize', function () {
+  track.style.transition = 'none';
+  showSlide(index);
+  track.offsetHeight;
+  track.style.transition = '';
+});
+
 carousel.addEventListener('mouseenter', stopAutoPlay);
 carousel.addEventListener('mouseleave', startAutoPlay);
+carousel.addEventListener('focusin', stopAutoPlay);
+carousel.addEventListener('focusout', function (event) {
+  if (!carousel.contains(event.relatedTarget)) {
+    startAutoPlay();
+  }
+});
+document.addEventListener('visibilitychange', startAutoPlay);
 
 showSlide(0);
 startAutoPlay();
