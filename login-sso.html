@@ -13,8 +13,6 @@
 </head>
 <body class="font-sans bg-blue-50 text-navyblue min-h-screen flex flex-col">
 
-    <!-- Local demo flow only; this page does not authenticate with Google or Facebook. -->
-
     <!-- simple header: a real social login leaves the website, so there is no full navbar here -->
     <header class="sticky top-0 z-50 bg-blue-950 text-white">
         <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
@@ -25,11 +23,6 @@
 
     <main class="flex-1 grid place-items-center px-4 py-10">
         <div class="w-full max-w-md">
-
-            <!-- demo notice: keep this, it tells the user that no real account is used -->
-            <p class="mb-4 bg-calamansi text-ink text-sm font-semibold rounded-xl px-4 py-3 text-center">
-                Demo only. No real social media account or password is used on this page.
-            </p>
 
             <div class="bg-white border border-blue-950/10 rounded-3xl p-6 md:p-8 shadow-sm">
 
@@ -50,22 +43,22 @@
                     <ul class="mt-3 divide-y divide-blue-950/10 border border-blue-950/10 rounded-2xl overflow-hidden">
                         <li>
                             <button type="button" class="account-btn w-full flex items-center gap-3 px-4 py-3 text-left hover:bg-blue-50"
-                                data-name="Juan Dela Cruz" data-email="juan.delacruz@example.com">
+                                data-name="John Carlos Cabiles" data-email="johncarlos.cabiles@email.com">
                                 <span class="w-10 h-10 rounded-full bg-calamansi text-ink grid place-items-center font-bold">J</span>
                                 <span class="flex-1">
-                                    <span class="block font-semibold">Juan Dela Cruz</span>
-                                    <span class="block text-sm text-navyblue/60">juan.delacruz@example.com</span>
+                                    <span class="block font-semibold">John Carlos Cabiles</span>
+                                    <span class="block text-sm text-navyblue/60">johncarlos.cabiles@email.com</span>
                                 </span>
                                 <span aria-hidden="true" class="text-navyblue/40">&rsaquo;</span>
                             </button>
                         </li>
                         <li>
                             <button type="button" class="account-btn w-full flex items-center gap-3 px-4 py-3 text-left hover:bg-blue-50"
-                                data-name="Maria Santos" data-email="maria.santos@example.com">
-                                <span class="w-10 h-10 rounded-full bg-blue-950 text-white grid place-items-center font-bold">M</span>
+                                data-name="Kevin Robert Cabanos" data-email="kevinrobert.cabanos@email.com">
+                                <span class="w-10 h-10 rounded-full bg-blue-950 text-white grid place-items-center font-bold">K</span>
                                 <span class="flex-1">
-                                    <span class="block font-semibold">Maria Santos</span>
-                                    <span class="block text-sm text-navyblue/60">maria.santos@example.com</span>
+                                    <span class="block font-semibold">Kevin Robert Cabanos</span>
+                                    <span class="block text-sm text-navyblue/60">kevinrobert.cabanos@email.com</span>
                                 </span>
                                 <span aria-hidden="true" class="text-navyblue/40">&rsaquo;</span>
                             </button>
@@ -91,9 +84,6 @@
                         <button type="submit" class="w-full bg-blue-950 text-white font-bold py-3 rounded-full hover:bg-blue-900">Next</button>
                     </form>
 
-                    <p class="mt-6 text-xs text-navyblue/60 text-center">
-                        The accounts above are made up for the demo.
-                    </p>
                 </section>
 
                 <!-- ============ STEP 2: PERMISSION ============ -->
@@ -102,8 +92,8 @@
                     <div class="flex items-center gap-3 border border-blue-950/10 rounded-2xl px-4 py-3">
                         <span id="selected-initial" class="w-10 h-10 rounded-full bg-calamansi text-ink grid place-items-center font-bold">J</span>
                         <span class="flex-1">
-                            <span id="selected-name" class="block font-semibold">Juan Dela Cruz</span>
-                            <span id="selected-email" class="block text-sm text-navyblue/60">juan.delacruz@example.com</span>
+                            <span id="selected-name" class="block font-semibold">John Carlos Cabiles</span>
+                            <span id="selected-email" class="block text-sm text-navyblue/60">johncarlos.cabiles@email.com</span>
                         </span>
                         <button type="button" id="change-account-btn" class="text-sm font-semibold underline">Change</button>
                     </div>

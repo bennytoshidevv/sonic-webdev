@@ -241,14 +241,28 @@ function setupAuthLink() {
       logoutDialog.close();
     });
     confirmLogoutButton.addEventListener('click', function () {
+      if (logoutDialog.dataset.loggedOut === 'true') {
+        logoutDialog.close();
+        return;
+      }
+
       localStorage.removeItem(SESSION_KEY);
-      window.location.href = 'home.html';
+      logoutDialog.dataset.loggedOut = 'true';
+      logoutDialog.querySelector('#logout-dialog-title').textContent = 'You are logged out';
+      logoutDialog.querySelector('p').textContent = 'Your account has been logged out successfully.';
+      cancelLogoutButton.classList.add('hidden');
+      confirmLogoutButton.textContent = 'Return to home';
+      confirmLogoutButton.focus();
     });
     logoutDialog.addEventListener('click', function (event) {
       if (event.target === logoutDialog) logoutDialog.close();
     });
     logoutDialog.addEventListener('close', function () {
-      el.focus();
+      if (logoutDialog.dataset.loggedOut === 'true') {
+        window.location.href = 'home.html';
+      } else {
+        el.focus();
+      }
     });
     el.addEventListener('click', function (e) {
       e.preventDefault();
