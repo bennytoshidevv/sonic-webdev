@@ -66,13 +66,9 @@ function getTotals(cart) {
   return { subtotal: subtotal, fee: fee, total: subtotal + fee };
 }
 
-// changes "Cart (0)" in the navbar to the real number of pieces
+// refreshes the shared cart icon and quantity badge
 function updateBadge() {
-  let count = 0;
-  getCart().forEach(function (item) { count = count + item.qty; });
-  document.querySelectorAll('header a[href="cart.html"]').forEach(function (link) {
-    link.textContent = 'Cart (' + count + ')';
-  });
+  updateCartBadge();
 }
 
 

@@ -9,6 +9,55 @@ header nav.site-navigation > a:first-child {
   line-height: 1.2;
 }
 
+header nav .site-cart-link {
+  position: relative;
+  display: inline-flex;
+  width: 2.75rem;
+  height: 2.75rem;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  margin-left: auto;
+  border-radius: 9999px;
+  color: #010736;
+  background: #f2c230;
+  text-decoration: none;
+}
+
+header nav .site-cart-link:hover,
+header nav .site-cart-link:focus-visible {
+  background: #ffda56;
+}
+
+header nav .site-cart-link:focus-visible {
+  outline: 2px solid #f2c230;
+  outline-offset: 3px;
+}
+
+header nav .site-cart-link svg {
+  width: 1.4rem;
+  height: 1.4rem;
+}
+
+header nav .site-cart-count {
+  position: absolute;
+  top: -0.25rem;
+  right: -0.25rem;
+  display: flex;
+  min-width: 1.15rem;
+  height: 1.15rem;
+  align-items: center;
+  justify-content: center;
+  padding: 0 0.2rem;
+  border: 2px solid #081448;
+  border-radius: 9999px;
+  color: white;
+  background: #c8341f;
+  font-size: 0.65rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
 header nav .site-navigation-toggle {
   display: inline-flex;
   width: 2.75rem;
@@ -223,6 +272,11 @@ header nav .site-navigation-menu a {
   header nav .site-navigation-menu a {
     padding: 0.5rem 0.75rem;
     white-space: nowrap;
+  }
+
+  header nav .site-cart-link {
+    order: 1;
+    margin-left: 0;
   }
 }
 

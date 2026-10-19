@@ -132,10 +132,17 @@ function cartTotals(items) {
   return { subtotal: subtotal, fee: fee, total: subtotal + fee };
 }
 
-// changes the "Cart (2)" link in the navbar
+// refreshes the cart icon and quantity badge in the navbar
 function updateCartBadge() {
   document.querySelectorAll('header a[href="cart.html"]').forEach(function (link) {
-    link.textContent = 'Cart (' + cartCount() + ')';
+    const count = cartCount();
+    link.classList.add('site-cart-link');
+    link.setAttribute('aria-label', 'Cart, ' + count + (count === 1 ? ' item' : ' items'));
+    link.innerHTML =
+      '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
+      '<path d="M3 4h2l2.2 11.2a2 2 0 0 0 2 1.6h7.9a2 2 0 0 0 2-1.6L21 8H6"></path>' +
+      '<circle cx="10" cy="20" r="1"></circle><circle cx="18" cy="20" r="1"></circle>' +
+      '</svg><span class="site-cart-count" aria-hidden="true">' + (count > 99 ? '99+' : count) + '</span>';
   });
 }
 
@@ -149,6 +156,13 @@ function setupResponsiveNavigation() {
   });
   const brand = nav.querySelector('a');
   if (!menu || !brand) return;
+
+  const cartLink = menu.querySelector('a[href="cart.html"]');
+  if (cartLink) {
+    const cartItem = cartLink.closest('li');
+    if (cartItem) cartItem.remove();
+    brand.insertAdjacentElement('afterend', cartLink);
+  }
 
   nav.classList.add('site-navigation');
   menu.classList.add('site-navigation-menu');
@@ -164,7 +178,7 @@ function setupResponsiveNavigation() {
     '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">' +
     '<path d="M4 6h16M4 12h16M4 18h16"></path>' +
     '</svg>';
-  brand.insertAdjacentElement('afterend', toggle);
+  (cartLink || brand).insertAdjacentElement('afterend', toggle);
 
   function setMenuOpen(open) {
     menu.classList.toggle('is-open', open);
