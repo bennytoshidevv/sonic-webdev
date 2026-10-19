@@ -64,13 +64,31 @@
                 <button type="button" data-food-filter="desserts" class="bg-mist px-4 py-2 rounded-full" aria-pressed="false">Desserts</button>
             </div>
             <p class="mt-4 text-sm font-semibold">Browse by store</p>
-            <div id="filters" class="mt-2 flex flex-wrap gap-2 text-sm" role="group" aria-label="Filter menu by store">
-                <button type="button" data-filter="all" class="bg-navyblue text-white px-4 py-2 rounded-full" aria-pressed="true">All stores</button>
-                <button type="button" data-filter="jollibee" class="bg-mist px-4 py-2 rounded-full" aria-pressed="false">Jollibee</button>
-                <button type="button" data-filter="mcdonalds" class="bg-mist px-4 py-2 rounded-full" aria-pressed="false">McDonald's</button>
-                <button type="button" data-filter="biggs" class="bg-mist px-4 py-2 rounded-full" aria-pressed="false">Biggs</button>
-                <button type="button" data-filter="jybon" class="bg-mist px-4 py-2 rounded-full" aria-pressed="false">Jybon</button>
-                <button type="button" data-filter="local" class="bg-mist px-4 py-2 rounded-full" aria-pressed="false">More local favorites</button>
+            <div id="filters" class="mt-2 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 text-sm" role="group" aria-label="Filter menu by store">
+                <button type="button" data-filter="all" class="store-filter is-active overflow-hidden rounded-2xl border border-navyblue/10 bg-white text-left" aria-pressed="true">
+                    <span class="store-photo flex h-24 items-center justify-center bg-mist/50"></span>
+                    <span class="block px-3 py-3 font-semibold">All stores</span>
+                </button>
+                <button type="button" data-filter="jollibee" class="store-filter overflow-hidden rounded-2xl border border-navyblue/10 bg-white text-left" aria-pressed="false">
+                    <span class="store-photo flex h-24 items-center justify-center bg-mist/50"><img src="images/store_logo/Jollibee.jpg" alt="" aria-hidden="true"></span>
+                    <span class="block px-3 py-3 font-semibold">Jollibee</span>
+                </button>
+                <button type="button" data-filter="mcdonalds" class="store-filter overflow-hidden rounded-2xl border border-navyblue/10 bg-white text-left" aria-pressed="false">
+                    <span class="store-photo flex h-24 items-center justify-center bg-mist/50"><img src="images/store_logo/Burger Mcdo.jpg" alt="" aria-hidden="true"></span>
+                    <span class="block px-3 py-3 font-semibold">McDonald's</span>
+                </button>
+                <button type="button" data-filter="biggs" class="store-filter overflow-hidden rounded-2xl border border-navyblue/10 bg-white text-left" aria-pressed="false">
+                    <span class="store-photo flex h-24 items-center justify-center bg-mist/50"><img src="images/store_logo/Biggs.jpg" alt="" aria-hidden="true"></span>
+                    <span class="block px-3 py-3 font-semibold">Biggs</span>
+                </button>
+                <button type="button" data-filter="jybon" class="store-filter overflow-hidden rounded-2xl border border-navyblue/10 bg-white text-left" aria-pressed="false">
+                    <span class="store-photo flex h-24 items-center justify-center bg-mist/50"><img src="images/store_logo/Jybon.jpg" alt="" aria-hidden="true"></span>
+                    <span class="block px-3 py-3 font-semibold">Jybon</span>
+                </button>
+                <button type="button" data-filter="local" class="store-filter overflow-hidden rounded-2xl border border-navyblue/10 bg-white text-left" aria-pressed="false">
+                    <span class="store-photo flex h-24 items-center justify-center bg-mist/50"><img src="images/store_logo/Local.jpg" alt="" aria-hidden="true"></span>
+                    <span class="block px-3 py-3 font-semibold">More local favorites</span>
+                </button>
             </div>
             <p id="no-results" class="hidden mt-8 rounded-2xl bg-mist p-6 text-center text-sm text-navyblue/70" role="status">No dishes match these filters and search. Try another store or clear your search.</p>
             <!-- SKELETON (JS): show these gray cards first, then swap in the real grid after ~1.5s -->

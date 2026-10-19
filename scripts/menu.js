@@ -14,6 +14,19 @@ const requestedStore = new URLSearchParams(window.location.search).get('store');
 let activeStore = availableStores.includes(requestedStore) ? requestedStore : 'all';
 let activeFoodCategory = 'all';
 
+document.querySelectorAll('.store-photo img').forEach(function (image) {
+  image.addEventListener('load', function () {
+    image.classList.add('is-loaded');
+  });
+  image.addEventListener('error', function () {
+    image.remove();
+  });
+  if (image.complete) {
+    if (image.naturalWidth > 0) image.classList.add('is-loaded');
+    else image.remove();
+  }
+});
+
 /* ---------- read the data of one card ---------- */
 function cardData(card) {
   const name = card.querySelector('h3').textContent.trim();
@@ -109,9 +122,7 @@ filterButtons.forEach(function (button) {
     activeStore = button.dataset.filter;
     filterButtons.forEach(function (b) {
       const active = b === button;
-      b.classList.toggle('bg-navyblue', active);
-      b.classList.toggle('text-white', active);
-      b.classList.toggle('bg-mist', !active);
+      b.classList.toggle('is-active', active);
       b.setAttribute('aria-pressed', String(active));
     });
     applyFilters();
@@ -134,9 +145,7 @@ foodCategoryButtons.forEach(function (button) {
 
 filterButtons.forEach(function (button) {
   const active = button.dataset.filter === activeStore;
-  button.classList.toggle('bg-navyblue', active);
-  button.classList.toggle('text-white', active);
-  button.classList.toggle('bg-mist', !active);
+  button.classList.toggle('is-active', active);
   button.setAttribute('aria-pressed', String(active));
 });
 
