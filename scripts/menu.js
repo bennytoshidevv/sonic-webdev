@@ -244,25 +244,33 @@ cards.forEach(function (card) {
 /* ---------- 4. MODAL ---------- */
 const modal = document.getElementById('modal');
 let modalItem = null; // the food currently shown in the modal
+let modalTrigger = null;
 
-function openModal(data) {
+function openModal(data, trigger) {
   modalItem = data;
+  modalTrigger = trigger;
   document.getElementById('modal-img').src = data.img;
   document.getElementById('modal-img').alt = data.name;
   document.getElementById('modal-title').textContent = data.name;
   document.getElementById('modal-desc').textContent = data.desc;
   document.getElementById('modal-price').textContent = peso(data.price);
+  modal.setAttribute('aria-hidden', 'false');
   modal.classList.remove('hidden');
+  document.getElementById('close-modal').focus();
 }
 
 function closeModal() {
+  if (modal.classList.contains('hidden')) return;
   modal.classList.add('hidden');
+  modal.setAttribute('aria-hidden', 'true');
+  if (modalTrigger) modalTrigger.focus();
+  modalTrigger = null;
 }
 
 // clicking the food picture opens the modal
 cards.forEach(function (card) {
-  card.querySelector('button[title="View details"]').addEventListener('click', function () {
-    openModal(cardData(card));
+  card.querySelector('button[title="View details"]').addEventListener('click', function (e) {
+    openModal(cardData(card), e.currentTarget);
   });
 });
 

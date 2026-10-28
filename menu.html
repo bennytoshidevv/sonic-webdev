@@ -211,17 +211,16 @@
             </div>
         </section>
 
-        <!-- MODAL (JS): remove "hidden" to open it when a food image is clicked -->
-        <div id="modal" class="hidden fixed inset-0 bg-navyblue/60 grid place-items-center p-4">
+        <!-- MODAL (JS): opens with the selected food when its image is clicked -->
+        <div id="modal" class="hidden fixed inset-0 z-[60] bg-navyblue/60 grid place-items-center p-4" role="dialog" aria-modal="true" aria-labelledby="modal-title" aria-hidden="true" tabindex="-1">
             <div class="bg-white rounded-3xl max-w-md w-full overflow-hidden">
                 <div class="bg-calamansi/50 h-40 overflow-hidden">
-                    <img src="images/lechon-rice.jpg" alt="Cebu Lechon Rice" class="w-full h-full object-cover">
+                    <img id="modal-img" src="" alt="" class="w-full h-full object-cover">
                 </div>
                 <div class="p-6">
-                    <h2 class="font-display text-2xl font-bold">Cebu Lechon Rice</h2>
-                    <p class="mt-2 text-navyblue/70">Crispy lechon skin and tender meat served with puso rice and spiced
-                        vinegar.</p>
-                    <p class="mt-3 font-bold text-navyblue text-xl">₱159</p>
+                    <h2 id="modal-title" class="font-display text-2xl font-bold"></h2>
+                    <p id="modal-desc" class="mt-2 text-navyblue/70"></p>
+                    <p id="modal-price" class="mt-3 font-bold text-navyblue text-xl"></p>
                     <div class="mt-5 flex gap-3"><button id="modal-add"
                             class="flex-1 bg-navyblue text-white font-semibold py-3 rounded-full">Add to
                             cart</button><button id="close-modal"
